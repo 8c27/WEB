@@ -18,6 +18,7 @@ export class RtlComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    // 初始載入
     var gradientChartOptionsConfigurationWithTooltipBlue: any = {
       maintainAspectRatio: false,
       legend: {
@@ -462,6 +463,9 @@ export class RtlComponent implements OnInit {
       options: gradientBarChartConfiguration
     });
 
+  }
+  onload(){
+    // 載入資料
   }
   public updateOptions() {
     this.myChartData.data.datasets[0].data = this.data;

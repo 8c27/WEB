@@ -33,9 +33,17 @@
               "src/assets/scss/black-dashboard.scss",
               "src/assets/css/nucleo-icons.css"
             ],
-            "scripts": [],
+            "scripts": []
           },
           "configurations": {
+            "development": {
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "buildOptimizer": false,
+                "sourceMap": true,
+                "optimization": false,
+                "namedChunks": true
+                          },
             "production": {
               "fileReplacements": [
                 {

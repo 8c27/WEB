@@ -84,10 +84,17 @@
           "configurations": {
             "production": {
               "browserTarget": "black-dashboard-angular:build:production"
+            },
+            "development": {
+              "browserTarget": "black-dashboard-angular:build:development",
+              "sourceMap": true
             }
+          
           },
-          "defaultConfiguration": "production"
+
+          "defaultConfiguration": "development"
         },
+        
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

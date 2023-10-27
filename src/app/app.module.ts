@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     ToastrModule.forRoot(),
     MatButtonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,

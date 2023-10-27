@@ -38,11 +38,9 @@ export class FeedModalComponent implements OnInit {
 
     }
     ngOnInit(): void {
-        if (this.formData){
-            this.formGroup.patchValue(this.formData)
-        }
+      
     }
-    save(valid): void{
+    submit(valid): void{
         // 送出表單後將modal關閉
         if (valid) {
             let data = this.formGroup.getRawValue()

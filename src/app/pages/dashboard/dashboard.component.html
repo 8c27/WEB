@@ -7,42 +7,10 @@
           <button class="btn btn-fill btn-success" (click)="open()">新增</button>   
           <button class="btn btn-fill btn-info">編輯</button>
           <button class="btn btn-fill btn-danger">刪除</button>
+          <button class="btn btn-fill ">伏魔芋廚子</button>
         </div>
         <div class=" card-body">
-          <table class="col-12 table-class table">
-            <thead>
-              <tr class="card-title" style="text-align: center;">
-                <th>廠商名稱</th>
-                <th>物品編號</th>
-                <th>物品名稱</th> 
-                <th>材質</th>
-                <th>線徑</th>
-                <th>長度</th>
-                <th>單重(KG)</th>
-                <th>支數</th>
-                <th>成本價</th>
-                <th>調漲單價</th>
-                <th>加工別</th>
-                <th>備註</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let i of feedList" class="card-title">
-                <td class="td-container">{{ i.manufacturer }}</td>
-                <td class="td-container">{{ i.itemNumber }}</td>
-                <td class="td-container">{{ i.itemName }}</td>
-                <td class="td-container">{{ i.material }}</td>
-                <td class="td-container">{{ i.wire }}</td>
-                <td class="td-container">{{ i.length }}</td>
-                <td class="td-container">{{ i.weight }}</td>
-                <td class="td-container">{{ i.quantity }}</td>
-                <td class="td-container">{{ i.cost }}</td>
-                <td class="td-container">{{ i.raise + '%' }}</td>
-                <td class="td-container">{{ i.class}}</td>
-                <td class="td-container">{{ i.description}}</td>
-              </tr>
-            </tbody>
-          </table>
+         <sm-table  [dataSource]="dataSource"></sm-table>
         </div>
       </div>
     </div>

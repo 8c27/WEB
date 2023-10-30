@@ -13,6 +13,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { MatButtonModule } from '@angular/material/button';
+import { dashboardModalContent } from "./pages/dashboard/dashboard-modal/dashboard-modal.component";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   imports: [
@@ -25,13 +27,17 @@ import { MatButtonModule } from '@angular/material/button';
     AppRoutingModule,
     ToastrModule.forRoot(),
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    dashboardModalContent,
+    
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

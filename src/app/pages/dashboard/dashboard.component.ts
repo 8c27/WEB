@@ -2,8 +2,8 @@ import { Component, OnInit , Input} from "@angular/core";
 import { FeedService } from "src/app/services/feed.service";
 import { SignalrService } from "src/app/services/signalr.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { FeedModalComponent } from "src/app/modal/feee-modal/feed-modal.component";
 import { dashboardModalContent } from "./dashboard-modal/dashboard-modal.component";
+import { MatTableDataSource } from "@angular/material/table";
 @Component({
   selector: "app-dashboard",
   templateUrl: "dashboard.component.html",
@@ -13,6 +13,8 @@ export class DashboardComponent implements OnInit {
 
   feedList: any;  // feed =>feed資料庫
   modalReference: NgbModalRef;
+  dataSource!: MatTableDataSource<any>;
+
   constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal) {
   }
 
@@ -21,7 +23,7 @@ export class DashboardComponent implements OnInit {
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.feedList = data.filter( i => i.isDeleted == false)
+      this.feedList = data
     })
     this.onload()
   }
@@ -34,7 +36,11 @@ export class DashboardComponent implements OnInit {
   }
 
   open(){
-   this.ngbModal.open(dashboardModalContent, {size: 'lg'});
+    const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg'});
+    modal.result.then(e => {
+      if (e)
+        this.api.addFeed(e).subscribe(); 
+    })
 
   }
   

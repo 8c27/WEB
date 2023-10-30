@@ -1,11 +1,57 @@
 <div class="modal-header">
     <h1 class="modal-title">{{title}}</h1>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-    </button>
 </div>
-<div class="modal-body">
- 
+<div class="modal-body" [formGroup]="formGroup">
+    <div class="row" >
+        <div class="col-4">公司</div>
+        <input class="col-6" formControlName="manufacturer">
+    </div>
+    <div class="row" >
+        <div class="col-4">物品編號</div>
+        <input class="col-6" formControlName="itemNumber">
+    </div>
+    <div class="row" >
+        <div class="col-4">物品名稱</div>
+        <input class="col-6" formControlName="itemName">
+    </div>
+    <div class="row" >
+        <div class="col-4">材質</div>
+        <input class="col-6" formControlName="material"> 
+    </div>
+    <div class="row" >
+        <div class="col-4">線徑</div>
+        <input class="col-6" formControlName="wire">
+    </div>
+    <div class="row" >
+        <div class="col-4">長度</div>
+        <input class="col-6" formControlName="length">
+    </div>
+    <div class="row" >
+        <div class="col-4">單重</div>
+        <input class="col-6" formControlName="weight">
+    </div>
+    <div class="row" >
+        <div class="col-4">數量</div>
+        <input class="col-6" formControlName="quantity">
+    </div>
+    <div class="row" >
+        <div class="col-4">成本價</div>
+        <input class="col-6" formControlName="cost">
+    </div>
+    <div class="row" >
+        <div class="col-4">調漲</div>
+        <input class="col-6" formControlName="raise">
+    </div>
+    <div class="row" >
+        <div class="col-4">加工別</div>
+        <input class="col-6" formControlName="class">
+    </div>
+    <div class="row" >
+        <div class="col-4">備註</div>
+        <input class="col-6" formControlName="description">
+    </div>
 </div>
 <div class="modal-footer">
+    <button (click)="save()">SAVE</button>
+    <button (click)="cancel()">CANCEL</button>
 </div>

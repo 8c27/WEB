@@ -17,8 +17,8 @@ export class SignalrService {
       .build();
     this.hubConnection
       .start()
-      .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err));
+      .then(() => console.log('原神啟動'))
+      .catch(err => console.log('她媽ㄉ錯誤: ' + err));
 
   }
 

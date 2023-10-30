@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import {MatCardModule} from '@angular/material/card';
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
@@ -38,7 +39,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    
+    MatCardModule
   ],
   declarations: [
     AppComponent,

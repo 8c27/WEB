@@ -1,5 +1,5 @@
 <!-- 基礎style 資料 排序 -->
-<div class="nami-table-container" [style.maxHeight]="maxTableHeight" [style.minHeight]="minTableHeight">
+<div class="nami-table-container activeColor" [style.maxHeight]="maxTableHeight" [style.minHeight]="minTableHeight" >
   <ng-container *ngIf="status">
     根據<b>狀態/類別</b>查詢
     <select [(ngModel)]="status_filter" (change)="filterStatus()">

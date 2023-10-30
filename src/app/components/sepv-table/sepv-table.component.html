@@ -7,7 +7,9 @@
       <option *ngFor="let item of status" value="{{item.description}}">{{item.description}}</option>
     </select>
   </ng-container>
-  <mat-table [dataSource]="innerDataSource" matSort  [class.disabled]="disabled">
+  <mat-table [dataSource]="innerDataSource" matSort [matSortActive]="config.sort && config.sort.active"
+    [matSortDisabled]="!config.serverSide" [matSortDirection]="config.sort && config.sort.direction"
+    [matSortDisableClear]="config.sort && config.sort.disableClear" [class.disabled]="disabled">
 <!--隱藏的checkbox-->
     <ng-container matColumnDef="checkbox" >
       <th mat-header-cell *matHeaderCellDef class="hidden"></th>

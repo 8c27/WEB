@@ -23,8 +23,6 @@ import { MatTableModule } from "@angular/material/table";
     MatTableModule
   ],
   declarations: [
-    DashboardComponent,
-    TablesComponent,
     
   ]
 })

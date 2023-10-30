@@ -10,7 +10,8 @@
           <button class="btn btn-fill ">伏魔芋廚子</button>
         </div>
         <div class=" card-body">
-         <sm-table  [dataSource]="dataSource"></sm-table>
+          <sepv-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
+          [dataSource]="dataSource" (select)="onSelect($event)"  [status]="status"></sepv-table>
         </div>
       </div>
     </div>

@@ -24,7 +24,9 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { StockComponent } from "./pages/stock/stock.component";
-import { StockModalContent } from "./pages/stock/stock-modal/stock-modal.component";
+import { StockModalConponent } from "./pages/stock/stock-modal/stock-modal.component";
+import { ClientModalConponent } from "./pages/client/client-modal/client-modal.component";
+import { ClientComponent } from "./pages/client/client.component";
 
 @NgModule({
   imports: [
@@ -54,7 +56,9 @@ import { StockModalContent } from "./pages/stock/stock-modal/stock-modal.compone
     TableComponent,
     DashboardComponent,
     StockComponent,
-    StockModalContent
+    StockModalConponent,
+    ClientModalConponent,
+    ClientComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

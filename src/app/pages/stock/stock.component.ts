@@ -2,20 +2,20 @@ import { Component, OnInit , Input} from "@angular/core";
 import { FeedService } from "src/app/services/feed.service";
 import { SignalrService } from "src/app/services/signalr.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { dashboardModalContent } from "./dashboard-modal/dashboard-modal.component";
+import { StockModalContent } from "./stock-modal/stock-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 
 
 
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "dashboard.component.html",
-  styleUrls: ["./dashboard.component.scss"],
+  selector: "app-stock",
+  templateUrl: "stock.component.html",
+  styleUrls: ["./stock.component.scss"],
 })
 
 
-export class DashboardComponent implements OnInit {
+export class StockComponent implements OnInit {
 
   feedList: any;  // feed =>feed資料庫
   modalReference: NgbModalRef;
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // 初始化
     this.signalRSvc.StartConnection();    // 連接singalR 
-    this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
+    this.signalRSvc.ReceiveListener()?.on('StockChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
       this.feedList = data
     })
@@ -70,18 +70,18 @@ export class DashboardComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
-    this.api.getFeed().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
+    this.api.getStock().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
   }
 
   onSelect($event: any) {
     this.selected = $event;
   }
   open(){
-    const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg'});
+    const modal = this.ngbModal.open(StockModalContent, {size: 'lg'});
 
     modal.result.then(e => {
       if (e)
-        this.api.addFeed(e).subscribe(); 
+        this.api.addStock(e).subscribe(); 
     })
 
   }

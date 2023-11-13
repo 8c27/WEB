@@ -29,9 +29,9 @@ export interface NamiTableColumns {
 }
 
 @Component({
-  selector: 'sepv-table',
-  templateUrl: './sepv-table.component.html',
-  styleUrls: ['./sepv-table.component.scss'],
+  selector: 'sm-table',
+  templateUrl: './sm-table.component.html',
+  styleUrls: ['./sm-table.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

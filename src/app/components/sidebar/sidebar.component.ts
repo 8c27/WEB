@@ -14,36 +14,11 @@ export const ROUTES: RouteInfo[] = [
     class: ""
   },
   {
-    path: "/icons",
-    title: "加工單",
+    path: "/stock",
+    title: "庫存管理",
     icon: "icon-atom",
     class: ""
   },
-  {
-    path: "/maps",
-    title: "客戶基本資料",
-    icon: "icon-pin",
-    class: "" },
-  {
-    path: "/notifications",
-    title: "帳號管理",
-    icon: "icon-bell-55",
-    class: ""
-  },
-
-  {
-    path: "/user",
-    title: "帳號管理",
-    icon: "icon-single-02",
-    class: ""
-  },
-  {
-    path: "/tables",
-    title: "帳號管理",
-    icon: "icon-puzzle-10",
-    class: ""
-  },
-
 ];
 
 @Component({

@@ -31,4 +31,22 @@ export class FeedService {
         return this.http.put(apiUrl + "/Feed/" + id, data)
     }
 
+    public getStock(){
+        return this.http.get(apiUrl + "/Stock")
+    }
+    public addStock(data){
+        // 透過restful post 新增 Feed 
+        return this.http.post(apiUrl + "/Stock" , data) 
+    }
+
+    public deleteStock(id){
+        // 透過restful delete 刪除 Feed
+        return this.http.delete(apiUrl + "/Stock/" + id)
+    }
+
+    public editStock(id, data){
+        // 透過restful put 編輯 Feed 
+        return this.http.put(apiUrl + "/Stock/" + id, data)
+    }
+
 }

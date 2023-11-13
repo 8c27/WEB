@@ -10,7 +10,6 @@ import { DashboardComponent } from "../../pages/dashboard/dashboard.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { dashboardModalContent } from "src/app/pages/dashboard/dashboard-modal/dashboard-modal.component";
 import { MatTableModule } from "@angular/material/table";
 
 @NgModule({

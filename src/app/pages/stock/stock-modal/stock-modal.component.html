@@ -4,16 +4,18 @@
         <h1 class="modal-title">{{title}}</h1>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
-        <div class="row" >
+        <div class="row">
             <div class="col-2 form-name">廠商編號</div>
             <input class="col-4" formControlName="itemName">
             <div class="col-2 form-name">廠商名稱</div>
             <input class="col-4" formControlName="manufacturer">
         </div>
+
         <div class="row" >
             <div class="col-2 form-name">訂單編號</div>
             <input class="col-4" formControlName="stockId">
         </div>
+
         <div class="row" >
             <div class="col-2 form-name">物品編號</div>
             <input class="col-4" formControlName="itemName">
@@ -27,6 +29,7 @@
             <div class="col-2 form-name">昇茂規格</div>
             <input class="col-4" formControlName="itemName">
         </div>
+
         <div class="row" >
             <div class="col-2 form-name">材質</div>
             <input class="col-2 form-name" formControlName="itemName">
@@ -35,7 +38,7 @@
             <div class="col-2 form-name">料長</div>
             <input class="col-2 form-name" formControlName="itemName">
         </div>
-    
+
         <div class="row" >
             <div class="col-2 form-name">單重</div>
             <input class="col-2 form-name" formControlName="weight">
@@ -98,11 +101,7 @@
 
     </div>
     <div class="modal-footer">
-        <button style="--clr:#a1eafb" (click)="save()">
-            <span style="color: #a1eafb">SAVE</span><i></i>
-        </button>
-        <button style="--clr:#a1eafb" (click)="cancel()">
-            <span style="color: #a1eafb">CANCEL</span><i></i>
-        </button>
+        <button (click)="save()">SAVE</button>
+        <button (click)="cancel()">CANCEL</button>
     </div>
 </div>

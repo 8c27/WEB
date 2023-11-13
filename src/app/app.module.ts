@@ -19,10 +19,12 @@ import { MatTableModule } from "@angular/material/table";
 import { FooterComponent } from "./components/footer/footer.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
-import { TableComponent } from "./components/sepv-table/sepv-table.component";
+import { TableComponent } from "./components/sm-table/sm-table.component";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { StockComponent } from "./pages/stock/stock.component";
+import { StockModalContent } from "./pages/stock/stock-modal/stock-modal.component";
 
 @NgModule({
   imports: [
@@ -50,7 +52,9 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
     NavbarComponent, 
     SidebarComponent,
     TableComponent,
-    DashboardComponent
+    DashboardComponent,
+    StockComponent,
+    StockModalContent
   ],
   providers: [],
   bootstrap: [AppComponent]

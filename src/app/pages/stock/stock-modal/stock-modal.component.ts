@@ -6,11 +6,11 @@ import { FeedService } from "src/app/services/feed.service";
 
 
 @Component({
-  selector: "app-dashboard-modal",
-  templateUrl: "dashboard-modal.component.html",
-  styleUrls: ["./dashboard-modal.component.scss"]
+  selector: "app-stock-modal",
+  templateUrl: "stock-modal.component.html",
+  styleUrls: ["./stock-modal.component.scss"]
 })
-export class dashboardModalContent implements OnInit {
+export class StockModalContent implements OnInit {
   @Input() title: String = "Feed";
   @Input() formData: any;
 

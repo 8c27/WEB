@@ -10,19 +10,19 @@ export const ROUTES: RouteInfo[] = [
   {
     path: "/dashboard",
     title: "進料系統",
-    icon: "icon-chart-pie-36",
+    icon: "icon-cart",
     class: ""
   },
   {
     path: "/stock",
     title: "庫存管理",
-    icon: "icon-atom",
+    icon: "icon-paper",
     class: ""
   },
   {
     path: "/client",
     title: "客戶資料",
-    icon: "icon-atom",
+    icon: "icon-single-02",
     class: ""
   },
 ];

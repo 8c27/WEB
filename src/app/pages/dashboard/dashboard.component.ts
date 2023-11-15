@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.feedList = data
+      this.dataSource= new MatTableDataSource<any>(data)
     })
     this.onload()
   }

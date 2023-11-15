@@ -48,5 +48,17 @@ export class FeedService {
         // 透過restful put 編輯 Feed 
         return this.http.put(apiUrl + "/Stock/" + id, data)
     }
+    public getClient(){
+        return this.http.get(apiUrl + "/Client")
+    }
+    public addClient(data){
+        return this.http.post(apiUrl + "/Client", data)
+    }
+    public deleteClient(id){
+        return this.http.delete(apiUrl + "/Client/" + id)
+    }
+    public editClient(id, data){
+        return this.http.put(apiUrl + "/Client/" +id, data)
+    }
 
 }

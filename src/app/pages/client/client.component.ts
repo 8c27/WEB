@@ -4,7 +4,7 @@ import { SignalrService } from "src/app/services/signalr.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { MatTableDataSource } from "@angular/material/table";
 import { ClientModalConponent } from "./client-modal/client-modal.component";
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: "app-client",
@@ -15,7 +15,6 @@ import { ClientModalConponent } from "./client-modal/client-modal.component";
 
 export class ClientComponent implements OnInit {
 
-  feedList: any;  // feed =>feed資料庫
   modalReference: NgbModalRef;
   dataSource!: MatTableDataSource<any>;
   data: any;
@@ -30,14 +29,14 @@ export class ClientComponent implements OnInit {
     },
     columns: [
       { name: 'creationTime', displayName: '創建時間', templateRef: 'date_long' },
-      { name: 'listId', displayName: '訂單編號' },
-      { name: 'manufacturer', displayName: '廠商名稱' },
-      { name: 'itemNumber', displayName: '物品編號'},
-      { name: 'itemName', displayName: '物品名稱' },
-      { name: 'stockId', displayName: '昇茂規格', width: 200},   
-      { name: 'class', displayName: '料別'},
-      { name: 'machine', displayName: '機台編號' },
-      { name: 'material', displayName: '材質'},
+      { name: 'name', displayName: '廠商名稱' },
+      { name: 'number', displayName: '廠商編號' },
+      { name: 'address', displayName: '地址', width:300},
+      { name: 'person', displayName: '負責人'},   
+      { name: 'telephone', displayName: '聯絡電話'},
+      { name: 'mobile', displayName: '手機' },
+      { name: 'compiled', displayName: '統編'},
+      { name: 'description', displayName: '備註'}
     ]
   };
   subs: any;
@@ -51,15 +50,19 @@ export class ClientComponent implements OnInit {
   organizations: Object;
   proformas: Object;
 
-  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal) {
+  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,
+   ) {
   }
 
   ngOnInit() {
     // 初始化
     this.signalRSvc.StartConnection();    // 連接singalR 
-    this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
+    this.signalRSvc.ReceiveListener()?.on('ClientChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.feedList = data
+      this.dataSource = new MatTableDataSource<any>(data)
+      if(this.selected){
+        this.selected = data.find(e => e.id == this.selected.id)
+      }
     })
     this.onload()
   }
@@ -68,19 +71,105 @@ export class ClientComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
-    this.api.getFeed().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
+    this.api.getClient().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Client資料
   }
 
   onSelect($event: any) {
     this.selected = $event;
+    console.log(this.selected)
   }
   open(){
-    const modal = this.ngbModal.open(ClientModalConponent, {size: 'lg'});
-
+    const modal = this.ngbModal.open(ClientModalConponent, {size: 'md'});
+    modal.componentInstance.title = '客戶資料'
     modal.result.then(e => {
       if (e)
-        this.api.addFeed(e).subscribe(); 
+        this.api.addClient(e).subscribe(); 
+    }).catch((error) => {
+      console.log('Error in modal result:', error);
     })
+  }
+  delete() {
+      this.api.deleteClient(this.selected.id).subscribe(
+        (respon) => {
+          //刪除成功
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除成功'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-success alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        },
+        (error) => {
+          this.toastr.error(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除失敗'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-error alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+   
+        }
+      )
+    
+    
+  }
+  edit(){
+    if (this.selected){
+      const modal = this.ngbModal.open(ClientModalConponent,  {size: 'md'});
+      modal.componentInstance.title = '編輯客戶資料';
+      modal.componentInstance.formData = this.selected;
+      modal.result.then(e => {
+        if(e){
+          this.api.editClient(e.id , e).subscribe(
+            (respon) => {
+              this.toastr.success(
+                '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+                '編輯成功'
+                + '</span>',
+                "",
+                {
+                  timeOut: 3000,
+                  closeButton: true,
+                  enableHtml: true,
+                  toastClass: "alert alert-success alert-with-icon",
+                  positionClass: "toast-bottom-center"
+                }
+              );
+              (error) => {
+                this.toastr.error(
+                  '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+                  '編輯失敗'
+                  + '</span>',
+                  "",
+                  {
+                    timeOut: 3000,
+                    closeButton: true,
+                    enableHtml: true,
+                    toastClass: "alert alert-error alert-with-icon",
+                    positionClass: "toast-bottom-center"
+                  }
+                );
+              }
+            }
+          ); 
+        }
+      }).catch( (error) => {
+        console.log('Error in Modal:', error)
+      })
+    }
 
   }
   

@@ -1,108 +1,52 @@
 
-<div class="modal-content">
+<div class="modal-content border-ani">
     <div class="modal-header " >
           <h1 class="modal-title">{{title}}</h1>
       </div>
       <div class="modal-body" [formGroup]="formGroup">
           <div class="row" >
-              <div class="col-2 form-name">廠商編號</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">廠商名稱</div>
-              <input class="col-4" formControlName="manufacturer">
+              <div class="col-3 form-name">廠商名稱</div>
+              <input class="col-8" formControlName="name" [class.invalid]="isError('name')">
+              <small class="errorText" *ngIf="errorType('name','required')">*必填欄位</small>
+          </div>
+          <div class="row">
+            <div class="col-3 form-name">廠商編號</div>
+            <input class="col-8" formControlName="number" [class.invalid]="isError('number')">
+            <small class="errorText " *ngIf="errorType('number' , 'required')">*必填欄位</small>
           </div>
           <div class="row" >
-              <div class="col-2 form-name">訂單編號</div>
-              <input class="col-4" formControlName="stockId">
+              <div class="col-3 form-name">地址</div>
+              <input class="col-8" formControlName="address" [class.invalid]="isError('address')">
+              <small class="errorText " *ngIf="errorType('address' , 'required')">*必填欄位</small>
+          </div>
+          <div class="row">
+            <div class="col-3 form-name">發票地址</div>
+            <input class="col-8" formControlName="invoice">
           </div>
           <div class="row" >
-              <div class="col-2 form-name">物品編號</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">物品名稱</div>
-              <input class="col-4" formControlName="itemName">
+              <div class="col-3 form-name">負責人</div>
+              <input class="col-5" formControlName="person">
           </div>
   
           <div class="row" >
-              <div class="col-2 form-name">機台編號</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">昇茂規格</div>
-              <input class="col-4" formControlName="itemName">
+              <div class="col-3 form-name">聯絡電話</div>
+              <input class="col-3" formControlName="telephone">
+              <div class="col-3 form-name">行動電話</div>
+              <input class="col-3" formControlName="mobile">
           </div>
           <div class="row" >
-              <div class="col-2 form-name">材質</div>
-              <input class="col-2 form-name" formControlName="itemName">
-              <div class="col-2 form-name">頭部尺寸</div>
-              <input class="col-2 form-name" formControlName="itemName">
-              <div class="col-2 form-name">料長</div>
-              <input class="col-2 form-name" formControlName="itemName">
+              <div class="col-3 form-name">統編</div>
+              <input class="col-3 form-name" formControlName="compiled">
+              <div class="col-3 form-name">備註</div>
+              <input class="col-3 form-name" formControlName="description">
           </div>
-      
-          <div class="row" >
-              <div class="col-2 form-name">單重</div>
-              <input class="col-2 form-name" formControlName="weight">
-              <div class="col-2 form-name">1kg/支</div>
-              <input class="col-2 form-name" formControlName="itemName">
-              <div class="col-2 form-name">數量</div>
-              <input class="col-2 form-name" formControlName="quantity">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">成本價</div>
-              <input class="col-2 form-name" formControlName="cost">
-              <div class="col-2 form-name">調漲</div>
-              <input class="col-2 form-name" formControlName="raise">
-              <div class="col-2 form-name">加工別</div>
-              <input class="col-2 form-name" formControlName="class">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">剝皮一</div>
-              <input class="col-2 form-name" formControlName="itemName">
-              <div class="col-2 form-name">剝皮二</div>
-              <input class="col-2 form-name" formControlName="itemName">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">打字別</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">尾倒角</div>
-              <input class="col-4" formControlName="itemName">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">鑽孔一</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">鑽孔二</div>
-              <input class="col-4" formControlName="itemName">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">插-珠槽</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">車錐度</div>
-              <input class="col-4" formControlName="itemName">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">打耳別</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">特殊別</div>
-              <input class="col-4" formControlName="itemName">
-          </div>
-  
-          <div class="row" >
-              <div class="col-2 form-name">加工項目</div>
-              <input class="col-4" formControlName="itemName">
-              <div class="col-2 form-name">備註</div>
-              <input class="col-4" formControlName="description">
-          </div>
-  
       </div>
       <div class="modal-footer">
-          <button style="--clr:#a1eafb" (click)="save()">
-              <span style="color: #a1eafb">SAVE</span><i></i>
+          <button style="--clr:#a1eafb" (click)="save()" [disabled]="!formGroup.valid || formGroup.pristine">
+              <span style="color: #a1eafb" >SAVE</span><i></i>
           </button>
-          <button style="--clr:#a1eafb" (click)="cancel()">
-              <span style="color: #a1eafb">CANCEL</span><i></i>
+          <button style="--clr:#ffcccc" (click)="cancel()">
+              <span style="color: #ffcccc">CANCEL</span><i></i>
           </button>
       </div>
   </div>

@@ -4,6 +4,7 @@ import { SignalrService } from "src/app/services/signalr.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { StockModalConponent } from "./stock-modal/stock-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -31,15 +32,14 @@ export class StockComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'creationTime', displayName: '創建時間', templateRef: 'date_long' },
-      { name: 'listId', displayName: '訂單編號' },
-      { name: 'manufacturer', displayName: '廠商名稱' },
-      { name: 'itemNumber', displayName: '物品編號'},
-      { name: 'itemName', displayName: '物品名稱' },
-      { name: 'stockId', displayName: '昇茂規格', width: 200},   
-      { name: 'class', displayName: '料別'},
-      { name: 'machine', displayName: '機台編號' },
-      { name: 'material', displayName: '材質'},
+      { name: 'listId', displayName: '更新時間' },
+      { name: 'stockName', displayName: '昇貿規格' },
+      { name: 'weight', displayName: '單重'},
+      { name: 'finishAmount', displayName: '完成數量' },
+      { name: 'quantity', displayName: '訂單數量',},   
+      { name: 'lackPcs', displayName: '缺料支數'},
+      { name: 'lackWeight', displayName: '缺料重量' },
+
     ]
   };
   subs: any;
@@ -53,7 +53,7 @@ export class StockComponent implements OnInit {
   organizations: Object;
   proformas: Object;
 
-  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal) {
+  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,) {
   }
 
   ngOnInit() {
@@ -61,7 +61,10 @@ export class StockComponent implements OnInit {
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('StockChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.feedList = data
+      this.dataSource = new MatTableDataSource<any>(data)
+      if(this.selected){
+        this.selected = data.find(e => e.id == this.selected.id)
+      }
     })
     this.onload()
   }
@@ -77,13 +80,54 @@ export class StockComponent implements OnInit {
     this.selected = $event;
   }
   open(){
-    const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'});
-
+    const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
+    modal.componentInstance.title = '新增規格'
     modal.result.then(e => {
       if (e)
         this.api.addStock(e).subscribe(); 
+    }).catch( (error) => {
+      console.log('Error in modal result:', error)
     })
-
   }
-  
+  delete(){
+    this.api.deleteStock(this.selected.id).subscribe(
+      (respon) =>{
+        //刪除成功
+        this.toastr.success(
+          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+          '刪除成功'
+          + '</span>',
+          "",
+          {
+            timeOut: 3000,
+            closeButton: true,
+            enableHtml: true,
+            toastClass: "alert alert-success alert-with-icon",
+            positionClass: "toast-bottom-center"
+          }
+        );
+      },
+      (errro) => {
+        this.toastr.error(
+          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+          '刪除失敗'
+          + '</span>',
+          "",
+          {
+            timeOut: 3000,
+            closeButton: true,
+            enableHtml: true,
+            toastClass: "alert alert-error alert-with-icon",
+            positionClass: "toast-bottom-center"
+          }
+      );
+      }
+    )
+  }
+  edit(){
+    if (this.selected){
+      const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
+      modal.componentInstance.title = '編輯你媽啦'
+    }
+  }
 }

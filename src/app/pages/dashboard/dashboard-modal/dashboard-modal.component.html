@@ -1,46 +1,55 @@
 
-<div class="modal-content">
+<div class="modal-content border-ani">
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row" >
-            <div class="col-2 form-name">廠商編號</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">廠商名稱</div>
-            <input class="col-4" formControlName="manufacturer">
-        </div>
-        <div class="row" >
-            <div class="col-2 form-name">訂單編號</div>
-            <input class="col-4" formControlName="stockId">
+            <div class="col-2 form-name">廠商ID</div>
+            <input class="col-4" list="clientList" formControlName="clientId">
+            <datalist id="clientList">
+                <option *ngFor="let i of clientList" [ngValue]="i.id">
+                    {{i.number +' '+ i.name}}
+                </option>
+            </datalist>
         </div>
         <div class="row" >
             <div class="col-2 form-name">物品編號</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="itemNumber">
             <div class="col-2 form-name">物品名稱</div>
             <input class="col-4" formControlName="itemName">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">機台編號</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="machine">
             <div class="col-2 form-name">昇茂規格</div>
-            <input class="col-4" formControlName="itemName">
+
+            <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" formControlName="stockId">
+                <nz-option *ngFor="let option of stockList" [nzLabel]="option.stockName" [nzValue]="option.id"></nz-option>
+              </nz-select>
+
+            <!-- <input class="col-4" list="stockList" formControlName="stockId" >
+            <datalist id ="stockList"> 
+                <ng-container *ngFor="let i of stockList">
+                    <option [ngValue]="i.id">{{ i.stockName }}</option>
+                </ng-container>
+            </datalist> -->
         </div>
         <div class="row" >
             <div class="col-2 form-name">材質</div>
-            <input class="col-2 form-name" formControlName="itemName">
+            <input class="col-2 form-name" formControlName="material">
             <div class="col-2 form-name">頭部尺寸</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">料長</div>
-            <input class="col-2 form-name" formControlName="itemName">
+            <input class="col-2 form-name" formControlName="size">
+            <div class="col-2 form-name">料長(mm)</div>
+            <input class="col-2 form-name" formControlName="mm">
         </div>
     
         <div class="row" >
-            <div class="col-2 form-name">單重</div>
+            <div class="col-2 form-name">單重(KG)</div>
             <input class="col-2 form-name" formControlName="weight">
             <div class="col-2 form-name">1kg/支</div>
-            <input class="col-2 form-name" formControlName="itemName">
+            <input class="col-2 form-name" formControlName="pcs">
             <div class="col-2 form-name">數量</div>
             <input class="col-2 form-name" formControlName="quantity">
         </div>
@@ -48,7 +57,7 @@
         <div class="row" >
             <div class="col-2 form-name">成本價</div>
             <input class="col-2 form-name" formControlName="cost">
-            <div class="col-2 form-name">調漲</div>
+            <div class="col-2 form-name">調漲(%)</div>
             <input class="col-2 form-name" formControlName="raise">
             <div class="col-2 form-name">加工別</div>
             <input class="col-2 form-name" formControlName="class">
@@ -63,35 +72,35 @@
 
         <div class="row" >
             <div class="col-2 form-name">打字別</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="peel1">
             <div class="col-2 form-name">尾倒角</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="peel2">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">鑽孔一</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="hole1">
             <div class="col-2 form-name">鑽孔二</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="hole2">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">插-珠槽</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="ditch">
             <div class="col-2 form-name">車錐度</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="taper">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">打耳別</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="ear">
             <div class="col-2 form-name">特殊別</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="special">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">加工項目</div>
-            <input class="col-4" formControlName="itemName">
+            <input class="col-4" formControlName="project">
             <div class="col-2 form-name">備註</div>
             <input class="col-4" formControlName="description">
         </div>

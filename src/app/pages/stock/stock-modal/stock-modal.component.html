@@ -1,107 +1,31 @@
 
-<div class="modal-content">
+<div class="modal-content border-ani">
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row">
-            <div class="col-2 form-name">廠商編號</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">廠商名稱</div>
-            <input class="col-4" formControlName="manufacturer">
+            <div class="col-4 form-name">昇貿規格</div>
+            <input class="col-6" formControlName="stockName">
+            <small class="errorText" *ngIf="errorType('stockName','required')">*必填欄位</small>
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">單重 ( g )</div>
+            <input class="col-6" formControlName="weight">
+            <small class="errorText" *ngIf="errorType('weight','required')">*必填欄位</small>
         </div>
 
         <div class="row" >
-            <div class="col-2 form-name">訂單編號</div>
-            <input class="col-4" formControlName="stockId">
+            <div class="col-4 form-name">數量</div>
+            <input class="col-6" formControlName="finishAmount">
         </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">物品編號</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">物品名稱</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">機台編號</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">昇茂規格</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">材質</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">頭部尺寸</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">料長</div>
-            <input class="col-2 form-name" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">單重</div>
-            <input class="col-2 form-name" formControlName="weight">
-            <div class="col-2 form-name">1kg/支</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">數量</div>
-            <input class="col-2 form-name" formControlName="quantity">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">成本價</div>
-            <input class="col-2 form-name" formControlName="cost">
-            <div class="col-2 form-name">調漲</div>
-            <input class="col-2 form-name" formControlName="raise">
-            <div class="col-2 form-name">加工別</div>
-            <input class="col-2 form-name" formControlName="class">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">剝皮一</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">剝皮二</div>
-            <input class="col-2 form-name" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">打字別</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">尾倒角</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">鑽孔一</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">鑽孔二</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">插-珠槽</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">車錐度</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">打耳別</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">特殊別</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">加工項目</div>
-            <input class="col-4" formControlName="itemName">
-            <div class="col-2 form-name">備註</div>
-            <input class="col-4" formControlName="description">
-        </div>
-
     </div>
     <div class="modal-footer">
-        <button (click)="save()">SAVE</button>
-        <button (click)="cancel()">CANCEL</button>
+        <button style="--clr:#a1eafb" (click)="save()" [disabled]="!formGroup.valid || formGroup.pristine">
+            <span style="color: #a1eafb" >SAVE</span><i></i>
+        </button>
+        <button style="--clr:#ffcccc" (click)="cancel()">
+            <span style="color: #ffcccc">CANCEL</span><i></i>
+        </button>
     </div>
 </div>

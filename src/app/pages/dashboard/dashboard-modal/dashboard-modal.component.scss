@@ -1,115 +1,167 @@
 .form-name{
-    text-align: center;
+  text-align: center;
 }
+
+.modal-content{
+color: #CCCCCC;
+.modal-title {
+  color: #CCCCCC;
+}
+}
+.invalid{
+border: 3px solid #FF69B4;
+}
+.errorText {
+color: #FF69B4;
+padding-left: 120px;
+}
+
+
+
+
+
+
+/* CSS ANIMATION*/
 button {
-    position: relative;
-    background: #444;
-    color: #fff;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: none;
-    letter-spacing: 1px;
-    font-size: 12px;
-    padding: 0.3px 4px;
-    transition: 0.2s;
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 0.3px 4px;
+  transition: 0.2s;
+}
+
+button:hover {
+  letter-spacing: 1px;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+button:focus {
+  outline: 0px auto
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #272822;
+}
+
+.frame_b button span {
+  top: 0px
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+  top: -2px
+}
+
+button i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+button i::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 1px;
+  left: 80%;
+  top: -1px;
+  border: 1px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 7.5px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 1px;
+  left: 20%;
+  bottom: -1px;
+  border: 0.25px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::after {
+  width: 7.5px;
+  left: 60%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
   }
-  
-  button:hover {
-    letter-spacing: 1px;
-    background: var(--clr);
-    color: var(--clr);
-    /* box-shadow: 0 0 35px var(--clr); */
-    animation: box 3s infinite;
+
+  50% {
+    transform: translateX(5px);
   }
-  
-  button:focus {
-    outline: 0px auto
+
+  100% {
+    transform: translateX(0);
   }
-  
-  button::before {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    background: #272822;
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
   }
-  
-  .frame_b button span {
-    top: 0px
+
+  50% {
+    box-shadow: 0 0 25px var(--clr);
   }
-  
-  button span {
-    position: relative;
-    z-index: 1;
-    top: -2px
+
+  100% {
+    box-shadow: #27272c;
   }
-  
-  button i {
-    position: absolute;
-    inset: 0;
-    display: block;
+
+}
+
+.border-ani{
+--border-size: 3px;
+--border-angle: 0turn;
+background-image: conic-gradient(
+  from var(--border-angle),
+  #213,
+  #112 50%,
+  #213
+),
+conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+background-size: calc(100% - (var(--border-size) * 2))
+  calc(100% - (var(--border-size) * 2)),
+cover;
+background-position: center center;
+background-repeat: no-repeat;
+
+animation: bg-spin 3s linear infinite;
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
   }
-  
-  button i::before {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 1px;
-    left: 80%;
-    top: -1px;
-    border: 1px solid var(--clr);
-    background: #272822;
-    transition: 0.2s;
-  }
-  
-  button:hover i::before {
-    width: 7.5px;
-    left: 20%;
-    animation: move 3s infinite;
-  }
-  
-  button i::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 1px;
-    left: 20%;
-    bottom: -1px;
-    border: 0.25px solid var(--clr);
-    background: #272822;
-    transition: 0.2s;
-  }
-  
-  button:hover i::after {
-    width: 7.5px;
-    left: 60%;
-    animation: move 3s infinite;
-  }
-  
-  @keyframes move {
-    0% {
-      transform: translateX(0);
-    }
-  
-    50% {
-      transform: translateX(5px);
-    }
-  
-    100% {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes box {
-    0% {
-      box-shadow: #27272c;
-    }
-  
-    50% {
-      box-shadow: 0 0 25px var(--clr);
-    }
-  
-    100% {
-      box-shadow: #27272c;
-    }
-  
-  }
+}
+
+}
+
+@property --border-angle {
+syntax: "<angle>";
+inherits: true;
+initial-value: 0turn;
+}

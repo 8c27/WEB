@@ -108,17 +108,17 @@ export class ClientComponent implements OnInit {
         },
         (error) => {
           this.toastr.error(
-            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
-            '刪除失敗'
-            + '</span>',
-            "",
-            {
-              timeOut: 3000,
-              closeButton: true,
-              enableHtml: true,
-              toastClass: "alert alert-error alert-with-icon",
-              positionClass: "toast-bottom-center"
-            }
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '刪除失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
           );
    
         }

@@ -27,6 +27,8 @@ import { StockComponent } from "./pages/stock/stock.component";
 import { StockModalConponent } from "./pages/stock/stock-modal/stock-modal.component";
 import { ClientModalConponent } from "./pages/client/client-modal/client-modal.component";
 import { ClientComponent } from "./pages/client/client.component";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 @NgModule({
   imports: [
@@ -43,7 +45,9 @@ import { ClientComponent } from "./pages/client/client.component";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatAutocompleteModule,
+    NzSelectModule,
   ],
   declarations: [
     AppComponent,

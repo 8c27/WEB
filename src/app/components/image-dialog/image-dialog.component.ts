@@ -114,7 +114,7 @@ ngOnInit(){
 
     this.fileUpload.nativeElement.value = '';
     this.files.forEach(file => {
-      if (this.dataname.find(a => a.imgName == file.namedate+file.data.name)==undefined){
+      if (this.dataname.find(a => a.imgName == file.data.name)==undefined){
        this.uploadFile(file);
        file.status=1;
      }else{
@@ -158,11 +158,10 @@ ngOnInit(){
         reader.onload = (event) => {
 
           this.url = (<FileReader>event.target).result;
-          this.namedate = formatDate(new Date(), 'yyyyMMddHHmm', 'en')+'_'
           // file.name=date.getFullYear().toString() + date.getMonth().toString() + date.getDay().toString()
           //   + date.getHours().toString() + date.getMinutes().toString()+file.
           if (this.files.find(a => a.data.name == file.name) == undefined){
-          this.files.push({ data: file, inProgress: false, progress: 0, url: this.url, namedate: this.namedate,status:0});
+          this.files.push({ data: file, inProgress: false, progress: 0, url: this.url, namedate: this.namedate ,status:0 });
           this.uploadService.imageUrl[index]=this.url
           this.imageObject.push({
             image: this.url, thumbImage: this.url, alt: 'alt of image',

@@ -30,7 +30,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ImageDialogComponent } from "./components/image-dialog/image-dialog.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
-
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -49,7 +49,8 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     MatCardModule,
     NgSelectModule,
     MatSnackBarModule,
-    NgImageFullscreenViewModule 
+    NgImageFullscreenViewModule ,
+    MatIconModule
   ],
   declarations: [
     AppComponent,

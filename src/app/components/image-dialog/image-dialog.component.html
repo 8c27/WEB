@@ -15,7 +15,7 @@
         
               <div style="padding-top: 5px;"><mat-progress-bar *ngIf="file.url" [value]="file.progress"></mat-progress-bar></div>
               <label id="file-label">
-                {{file.namedate+file.data.name}}
+                {{file.data.name}}
               </label>
               <mat-icon color="accent" (click)="cancel(index)"style="cursor: pointer"*ngIf="file.progress!=100">clear</mat-icon>
               <!-- <div><mat-icon color="accent" (click)="cancel(index)">clear</mat-icon></div> -->
@@ -43,5 +43,5 @@
     <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/png,image/jpeg"
       style="display:none;" />
 </div>
-<ng-image-fullscreen-view [images]="imageObject" [imageIndex]="selectedImageIndex" [show]="showFlag"
+<ng-image-fullscreen-view style="position: absolute; " [images]="imageObject" [imageIndex]="selectedImageIndex" [show]="showFlag"
   (close)="closeEventHandler()"[paginationShow]="true"></ng-image-fullscreen-view>

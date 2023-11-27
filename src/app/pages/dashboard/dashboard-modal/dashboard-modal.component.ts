@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { tap } from "rxjs/operators";
 import { FeedService } from "src/app/services/feed.service";
+import { PhotoService } from "src/app/services/photo.service";
 
 
 @Component({
@@ -17,13 +18,13 @@ export class dashboardModalContent implements OnInit {
   @Input() stockList: any;
   @Output() submitevent = new EventEmitter<any>();
 
-  formGroup: FormGroup ;
+  formGroup: any ;
   
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
     public api: FeedService,
-    
+    public photo : PhotoService
   ) { 
     this.formGroup = this.fb.group({
       id: [0],
@@ -55,12 +56,15 @@ export class dashboardModalContent implements OnInit {
       project: [null], // 加工項目
       mm: [null],  // 廖長
       isDeleted: [false , Validators.required],
+      status: [false, Validators.required],
     })
   }
 
   ngOnInit() {
+    this.photo.sitedata=null
     if (this.formData){
       this.formGroup.patchValue(this.formData)
+      this.photo.sitedata = this.formData
     }
       
   }
@@ -74,6 +78,7 @@ export class dashboardModalContent implements OnInit {
     this.modal.close(false)
   }
 
+  
 
  
 }

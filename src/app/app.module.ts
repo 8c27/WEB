@@ -9,7 +9,6 @@ import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import {MatCardModule} from '@angular/material/card';
-
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { AppRoutingModule } from "./app-routing.module";
 import { MatButtonModule } from '@angular/material/button';
@@ -27,8 +26,10 @@ import { StockComponent } from "./pages/stock/stock.component";
 import { StockModalConponent } from "./pages/stock/stock-modal/stock-modal.component";
 import { ClientModalConponent } from "./pages/client/client-modal/client-modal.component";
 import { ClientComponent } from "./pages/client/client.component";
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ImageDialogComponent } from "./components/image-dialog/image-dialog.component";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 
 @NgModule({
   imports: [
@@ -46,8 +47,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     MatSortModule,
     MatPaginatorModule,
     MatCardModule,
-    MatAutocompleteModule,
-    NzSelectModule,
+    NgSelectModule,
+    MatSnackBarModule,
+    NgImageFullscreenViewModule 
   ],
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     StockModalConponent,
     ClientModalConponent,
     ClientComponent,
+    ImageDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

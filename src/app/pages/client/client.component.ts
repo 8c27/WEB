@@ -28,7 +28,7 @@ export class ClientComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'creationTime', displayName: '創建時間', templateRef: 'date_long' },
+      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' },
       { name: 'name', displayName: '廠商名稱' },
       { name: 'number', displayName: '廠商編號' },
       { name: 'address', displayName: '地址', width:300},

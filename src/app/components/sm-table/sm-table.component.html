@@ -32,6 +32,9 @@
           <ng-container *ngSwitchCase="'date_long'">
             <div [style.width.px]="column.width">{{ element[column.name] | date:'yyyy-MM-dd HH:mm'}}</div>
           </ng-container>
+          <ng-container *ngSwitchCase="'data_decimal'">
+            <div [style.width.px]="column.width">{{ element[column.name] | number:'1.3-3'}}</div>
+          </ng-container>
           <ng-container *ngSwitchCase="'disabled'">
             <div style="width:80%" class="text-center" style="text-overflow:clip">
             <span class="badge badge-danger" *ngIf="element[column.name]==true">已停用</span>

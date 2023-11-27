@@ -6,9 +6,18 @@ import { StockModalConponent } from "./stock-modal/stock-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
 
-
-
-
+interface  IStock{
+  id: number;
+  updateTime: Date;
+  stockName: string;
+  finishAmount: number;
+  weight: number;
+  isDeleted: boolean;
+  feed: any[];
+  feedQuantity: number;
+  lackPcs: number;
+  lackWeight: number;
+}
 @Component({
   selector: "app-stock",
   templateUrl: "stock.component.html",
@@ -16,13 +25,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 
+
 export class StockComponent implements OnInit {
 
-  feedList: any;  // feed =>feed資料庫
+  stockList: any;  // feed =>stockList資料庫
   modalReference: NgbModalRef;
   dataSource!: MatTableDataSource<any>;
   data: any;
   search: string;
+
   table_config: any = {
     checkable: true,
     serverSide: true,
@@ -32,14 +43,13 @@ export class StockComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'listId', displayName: '更新時間' },
-      { name: 'stockName', displayName: '昇貿規格' },
+      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long'  },
+      { name: 'stockName', displayName: '昇貿規格', width:200 },
       { name: 'weight', displayName: '單重'},
-      { name: 'finishAmount', displayName: '完成數量' },
-      { name: 'quantity', displayName: '訂單數量',},   
+      { name: 'finishAmount', displayName: '庫存數量' },
+      { name: 'feedQuantity', displayName: '訂單數量',},   
       { name: 'lackPcs', displayName: '缺料支數'},
-      { name: 'lackWeight', displayName: '缺料重量' },
-
+      { name: 'lackWeight', displayName: '缺料重量', templateRef:'data_decimal'},
     ]
   };
   subs: any;
@@ -59,11 +69,18 @@ export class StockComponent implements OnInit {
   ngOnInit() {
     // 初始化
     this.signalRSvc.StartConnection();    // 連接singalR 
-    this.signalRSvc.ReceiveListener()?.on('StockChange', (data) => {
-      // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.dataSource = new MatTableDataSource<any>(data)
+    this.signalRSvc.ReceiveListener()?.on('StockChange', (e) => {
+      e.forEach(s=>{
+        var allfeed = s.feed.reduce((total, feed) => total + feed.quantity, 0);
+        var lackPcs = s.finishAmount-allfeed;
+        var lackWeight = s.weight * lackPcs
+        s.feedQuantity=allfeed
+        s.lackPcs=lackPcs
+        s.lackWeight=lackWeight
+      })
+      this.dataSource = new MatTableDataSource<any>(e)
       if(this.selected){
-        this.selected = data.find(e => e.id == this.selected.id)
+        this.selected = e.find(e => e.id == this.selected.id)
       }
     })
     this.onload()
@@ -73,7 +90,18 @@ export class StockComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
-    this.api.getStock().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
+    this.api.getStock().subscribe( (e:IStock[]) => {
+      e.forEach(s=>{
+        var allfeed = s.feed.reduce((total, feed) => total + feed.quantity, 0);
+        var lackPcs = s.finishAmount-allfeed;
+        var lackWeight = s.weight * lackPcs
+        s.feedQuantity=allfeed
+        s.lackPcs=lackPcs
+        s.lackWeight=lackWeight
+      })
+      console.log(e)
+      this.dataSource= new MatTableDataSource<any>(e)
+    }) //訂閱Feed資料
   }
 
   onSelect($event: any) {
@@ -83,8 +111,7 @@ export class StockComponent implements OnInit {
     const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
     modal.componentInstance.title = '新增規格'
     modal.result.then(e => {
-      if (e)
-        this.api.addStock(e).subscribe(); 
+      if (e) this.api.addStock(e).subscribe()
     }).catch( (error) => {
       console.log('Error in modal result:', error)
     })
@@ -126,8 +153,46 @@ export class StockComponent implements OnInit {
   }
   edit(){
     if (this.selected){
-      const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
+      const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'})
       modal.componentInstance.title = '編輯你媽啦'
+      modal.componentInstance.formData = this.selected
+      modal.result.then( e => {
+        if (e) this.api.editStock(e.id , e).subscribe(
+          (respon) => {
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+          (error) => {
+            this.toastr.error(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          }
+        )
+      })
+      .catch((error) => {
+        console.log('Error in modal result', error)
+      })
     }
   }
 }

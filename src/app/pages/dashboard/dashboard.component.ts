@@ -32,12 +32,12 @@ export class DashboardComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'creationTime', displayName: '創建時間', templateRef: 'date_long' },
-      { name: 'listId', displayName: '訂單編號' },
-      { name: 'manufacturer', displayName: '廠商名稱' },
+      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' , width: 120},
+      { name: 'feedNumber', displayName: '訂單編號' },
+      { name: 'clientName', displayName: '廠商名稱', width: 200 },
       { name: 'itemNumber', displayName: '物品編號'},
       { name: 'itemName', displayName: '物品名稱' },
-      { name: 'stockId', displayName: '昇茂規格', width: 200},   
+      { name: 'stockName', displayName: '昇茂規格', width: 200},   
       { name: 'class', displayName: '料別'},
       { name: 'machine', displayName: '機台編號' },
       { name: 'material', displayName: '材質'},
@@ -98,8 +98,11 @@ export class DashboardComponent implements OnInit {
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.stockList=this.stockList
     modal.result.then(e => {
-      if (e)
+      if (e){
+        // 關聯規格表和客戶資料
+        console.log(e)
         this.api.addFeed(e).subscribe(); 
+      }
     }).catch((error) => {
       console.log('Error in modal result:', error)
     })
@@ -144,6 +147,8 @@ export class DashboardComponent implements OnInit {
       const modal = this.ngbModal.open(dashboardModalContent , {size:'lg'});
       modal.componentInstance.title = '編輯訂單'
       modal.componentInstance.formData = this.selected;
+      modal.componentInstance.clientList = this.clientList;
+      modal.componentInstance.stockList = this.stockList;
       modal.result.then(e => {
         if(e){
           this.api.editFeed(e.id, e).subscribe(

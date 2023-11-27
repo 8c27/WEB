@@ -2,17 +2,22 @@
 <div class="modal-content border-ani">
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
+        <label class="Switch">
+            <div class="Switch-inner">
+              <input type="checkbox">
+              <div class="Switch-bg"></div>
+              <div class="Switch-handle"></div>
+            </div>
+        </label>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row" >
             <div class="col-2 form-name">廠商ID</div>
-            <input class="col-4" list="clientList" formControlName="clientId">
-            <datalist id="clientList">
-                <option *ngFor="let i of clientList" [ngValue]="i.id">
-                    {{i.number +' '+ i.name}}
-                </option>
-            </datalist>
+            <ng-select class="col-4" formControlName="clientId">
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
         </div>
+
         <div class="row" >
             <div class="col-2 form-name">物品編號</div>
             <input class="col-4" formControlName="itemNumber">
@@ -24,17 +29,9 @@
             <div class="col-2 form-name">機台編號</div>
             <input class="col-4" formControlName="machine">
             <div class="col-2 form-name">昇茂規格</div>
-
-            <nz-select nzMode="tags" nzPlaceHolder="Tag Mode" formControlName="stockId">
-                <nz-option *ngFor="let option of stockList" [nzLabel]="option.stockName" [nzValue]="option.id"></nz-option>
-              </nz-select>
-
-            <!-- <input class="col-4" list="stockList" formControlName="stockId" >
-            <datalist id ="stockList"> 
-                <ng-container *ngFor="let i of stockList">
-                    <option [ngValue]="i.id">{{ i.stockName }}</option>
-                </ng-container>
-            </datalist> -->
+            <ng-select class="col-4" formControlName="stockId">
+                <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
+            </ng-select>
         </div>
         <div class="row" >
             <div class="col-2 form-name">材質</div>
@@ -104,6 +101,8 @@
             <div class="col-2 form-name">備註</div>
             <input class="col-4" formControlName="description">
         </div>
+
+        <app-image-dialog></app-image-dialog>
 
     </div>
     <div class="modal-footer">

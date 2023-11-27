@@ -18,8 +18,98 @@ padding-left: 120px;
 
 
 
+/* status input-box ANIMATION*/
+$color-positive: rgba(8,214,214,1);
+$color-negative: rgba(231,98,57,1);
 
+.Switch {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
 
+.Switch-inner {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 90px;
+  height: 40px;
+  border-radius: 30px;
+  vertical-align: text-bottom;
+  
+input {
+    position: absolute;
+    top: auto;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  
+  input:checked ~ .Switch-bg {
+    left: 0%;
+  }
+
+  input:checked ~ .Switch-handle {
+    left: 20%;
+  }
+  
+  input:checked ~ .Switch-handle {
+    &::before {
+      width: 10px;
+      transform: translateY(calc(-50% + 3px)) translateX(calc(-50% - 9px)) rotate(45deg);
+    }
+
+    &::after {
+      transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+    }
+  }
+}
+
+.Switch-bg {
+  position: absolute;
+  left: -140%;
+  width: 240%;
+  height: 100%;
+  background: linear-gradient(to right, $color-positive 0%, rgba(34,222,181,1) 40%, rgba(239,157,49,1) 60%, $color-negative 100%);
+  transition: 0.5s left ease-out;
+}
+
+.Switch-handle {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  height: 18px;
+  width: 18px;
+  outline: none;
+  transition: left 0.8s ease;
+  transform: translateY(-50%);
+}
+
+.Switch-handle {
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 3px;
+    width: 18px;
+    border-radius: 99px;
+    background-color: #ffffff;
+    content: "";
+    transition: 0.2s width ease, 0.2s transform ease;
+  }
+
+  &::before {
+    transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  }
+  
+  &::after {
+    transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+  }
+}
 
 /* CSS ANIMATION*/
 button {

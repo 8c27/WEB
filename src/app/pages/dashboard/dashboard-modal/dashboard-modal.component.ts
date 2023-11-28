@@ -17,9 +17,10 @@ export class dashboardModalContent implements OnInit {
   @Input() clientList: any;
   @Input() stockList: any;
   @Output() submitevent = new EventEmitter<any>();
-
   formGroup: any ;
   
+  showDiv:boolean = true; // 照片功能不顯示
+
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
@@ -57,6 +58,7 @@ export class dashboardModalContent implements OnInit {
       mm: [null],  // 廖長
       isDeleted: [false , Validators.required],
       status: [false, Validators.required],
+      feedNumber: [null], 
     })
   }
 
@@ -78,7 +80,10 @@ export class dashboardModalContent implements OnInit {
     this.modal.close(false)
   }
 
-  
+  controllStatus(){
+    this.formData.status = !this.formData.status;
+    console.log(this.formData.status)
+  }
 
  
 }

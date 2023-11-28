@@ -5,6 +5,8 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { dashboardModalContent } from "./dashboard-modal/dashboard-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
+import { flatten } from "@angular/compiler";
+import { createConstructSignature } from "typescript";
 
 
 
@@ -93,15 +95,18 @@ export class DashboardComponent implements OnInit {
     console.log(this.selected)
   }
   open(){
-    const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg'});
+    const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg',});
     modal.componentInstance.title = '新增訂單'
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.stockList=this.stockList
+    modal.componentInstance.showDiv = false  
     modal.result.then(e => {
       if (e){
         // 關聯規格表和客戶資料
         console.log(e)
-        this.api.addFeed(e).subscribe(); 
+        this.api.addFeed(e).subscribe(() =>{
+          
+        }); 
       }
     }).catch((error) => {
       console.log('Error in modal result:', error)
@@ -189,5 +194,7 @@ export class DashboardComponent implements OnInit {
       })
     }
   }
-  
+  xlxs(){
+    console.log(this.selected)
+  }
 }

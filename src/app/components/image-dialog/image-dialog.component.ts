@@ -29,21 +29,13 @@ export class ImageDialogComponent {
   url: any = '';
   geturl:any;
   dataname:any;
-  namedate:any;
-  showFlag: boolean = false;
-  selectedImageIndex: number = -1;
-  imageObject: Array<object> = [];
+ 
+
   view:any;
   repeat:any=[];
-  showLightbox(index) {
-    this.selectedImageIndex = index;
-    this.showFlag = true;
-  }
 
-  closeEventHandler() {
-    this.showFlag = false;
-    this.currentIndex = -1;
-  }
+
+
 ngOnInit(){
 
   this.view=this.uploadService.view
@@ -57,12 +49,7 @@ ngOnInit(){
 
             this.geturl = URL.createObjectURL(data);
             this.imgURL[i]=this.geturl
-            for (let i = 0; i < (<any>this.imgURL).length; i++){
-              this.imageObject[i]={
-                image: this.imgURL[i], thumbImage: this.imgURL[i], alt: 'alt of image',
-                title: this.dataname[i].imgName
-              }
-            }
+           
 
           }
         );
@@ -140,7 +127,7 @@ ngOnInit(){
 
   cancel(index){
     this.files.splice(index,1)
-    this.imageObject.splice(index+this.imgURL.length,1)
+  
   }
 
   sanitize(url: string) {
@@ -161,12 +148,9 @@ ngOnInit(){
           // file.name=date.getFullYear().toString() + date.getMonth().toString() + date.getDay().toString()
           //   + date.getHours().toString() + date.getMinutes().toString()+file.
           if (this.files.find(a => a.data.name == file.name) == undefined){
-          this.files.push({ data: file, inProgress: false, progress: 0, url: this.url, namedate: this.namedate ,status:0 });
+          this.files.push({ data: file, inProgress: false, progress: 0, url: this.url,status:0 });
           this.uploadService.imageUrl[index]=this.url
-          this.imageObject.push({
-            image: this.url, thumbImage: this.url, alt: 'alt of image',
-            title: file.name
-          })
+         
         }
 
         }
@@ -176,6 +160,9 @@ ngOnInit(){
     };
     fileUpload.click();
   }
-
+  showLightbox(data){
+    const newWindow = window.open();
+    newWindow.document.write(`<img style="margin:auto;width:100%" src="${data}" alt="Image">`);
+  }
 
 }

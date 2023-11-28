@@ -3,14 +3,14 @@
       <mat-card-content>
         <div class="form-group">
           <div class="row">
-            <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(index)">
+            <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(img)">
               <img *ngIf="img" [src]="sanitize(img)" height="200" width="300" style="margin: 3px;"><br>
               <label id="file-label">
                 {{dataname[index].imgName}}
               </label>
               </div>
             <!-- <img *ngIf="url" [src]="sanitize(url)" height="150" width="200px" style="margin: 3px;"> -->
-            <div class="col-xl-4" *ngFor="let file of files; let index = index"(click)="showLightbox(index+imgURL.length)">
+            <div class="col-xl-4" *ngFor="let file of files; let index = index"(click)="showLightbox(file.url)">
               <img *ngIf="file.url" [src]="file.url" height="200" width="300" style="margin: 3px;">
         
               <div style="padding-top: 5px;"><mat-progress-bar *ngIf="file.url" [value]="file.progress"></mat-progress-bar></div>
@@ -43,5 +43,3 @@
     <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/png,image/jpeg"
       style="display:none;" />
 </div>
-<ng-image-fullscreen-view style="position: absolute; " [images]="imageObject" [imageIndex]="selectedImageIndex" [show]="showFlag"
-  (close)="closeEventHandler()"[paginationShow]="true"></ng-image-fullscreen-view>

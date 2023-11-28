@@ -1,14 +1,7 @@
 
-<div class="modal-content border-ani">
-  <div class="modal-header " >
+<div class="modal-content border-ani " style="top:0">
+    <div class="modal-header" >
         <h1 class="modal-title">{{title}}</h1>
-        <label class="Switch">
-            <div class="Switch-inner">
-              <input type="checkbox">
-              <div class="Switch-bg"></div>
-              <div class="Switch-handle"></div>
-            </div>
-        </label>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row" >
@@ -16,6 +9,18 @@
             <ng-select class="col-4" formControlName="clientId">
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
+            <div class="col-6">
+                <span class="col-4">訂單狀態</span>
+                <span class="col-8">
+                    <label class="Switch">
+                        <div class="Switch-inner">
+                          <input type="checkbox" formControlName="status"  (click)="controllStatus()">
+                          <div class="Switch-bg"></div>
+                          <div class="Switch-handle"></div>
+                        </div>
+                    </label>
+                </span>
+            </div>
         </div>
 
         <div class="row" >
@@ -102,7 +107,7 @@
             <input class="col-4" formControlName="description">
         </div>
 
-        <app-image-dialog></app-image-dialog>
+        <app-image-dialog *ngIf="showDiv"></app-image-dialog>
 
     </div>
     <div class="modal-footer">

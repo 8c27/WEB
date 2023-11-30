@@ -2,112 +2,109 @@
 <div class="modal-content border-ani " style="top:0">
     <div class="modal-header" >
         <h1 class="modal-title">{{title}}</h1>
+        <div>
+            <span>訂單狀態</span>
+           
+        </div>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row" >
-            <div class="col-2 form-name">廠商ID</div>
-            <ng-select class="col-4" formControlName="clientId" [class.invalid]="isError('clientId')">
+            <div class="col-2 form-name">
+                <span style="flex: 1">廠商ID</span>
+                <mat-icon style="flex: 1">cottage</mat-icon>
+            </div>
+            <ng-select class="col-3" style="padding:0" formControlName="clientId" [class.invalid]="isError('clientId')">
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
-            <div class="col-6" *ngIf="showDiv">
-                <span class="col-4">訂單狀態</span>
-                <span class="col-8">
-                    <label class="Switch">
-                        <div class="Switch-inner">
-                          <input type="checkbox" formControlName="status"  (click)="controllStatus()">
-                          <div class="Switch-bg"></div>
-                          <div class="Switch-handle"></div>
-                        </div>
-                    </label>
-                </span>
-            </div>
-        </div>
-        <small class="errorText" *ngIf="errorType('clientId', 'required')">*必填欄位</small>
-        <div class="row" >
-            <div class="col-2 form-name">物品編號</div>
-            <input class="col-4" formControlName="itemNumber">
-            <div class="col-2 form-name">物品名稱</div>
-            <input class="col-4" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">機台編號</div>
-            <input class="col-4" formControlName="machine">
-            <div class="col-2 form-name">昇茂規格</div>
-            <ng-select class="col-4" formControlName="stockId" [class.invalid]="isError('stockId')">
-                <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
-            </ng-select>
-        </div>
-        <small class="errorText" style="float:bottom;" *ngIf="errorType('stockId', 'required')">*必填欄位</small>
-
-        <div class="row" >
             <div class="col-2 form-name">材質</div>
             <input class="col-2 form-name" formControlName="material">
-            <div class="col-2 form-name">頭部尺寸</div>
-            <input class="col-2 form-name" formControlName="size">
+            <div class="col-2 form-name">數量</div>
+            <input class="col-1 form-name" formControlName="quantity" [class.invalid]="isError('quantity')">
+        </div>
+        <small class="errorText"*ngIf="errorType('clientId', 'required')">*必填欄位</small>
+        
+        <div class="row" >
+            <div class="col-2 form-name">物品編號</div>
+            <input class="col-2" formControlName="itemNumber">
+            <div class="col-1"></div>
+            <div class="col-2 form-name">
+                <span style="flex: 1">頭部尺寸</span>
+                <mat-icon style="flex: 0.5">handyman</mat-icon>
+            </div>
+            <input class="col-1 form-name" formControlName="size">
+            <div class="col-1"></div>
+            <div class="col-2 form-name">1kg/支</div>
+            <input class="col-1 form-name" formControlName="pcs">
+        </div>
+        <div class="row">
+            <div class="col-2 form-name">物品名稱</div>
+            <input class="col-3" formControlName="itemName">
+            <div class="col-2 form-name">加工別</div>
+            <ng-select class="col-2" style="padding: 0" formControlName="class">
+                <ng-option value="加工">加工</ng-option>
+                <ng-option value="代工">代工</ng-option>
+            </ng-select>
+            <div class="col-2 form-name">單重(KG)</div>
+            <input class="col-1 form-name" formControlName="weight">
+        </div>
+        <div class="row" >
+            <div class="col-2 form-name">機台編號</div>
+            <input class="col-2" formControlName="machine">
+            <div class="col-1"></div>
+            <div class="col-2 form-name">特殊別</div>
+            <input class="col-2" formControlName="special">
+            <div class="col-2 form-name">成本價</div>
+            <input class="col-1 form-name" formControlName="cost">
+        </div>
+        
+        <div class="row">
+            <div class="col-2 form-name">昇茂規格</div>
+            <ng-select class="col-3" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
+                <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
+            </ng-select>
+            <div class="col-2 form-name">打字別</div>
+            <input class="col-2" formControlName="typing">
+            <div class="col-2 form-name">調漲(%)</div>
+            <input class="col-1 form-name" formControlName="raise">
+        </div>
+        <small class="errorText" *ngIf="errorType('stockId' , 'required')">*必填欄位</small>
+  
+
+        <div class="row" >
             <div class="col-2 form-name">料長(mm)</div>
             <input class="col-2 form-name" formControlName="mm">
-        </div>
-    
-        <div class="row" >
-            <div class="col-2 form-name">單重(KG)</div>
-            <input class="col-2 form-name" formControlName="weight">
-            <div class="col-2 form-name">1kg/支</div>
-            <input class="col-2 form-name" formControlName="pcs">
-            <div class="col-2 form-name">數量</div>
-            <input class="col-2 form-name" formControlName="quantity" [class.invalid]="isError('quantity')">
-        </div>
-        <small class="errorText" *ngIf="errorType('quantity' , 'required')"></small>
-
-        <div class="row" >
-            <div class="col-2 form-name">成本價</div>
-            <input class="col-2 form-name" formControlName="cost">
-            <div class="col-2 form-name">調漲(%)</div>
-            <input class="col-2 form-name" formControlName="raise">
-            <div class="col-2 form-name">加工別</div>
-            <input class="col-2 form-name" formControlName="class">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">剝皮一</div>
-            <input class="col-2 form-name" formControlName="itemName">
-            <div class="col-2 form-name">剝皮二</div>
-            <input class="col-2 form-name" formControlName="itemName">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">打字別</div>
-            <input class="col-4" formControlName="peel1">
-            <div class="col-2 form-name">尾倒角</div>
-            <input class="col-4" formControlName="peel2">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">鑽孔一</div>
-            <input class="col-4" formControlName="hole1">
-            <div class="col-2 form-name">鑽孔二</div>
-            <input class="col-4" formControlName="hole2">
-        </div>
-
-        <div class="row" >
-            <div class="col-2 form-name">插-珠槽</div>
-            <input class="col-4" formControlName="ditch">
-            <div class="col-2 form-name">車錐度</div>
-            <input class="col-4" formControlName="taper">
-        </div>
-
-        <div class="row" >
+            <div class="col-1"></div>
             <div class="col-2 form-name">打耳別</div>
-            <input class="col-4" formControlName="ear">
-            <div class="col-2 form-name">特殊別</div>
-            <input class="col-4" formControlName="special">
+            <input class="col-2" formControlName="ear">
+            <div class="col-2 form-name">插-珠槽</div>
+            <input class="col-1" formControlName="ditch">
+        </div>
+
+        <div class="row">
+            <div class="col-2 form-name">剝皮一</div>
+            <input class="col-3 form-name" formControlName="peel1">
+            <div class="col-2 form-name">鑽孔一</div>
+            <input class="col-2" formControlName="hole1">
+            <div class="col-2 form-name">尾倒角</div>
+            <input class="col-1" formControlName="chamfer">
+        </div>
+
+        <div class="row" >
+            <div class="col-2 form-name">剝皮二</div>
+            <input class="col-3 form-name" formControlName="peel2">
+            <div class="col-2 form-name">鑽孔二</div>
+            <input class="col-2" formControlName="hole2">
+            <div class="col-2 form-name">車錐度</div>
+            <input class="col-1" formControlName="taper">
         </div>
 
         <div class="row" >
             <div class="col-2 form-name">加工項目</div>
-            <input class="col-4" formControlName="project">
+            <input class="col-6 special-input" style="background-color: transparent;" formControlName="project">
+        </div>
+        <div class="row">
             <div class="col-2 form-name">備註</div>
-            <input class="col-4" formControlName="description">
+            <input class="col-8 special-input" style="background-color: transparent;" formControlName="description">
         </div>
 
         <app-image-dialog *ngIf="showDiv"></app-image-dialog>

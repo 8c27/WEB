@@ -1,5 +1,7 @@
 .form-name{
-  text-align: center;
+  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .modal-content{
@@ -16,6 +18,12 @@ color: #FF69B4;
 padding-left: 120px;
 }
 
+.special-input{
+  border-bottom: 2px solid #D1C2E9;
+  color: #D1C2E9;
+  font-weight: bold;
+
+}
 
 
 /* status input-box ANIMATION*/

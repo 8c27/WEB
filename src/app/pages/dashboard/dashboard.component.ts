@@ -7,6 +7,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
 import { flatten } from "@angular/compiler";
 import { createConstructSignature } from "typescript";
+import { Router } from "@angular/router";
 
 
 
@@ -64,6 +65,7 @@ export class DashboardComponent implements OnInit {
     public signalRSvc: SignalrService, 
     private ngbModal: NgbModal,
     private toastr: ToastrService,
+    private router: Router
     ){}
  
   ngOnInit() {
@@ -91,8 +93,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelect($event: any) {
+
     this.selected = $event;
-    console.log(this.selected)
   }
   open(){
     const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg',});
@@ -195,6 +197,13 @@ export class DashboardComponent implements OnInit {
     }
   }
   xlxs(){
-    console.log(this.selected)
+    this.selected.address = this.clientList.find(e=>e.id == this.selected.clientId).address
+    this.selected.number = this.clientList.find(e =>e.id == this.selected.clientId).number
+    var printdata = JSON.stringify(this.selected)
+    console.log(this.selected.address)
+    const targetUrl = `#/print?json=${printdata}`;
+
+    // 使用 window.open 打开新窗口或标签页
+    window.open(targetUrl, '_blank');
   }
 }

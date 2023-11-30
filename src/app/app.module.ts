@@ -31,6 +31,7 @@ import { ImageDialogComponent } from "./components/image-dialog/image-dialog.com
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { MatIconModule } from '@angular/material/icon';
+import { ExportExcelComponent } from "./components/export-excel/export-excel.component";
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -67,6 +68,7 @@ import { MatIconModule } from '@angular/material/icon';
     ClientModalConponent,
     ClientComponent,
     ImageDialogComponent,
+    ExportExcelComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

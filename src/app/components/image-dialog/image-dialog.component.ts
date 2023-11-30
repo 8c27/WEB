@@ -162,7 +162,9 @@ ngOnInit(){
   }
   showLightbox(data){
     const newWindow = window.open();
-    newWindow.document.write(`<img style="margin:auto;width:100%" src="${data}" alt="Image">`);
+    newWindow.document.write(`  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <img style="" src="${data}" alt="Image">
+  </div>`);
   }
 
 }

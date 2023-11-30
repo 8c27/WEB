@@ -30,15 +30,15 @@ export class dashboardModalContent implements OnInit {
     this.formGroup = this.fb.group({
       id: [0],
       creationTime: [null],
-      clientId: [null, Validators.required],
+      clientId: [null, Validators.required], // 廠商ID
       itemNumber: [null],
       itemName: [null],
-      stockId: [null], // 昇茂規格
+      stockId: [null, Validators.required], // 昇茂規格
       size: [null], // 頭部尺寸
       material: [null],    //材質
       pcs: [null],  //1kg幾支
       weight: [null],  //單重
-      quantity: [null], // 數量
+      quantity: [null, Validators.required], // 數量
       cost: [null],   // 成本價
       raise: [0],   // 調漲單價
       class: ['加工'],  // 料別
@@ -60,6 +60,14 @@ export class dashboardModalContent implements OnInit {
       status: [false, Validators.required],
       feedNumber: [null], 
     })
+  }
+  isError(item: string) {
+    // 檢查item有無被修改或被觸碰過
+    return this.formGroup.get(item)?.invalid &&
+      (this.formGroup.get(item)?.dirty || this.formGroup.get(item)?.touched)
+  }
+  errorType(item: string, type: string){
+    return this.isError(item) && this.formGroup.get(item)?.hasError(type);
   }
 
   ngOnInit() {

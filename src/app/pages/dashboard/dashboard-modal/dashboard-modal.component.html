@@ -6,10 +6,10 @@
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row" >
             <div class="col-2 form-name">廠商ID</div>
-            <ng-select class="col-4" formControlName="clientId">
+            <ng-select class="col-4" formControlName="clientId" [class.invalid]="isError('clientId')">
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
-            <div class="col-6">
+            <div class="col-6" *ngIf="showDiv">
                 <span class="col-4">訂單狀態</span>
                 <span class="col-8">
                     <label class="Switch">
@@ -22,7 +22,7 @@
                 </span>
             </div>
         </div>
-
+        <small class="errorText" *ngIf="errorType('clientId', 'required')">*必填欄位</small>
         <div class="row" >
             <div class="col-2 form-name">物品編號</div>
             <input class="col-4" formControlName="itemNumber">
@@ -34,10 +34,12 @@
             <div class="col-2 form-name">機台編號</div>
             <input class="col-4" formControlName="machine">
             <div class="col-2 form-name">昇茂規格</div>
-            <ng-select class="col-4" formControlName="stockId">
+            <ng-select class="col-4" formControlName="stockId" [class.invalid]="isError('stockId')">
                 <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
             </ng-select>
         </div>
+        <small class="errorText" style="float:bottom;" *ngIf="errorType('stockId', 'required')">*必填欄位</small>
+
         <div class="row" >
             <div class="col-2 form-name">材質</div>
             <input class="col-2 form-name" formControlName="material">
@@ -53,8 +55,9 @@
             <div class="col-2 form-name">1kg/支</div>
             <input class="col-2 form-name" formControlName="pcs">
             <div class="col-2 form-name">數量</div>
-            <input class="col-2 form-name" formControlName="quantity">
+            <input class="col-2 form-name" formControlName="quantity" [class.invalid]="isError('quantity')">
         </div>
+        <small class="errorText" *ngIf="errorType('quantity' , 'required')"></small>
 
         <div class="row" >
             <div class="col-2 form-name">成本價</div>
@@ -111,7 +114,8 @@
 
     </div>
     <div class="modal-footer">
-        <button style="--clr:#a1eafb" (click)="save()">
+        <!--button 未填寫完成不可確認-->
+        <button style="--clr:#a1eafb" (click)="save()" [disabled]="!formGroup.valid || formGroup.pristine">
             <span style="color: #a1eafb">SAVE</span><i></i>
         </button>
         <button style="--clr:#a1eafb" (click)="cancel()">

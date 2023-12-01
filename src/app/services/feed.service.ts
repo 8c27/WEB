@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 const apiUrl = environment.apiUrl;
 @Injectable({
@@ -60,5 +61,18 @@ export class FeedService {
     public editClient(id, data){
         return this.http.put(apiUrl + "/Client/" +id, data)
     }
-
+    loginGetToken(
+        Username: string,
+        Password: string
+      ): Observable<{ token: string }> {
+        return this.http.post<{ token: string }>(apiUrl + "/login", {
+          Username,
+          Password,
+        });
+      }
+      public refreshToken(username,token) {
+    
+        return this.http.post<{ token: string }>(apiUrl + "/refreshToken", {username:username,token:token});
+    
+      }
 }

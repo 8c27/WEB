@@ -32,6 +32,23 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { MatIconModule } from '@angular/material/icon';
 import { ExportExcelComponent } from "./components/export-excel/export-excel.component";
+import { LoginComponent } from "./login/login/login.component";
+import { JwtInterceptor, JwtModule, JWT_OPTIONS, JwtConfig, JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from "src/environments/environment";
+export function tokenGetter(): string | null {
+  return localStorage.getItem('access_token');
+}
+function getJwtConfig(): JwtConfig {
+  const cfg: JwtConfig = {
+    tokenGetter
+  };
+  if (!environment.production) {
+    cfg.allowedDomains = [...environment.jwt.allowedDomains];
+    cfg.disallowedRoutes = [...environment.jwt.disallowedRoutes];
+  }
+  return cfg;
+}
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -51,7 +68,10 @@ import { ExportExcelComponent } from "./components/export-excel/export-excel.com
     NgSelectModule,
     MatSnackBarModule,
     NgImageFullscreenViewModule ,
-    MatIconModule
+    MatIconModule,
+    JwtModule.forRoot({
+      config: getJwtConfig(),
+    }),
   ],
   declarations: [
     AppComponent,
@@ -68,9 +88,10 @@ import { ExportExcelComponent } from "./components/export-excel/export-excel.com
     ClientModalConponent,
     ClientComponent,
     ImageDialogComponent,
-    ExportExcelComponent
+    ExportExcelComponent,
+    LoginComponent
   ],
-  providers: [],
+  providers: [JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

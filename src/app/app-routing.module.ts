@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ExportExcelComponent } from "./components/export-excel/export-excel.component";
+import { LoginComponent } from "./login/login/login.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,9 @@ const routes: Routes = [
   {
     path: "print",
     component: ExportExcelComponent,
+  },
+  {
+    path: 'login', component: LoginComponent
   },
   {
     path: "",

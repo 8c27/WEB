@@ -1,9 +1,11 @@
 .form-name{
-  text-align: left;
   display: flex;
   align-items: center;
+  flex-direction: row-reverse;
 }
-
+.first-td{
+  max-width: 15%;
+}
 .modal-content{
 color: #CCCCCC;
 .modal-title {
@@ -24,7 +26,6 @@ padding-left: 120px;
   font-weight: bold;
 
 }
-
 
 /* status input-box ANIMATION*/
 $color-positive: rgba(8,214,214,1);

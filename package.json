@@ -72,6 +72,7 @@
     "@angular/platform-browser": "12.1.2",
     "@angular/platform-browser-dynamic": "12.1.2",
     "@angular/router": "12.1.2",
+    "@auth0/angular-jwt": "^5.1.2",
     "@material/snackbar": "^14.0.0",
     "@microsoft/signalr": "^7.0.12",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",

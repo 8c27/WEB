@@ -3,6 +3,7 @@ import { ROUTES } from "../sidebar/sidebar.component";
 import { Location } from "@angular/common";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-navbar",
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authApi : AuthService,
   ) {
     this.location = location;
     this.sidebarVisible = false;
@@ -65,6 +67,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
       navbar.classList.add("navbar-transparent");
       navbar.classList.remove("bg-white");
     }
+  }
+  signOut(){
+    this.authApi.signOut()
   }
 
   sidebarOpen() {

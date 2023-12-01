@@ -90,11 +90,10 @@
 
         <div class="row col-12" >
             <div class="col-lg-2 form-name  ">加工項目</div>
-            <input class="col-6 special-input" style="background-color: transparent;" formControlName="project">
+            <input class="col-lg-6 special-input" formControlName="project" placeholder="加工项目在这">
             <div class="col-lg-1"></div>
-            <div class="col-lg-2">訂單狀態</div>
-            <div class="col-lg-1">
-            <div class=" form-check col-lg-1">
+            <div class="col-lg-2 form-name" *ngIf="showDiv">訂單狀態</div>
+            <div class="col-lg-1 form-check form-name" *ngIf="showDiv">
                 <label class=" form-check-label">
                     <input checked="" class=" form-check-input" type="checkbox" formControlName="status" >
                     <span class=" form-check-sign"><span class=" check"></span></span>
@@ -102,12 +101,11 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row col-12">
             <div class="col-lg-2 form-name  ">備註</div>
-            <input class="col-8 special-input" style="background-color: transparent;" formControlName="description">
+            <input class="col-lg-8 special-input" formControlName="description" placeholder="这里可备注">
         </div>
-
-        <app-image-dialog *ngIf="showDiv"></app-image-dialog>
+        <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
 
     </div>
     <div class="modal-footer">

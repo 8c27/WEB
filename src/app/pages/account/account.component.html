@@ -1,0 +1,28 @@
+
+<div class=" content">
+    <div class=" row">
+      <div class=" col-12">
+        <div class=" card card-chart">
+          <div class="card-head">
+            <button class="btn btn-primary" (click)="open()">
+              新增
+            </button>
+            <button class="btn btn-danger" (click)="delete()">
+              刪除
+            </button>   
+            <button class="btn btn-info" (click)="edit()">
+              編輯 / 預覽
+            </button>
+          </div>
+          <mat-card>
+            <mat-card-content>
+            <sm-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
+            [dataSource]="dataSource" (select)="onSelect($event)"  [status]="status"></sm-table>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  

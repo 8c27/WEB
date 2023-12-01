@@ -35,6 +35,9 @@ import { ExportExcelComponent } from "./components/export-excel/export-excel.com
 import { LoginComponent } from "./login/login/login.component";
 import { JwtInterceptor, JwtModule, JWT_OPTIONS, JwtConfig, JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from "src/environments/environment";
+import { AccountComponent } from "./pages/account/account.component";
+import { AccountModalConponent } from "./pages/account/account-modal/account-modal.component";
+import { MultiSelectComponent } from "./components/multi-select/multi-select.component";
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
 }
@@ -72,6 +75,7 @@ function getJwtConfig(): JwtConfig {
     JwtModule.forRoot({
       config: getJwtConfig(),
     }),
+    
   ],
   declarations: [
     AppComponent,
@@ -89,7 +93,13 @@ function getJwtConfig(): JwtConfig {
     ClientComponent,
     ImageDialogComponent,
     ExportExcelComponent,
-    LoginComponent
+    LoginComponent,
+    AccountComponent,
+    AccountModalConponent,
+    MultiSelectComponent
+  ],
+  exports:[
+    MultiSelectComponent
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

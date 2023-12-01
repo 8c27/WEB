@@ -75,4 +75,14 @@ export class FeedService {
         return this.http.post<{ token: string }>(apiUrl + "/refreshToken", {username:username,token:token});
     
       }
+
+      public readLoginRoles(){
+        return this.http.get<any[]>(apiUrl + "/LoginRoles");
+      }
+
+      public readLoginInfo(){
+        return this.http.get<any[]>(apiUrl + "/LoginInfo");
+      }
+     
+    
 }

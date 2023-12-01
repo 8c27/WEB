@@ -25,6 +25,12 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-single-02",
     class: ""
   },
+  {
+    path: "/account",
+    title: "帳號管理",
+    icon: "icon-badge",
+    class: ""
+  },
 ];
 
 @Component({

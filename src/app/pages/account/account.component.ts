@@ -46,7 +46,7 @@ export class AccountComponent implements OnInit {
   customers: Object;
   organizations: Object;
   proformas: Object;
-    roles: any[];
+  rolesList: any[];
 
   constructor(public apiSvc: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,
    ) {
@@ -58,7 +58,7 @@ export class AccountComponent implements OnInit {
   }
 
   onload() {
-    this.apiSvc.readLoginRoles().subscribe(data => this.roles = data)
+    this.apiSvc.readLoginRoles().subscribe(data => this.rolesList = data)
     this.apiSvc.readLoginInfo()
       .pipe(
         tap((data: any[]) => {
@@ -76,11 +76,14 @@ export class AccountComponent implements OnInit {
   open(){
     const modal = this.ngbModal.open(AccountModalConponent, {size: 'md'});
     modal.componentInstance.title = '帳號資料'
-    modal.componentInstance.roles = JSON.parse(JSON.stringify(this.roles));
+    modal.componentInstance.rolesList = JSON.parse(JSON.stringify(this.rolesList));
     modal.result.then(e => {
       if (e){
-        this.onload()
-        this.apiSvc.addClient(e).subscribe(); 
+        var roles =this.rolesList.find(s=>s.id == e.roles)
+          e.roles=[roles];
+        this.apiSvc.addLoginInfo(e).subscribe(e=>{
+          this.onload()
+        }); 
       }
        
     }).catch((error) => {
@@ -88,9 +91,9 @@ export class AccountComponent implements OnInit {
     })
   }
   delete() {
-      this.apiSvc.deleteClient(this.selected.id).subscribe(
+      this.apiSvc.deleteLoginInfo(this.selected.id).subscribe(
         (respon) => {
-            this.onload()
+          this.onload()
           this.toastr.success(
             '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
             '刪除成功'
@@ -129,13 +132,15 @@ export class AccountComponent implements OnInit {
     if (this.selected){
       const modal = this.ngbModal.open(AccountModalConponent,  {size: 'md'});
       modal.componentInstance.title = '編輯帳號資料';
-      modal.componentInstance.roles = JSON.parse(JSON.stringify(this.roles));
+      modal.componentInstance.rolesList = JSON.parse(JSON.stringify(this.rolesList));
       modal.componentInstance.formData = this.selected;
       modal.result.then(e => {
         if(e){
-            this.onload()
-          this.apiSvc.editClient(e.id , e).subscribe(
+          var roles =this.rolesList.find(s=>s.id == e.roles)
+          e.roles=[roles];
+          this.apiSvc.editLoginInfo(e.id , e).subscribe(
             (respon) => {
+              this.onload()
               this.toastr.success(
                 '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
                 '編輯成功'

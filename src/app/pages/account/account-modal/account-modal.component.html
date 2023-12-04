@@ -1,73 +1,51 @@
-<div class="modal-header">
+<div class=" modal-content border-ani">
+  <div class="modal-header">
     <h1 class="modal-title">{{title}}</h1>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross Click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
-  <div class="modal-body">
-    <div class="form" [formGroup]="formGroup" >
-      <div class="form-group" [hidden]="true">
-        <input type="number" id="id" formControlName="id" readonly />
+  <div class="modal-body" [formGroup]="formGroup" >
+      <div class="row">
+        <div class="col-3 form-name">使用者名稱</div>
+        <input class="col-6" type="text" id="username" formControlName="username" [class.invalid]="isError('username')">
+        <small class="errorText" *ngIf="errorType('username', 'required')">*必填欄位</small>
       </div>
-      <div class="form-group">
-        <div class="form-name">
-          <label for="username">使用者名稱</label>
-        </div>
-        <div class="form-input">
-          <input type="text" id="username" formControlName="username" [class.invalid]="isError('username')" />
-          <small class="text-danger" *ngIf="errorType('username', 'required')">*必填欄位</small>
-        </div>
+
+      <div class="row">
+        <div class="col-3 form-name">使用者密碼</div>
+        <input class="col-5" type="password" id="password" formControlName="password" [class.invalid]="isError('password')">
+        <span class="col-1"(mousedown)="show_pass()" (window:mouseup)="hidden_pass()"><i class="tim-icons icon-zoom-split" style="color:#fadf53"></i></span>
+        <small class="errorText" *ngIf="errorType('password', 'maxlength')">*不可超過30字元</small>
+        <small class="errorText" *ngIf="errorType('password', 'pattern')">*數字、字母、符號至少兩種，大於8字元</small>
       </div>
-      <div class="form-group">
-        <div class="form-name">
-          <label for="password">使用者密碼</label>
-          <label style="font-size: 12px;" *ngIf="formData">(不更改請留空)</label>
-        </div>
-        <div class="form-input">
-          <div class="password_group">
-            <input class="password" type="password" id="password" formControlName="password" [class.invalid]="isError('password')" />
-            <button (mousedown)="show_pass()" (window:mouseup)="hidden_pass()"><i class=" tim-icons icon-zoom-split"></i></button>
-          </div>
-          <small class="text-danger" *ngIf="errorType('password', 'maxlength')">*不可超過30字元</small>
-          <small class="text-danger" *ngIf="errorType('password', 'pattern')">*數字、字母、符號至少兩種，大於8字元</small>
-        </div>
+      
+      <div class="row">
+        <div class="col-3 form-name">敘述</div>
+        <input class="col-6" type="text" id="description" formControlName="description" [class.invalid]="isError('description')">
+        <small class="errorText" *ngIf="errorType('description', 'required')">*必填欄位</small>
       </div>
-  
-      <!-- <div class="form-group">
-        <div class="form-name">
-          <label for="book_id">公司名稱</label>
+
+      <div class="row">
+        <div class="col-3 form-name">是否停用</div>
+        <div class="col-1 form-check form-name">
+          <label class="form-check-label">
+            <input checked="" class=" form-check-input" type="checkbox" formControlName="disabled">
+            <span class=" form-check-sign"><span class=" check"></span></span>
+          </label>
         </div>
-        <div class="form-input">
-          <select id="book_id" formControlName="book_id" [class.invalid]="isError('book_id')">
-            <option *ngFor="let book of booklist" value={{book.book_id}}>{{book.name}}</option>
-          </select>
-          <small class="text-danger" *ngIf="errorType('book_id', 'required')">*必填欄位</small>
-        </div>
-      </div> -->
-      <div class="form-group">
-        <div class="form-name">
-          <label for="description">敘述</label>
-        </div>
-        <div class="form-input">
-          <input type="text" id="description" formControlName="description" [class.invalid]="isError('description')" />
-          <small class="text-danger" *ngIf="errorType('description', 'required')">*必填欄位</small>
-        </div>
+   
       </div>
-      <div class="form-group">
-        <input type="checkbox" formControlName="disabled">是否停用
-      </div>
+
       <div style="padding: 2.5%">
         <label for="description">角色職位</label>
-        <lib-multi-select [pureValue]="false" [dataSource]="roles" [valueProperty]="'id'" [textProperty]="'role_name'"
-          formControlName="roles">
-        </lib-multi-select>
+        <ng-select formControlName="roles">
+          <ng-option *ngFor="let data of rolesList" [value]="data.id">{{data.role_name}}</ng-option>
+        </ng-select>
       </div>
-  
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-cancel" (click)="modal.dismiss('cancel click')">取消</button>
-      <button type="button" class="btn btn-danger" (click)="submit()"
-        [disabled]="!formGroup.valid || formGroup.pristine">確認</button>
-    </div>
   </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-cancel" (click)="modal.dismiss('cancel click')">取消</button>
+    <button type="button" class="btn btn-danger" (click)="submit()"
+      [disabled]="!formGroup.valid || formGroup.pristine">確認</button>
+  </div>
+</div>
+
   

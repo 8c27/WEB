@@ -14,7 +14,7 @@ import { FeedService } from "src/app/services/feed.service";
 export class AccountModalConponent implements OnInit {
   @Input() title: String = "Account";
   @Input() formData: any;
-  @Input() roles!: any[];
+  @Input() rolesList!: any[];
   @Output() submitevent = new EventEmitter<any>();
 
   formGroup: FormGroup ;
@@ -29,16 +29,15 @@ export class AccountModalConponent implements OnInit {
         id: [null],
         username: ["", Validators.required],
         password: [null, [Validators.maxLength(30), Validators.pattern('(?=.*[A-Za-z])(?=.*[0-9!@#$%^&]).{8,}')]],
-        book_id:[null, Validators.required],
         description: ["",Validators.required],
         disabled: [false, Validators.required],
-        company_name:[null],
         roles:[null]
       });
   }
 
   ngOnInit() {
     if (this.formData){
+      this.formData.roles=this.formData.roles[0].id
       this.formGroup.patchValue(this.formData)
     }
       
@@ -53,7 +52,6 @@ export class AccountModalConponent implements OnInit {
   submit() {
     let data = this.formGroup.getRawValue();
     data.id = JSON.parse(this.formGroup.get("id")?.value);
-    data.book_id = JSON.parse(this.formGroup.get("book_id")?.value);
     this.modal.close(data);
   }
   show_pass() {

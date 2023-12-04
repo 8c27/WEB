@@ -12,12 +12,12 @@
   <ul class="nav">
     <li
       routerLinkActive="active"
-      *ngFor="let menuItem of menuItems"
+      *ngFor="let menuItem of authSvc.state.menus"
       class="{{ menuItem.class }} nav-item"
     >
-      <a [routerLink]="[menuItem.path]">
+      <a [routerLink]="[menuItem.url]">
         <i class="tim-icons  {{ menuItem.icon }}"></i>
-        <p style="font-size: 18px; font-weight: bold;">{{ menuItem.title }}</p>
+        <p style="font-size: 18px; font-weight: bold;">{{ menuItem.menuName }}</p>
       </a>
     </li>
   </ul>

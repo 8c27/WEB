@@ -84,5 +84,13 @@ export class FeedService {
         return this.http.get<any[]>(apiUrl + "/LoginInfo");
       }
      
-    
+    public addLoginInfo(data){
+        return this.http.post(apiUrl + "/LoginInfo" , data) 
+    }
+    public editLoginInfo(id, data){
+        return this.http.put(apiUrl + "/LoginInfo/" +id, data)
+    }
+    public deleteLoginInfo(id){
+        return this.http.delete(apiUrl + "/LoginInfo/" + id)
+    }
 }

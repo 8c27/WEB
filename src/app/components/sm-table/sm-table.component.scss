@@ -4,6 +4,7 @@
   margin: auto;
 
   .mat-table {
+    background-color: #27293D;
     width: 100%;
     vertical-align: middle;
     text-align: -webkit-center;
@@ -12,7 +13,10 @@
       white-space: nowrap;
       padding: 5px 15px;
       font-size: 14px;
+      border-bottom:1px solid #ffcccc;
+      color: #D4D4D8;
     }
+    
 
     .mat-row {
       transition: background-color 0.2s;
@@ -23,12 +27,14 @@
 
       .mat-cell {
         text-align: left;
+        border-bottom: 1px solid #ffcccc;
         div {
           white-space: nowrap;
           padding: 5px 15px;
           overflow: hidden;
           text-overflow: ellipsis;
           width: 150px;
+          color: #D4D4D8;
         }
         &.mat-column-checkbox {
           width: 50px;
@@ -55,10 +61,29 @@
 ::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
     color: white !important;
 }
-
+::ng-deep .mat-card{
+  background-color: transparent;
+}
+::ng-deep.mat-paginator{
+  background-color: #27293D;
+  color: #fff
+}
+::ng-deep.mat-select-value{
+  color: #fff;
+}
+::ng-deep.mat-select-arrow {
+  color: #fff;
+}
+::ng-deep.mat-form-field-infix {
+  border-bottom:1px solid #fff;
+}
+::ng-deep.mat-button-wrapper{
+  color: #fff;
+}
 .hidden {
   display: none;
 }
+
 th{
   font-weight: bold;
 }
@@ -68,7 +93,7 @@ th{
   margin: 2px 3px 0 0;
   border-radius: 5px;
   background-color: #f8f9fa;
-  border: 1px solid hsla(0,0%,54.9%,.25);
+  border: 1px solid #ffcccc;
   font-size: 13px;
   font-weight: 600;
   display: inline-block;

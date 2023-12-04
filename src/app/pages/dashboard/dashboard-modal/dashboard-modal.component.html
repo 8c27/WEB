@@ -5,94 +5,170 @@
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row col-12" >
-            <div class="col-lg-2  form-name  ">
-                廠商ID
+            <div class="col-lg-2  form-name">
+                <span>廠商ID</span>
+                <mat-icon style="flex:1">factory</mat-icon>
             </div>
-            <ng-select class="col-lg-3 " style="padding:0" formControlName="clientId" [class.invalid]="isError('clientId')">
+            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" [class.invalid]="isError('clientId')">
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
-            <div class="col-lg-2  form-name">材質</div>
-            <input class="col-lg-2   form-name" formControlName="material">
-            <div class="col-lg-2   form-name">數量</div>
-            <input class="col-lg-1  form-name" formControlName="quantity" [class.invalid]="isError('quantity')">
+            <div class="col-lg-2  form-name">
+                <span>材質</span>
+                <mat-icon style="flex:1">webhook</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="material">
+            <div class="col-lg-2   form-name">
+                <span>數量</span>
+                <mat-icon style="flex:1">123</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="quantity" [class.invalid]="isError('quantity')">
         </div>
         
         <div class="row col-12" >
-            <div class="col-lg-2  form-name  ">物品編號</div>
-            <input class="col-lg-2 " formControlName="itemNumber">
+            <div class="col-lg-2  form-name">
+                <span>物品編號</span>
+                <mat-icon style="flex:1">format_list_numbered</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input " formControlName="itemNumber">
             <div class="col-lg-1"></div>
-            <div class="col-lg-2  form-name">頭部尺寸</div>
-            <input class="col-lg-2  form-name" formControlName="size">
-            <div class="col-lg-2  form-name">1kg/支</div>
-            <input class="col-lg-1  form-name" formControlName="pcs">
+            <div class="col-lg-2  form-name">
+                <span>頭部尺寸</span>
+                <mat-icon style="flex:1">build</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="size">
+            <div class="col-lg-2  form-name">
+                <span>1kg/支</span>
+                <mat-icon style="flex:1">icecream</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="pcs">
         </div>
 
         <div class="row col-12">
-            <div class="col-lg-2 form-name  ">物品名稱</div>
-            <input class="col-lg-3 " formControlName="itemName">
-            <div class="col-lg-2  form-name">加工別</div>
-            <ng-select class="col-lg-2 " style="padding: 0" formControlName="class">
+            <div class="col-lg-2 form-name">
+                <span>物品名稱</span>
+                <mat-icon style="flex:1">badge</mat-icon>
+            </div>
+            <input class="col-lg-3 special-input" formControlName="itemName">
+            <div class="col-lg-2  form-name">
+                <span>加工別</span>
+                <mat-icon style="flex:1">hotel_class</mat-icon>
+            </div>
+            <ng-select class="col-lg-2 custom" style="padding: 0" formControlName="class">
                 <ng-option value="加工">加工</ng-option>
                 <ng-option value="代工">代工</ng-option>
             </ng-select>
-            <div class="col-lg-2  form-name">單重(KG)</div>
-            <input class="col-lg-1 form-name" formControlName="weight">
+            <div class="col-lg-2  form-name">
+                <span>單重(KG)</span>
+                <mat-icon style="flex:1">monitor_weight</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="weight">
         </div>
 
         <div class="row col-12" >
-            <div class="col-lg-2 form-name">機台編號</div>
-            <input class="col-lg-2 " formControlName="machine">
+            <div class="col-lg-2 form-name">
+                <span>機台編號</span>
+                <mat-icon style="flex:1">tag</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input " formControlName="machine">
             <div class="col-lg-1 "></div>
-            <div class="col-lg-2 form-name">特殊別</div>
-            <input class="col-lg-2 " formControlName="special">
-            <div class="col-lg-2 form-name">成本價</div>
-            <input class="col-lg-1 form-name" formControlName="cost">
+            <div class="col-lg-2 form-name">
+                <span>特殊別</span>
+                <mat-icon style="flex:1">local_fire_department</mat-icon>
+            </div>  
+            <input class="col-lg-2 special-input" formControlName="special">
+            <div class="col-lg-2 form-name">
+                <span>成本價</span>
+                <mat-icon style="flex:1">attach_money</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="cost">
         </div>
         
         <div class="row col-12">
-            <div class="col-lg-2 form-name  ">昇茂規格</div>
-            <ng-select class="col-lg-3" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
+            <div class="col-lg-2 form-name  ">
+                <span>昇茂規格</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
                 <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
             </ng-select>
-            <div class="col-lg-2 form-name">打字別</div>
-            <input class="col-lg-2" formControlName="typing">
-            <div class="col-lg-2 form-name">調漲(%)</div>
-            <input class="col-lg-1 form-name" formControlName="raise">
+            <div class="col-lg-2 form-name">
+                <span>打字別</span>
+                <mat-icon style="flex:1">border_color</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="typing">
+            <div class="col-lg-2 form-name">
+                <span>調漲(%)</span>
+                <mat-icon style="flex:1">percent</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="raise">
         </div>
   
         <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">料長(mm)</div>
-            <input class="col-lg-2 form-name" formControlName="mm">
+            <div class="col-lg-2 form-name  ">
+                <span>料長(mm)</span>
+                <mat-icon style="flex:1">keyboard_tab</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="mm">
             <div class="col-lg-1"></div>
-            <div class="col-lg-2 form-name">打耳別</div>
-            <input class="col-lg-2" formControlName="ear">
-            <div class="col-lg-2 form-name">插-珠槽</div>
-            <input class="col-lg-1" formControlName="ditch">
+            <div class="col-lg-2 form-name">
+                <span>打耳別</span>
+                <mat-icon style="flex:1">hearing</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="ear">
+            <div class="col-lg-2 form-name">
+                <span>插-珠槽</span>
+                <mat-icon style="flex:1">sports</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="ditch">
         </div>
 
         <div class="row col-12">
-            <div class="col-lg-2 form-name  ">剝皮一</div>
-            <input class="col-lg-3 form-name" formControlName="peel1">
-            <div class="col-lg-2 form-name">鑽孔一</div>
-            <input class="col-lg-2" formControlName="hole1">
-            <div class="col-lg-2 form-name">尾倒角</div>
-            <input class="col-lg-1" formControlName="chamfer">
+            <div class="col-lg-2 form-name  ">
+                <span>剝皮一</span>
+                <mat-icon style="flex:1">filter_1</mat-icon>
+            </div>
+            <input class="col-lg-3 special-input" formControlName="peel1">
+            <div class="col-lg-2 form-name">
+                <span>鑽孔一</span>
+                <mat-icon style="flex:1">looks_one</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="hole1">
+            <div class="col-lg-2 form-name">
+                <span>尾倒角</span>
+                <mat-icon style="flex:1">wifi</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="chamfer">
         </div>
 
         <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">剝皮二</div>
-            <input class="col-lg-3 form-name" formControlName="peel2">
-            <div class="col-lg-2 form-name">鑽孔二</div>
-            <input class="col-lg-2" formControlName="hole2">
-            <div class="col-lg-2 form-name">車錐度</div>
-            <input class="col-lg-1" formControlName="taper">
+            <div class="col-lg-2 form-name  ">
+                <span>剝皮二</span>
+                <mat-icon style="flex:1">filter_2</mat-icon>
+            </div>
+            <input class="col-lg-3 special-input" formControlName="peel2">
+            <div class="col-lg-2 form-name">
+                <span>鑽孔二</span>
+                <mat-icon style="flex:1">looks_two</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="hole2">
+            <div class="col-lg-2 form-name">
+                <span>車錐度</span>
+                <mat-icon style="flex:1">airware</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="taper">
         </div>
 
         <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">加工項目</div>
+            <div class="col-lg-2 form-name  ">
+                <span>加工項目</span>
+                <mat-icon style="flex:1">rule</mat-icon>
+            </div>
             <input class="col-lg-6 special-input" formControlName="project" placeholder="加工项目在这">
             <div class="col-lg-1"></div>
-            <div class="col-lg-2 form-name" *ngIf="showDiv">訂單狀態</div>
+            <div class="col-lg-2 form-name" *ngIf="showDiv">
+                <span>訂單狀態</span>
+                <mat-icon style="flex:1">mark_chat_read</mat-icon>
+            </div>
             <div class="col-lg-1 form-check form-name" *ngIf="showDiv">
                 <label class=" form-check-label">
                     <input checked="" class=" form-check-input" type="checkbox" formControlName="status" >
@@ -102,7 +178,10 @@
         </div>
 
         <div class="row col-12">
-            <div class="col-lg-2 form-name  ">備註</div>
+            <div class="col-lg-2 form-name  ">
+                <span>備註</span>
+                <mat-icon style="flex:1">note_add</mat-icon>
+            </div>
             <input class="col-lg-8 special-input" formControlName="description" placeholder="这里可备注">
         </div>
         <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>

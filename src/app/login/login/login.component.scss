@@ -1,16 +1,46 @@
 
-.login-box,
-.register-box {
+.login-box{
   margin: auto;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
+
 }
+.input-group{
+  border-bottom: 1px solid #fff;
+  input{
+    border: none
+  }
+}
+.login-img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .card{
-  width: 450px;
-  border-top: 5px solid #34b5b8;
+  width: 400px;
+  background-color: transparent;
+  border-radius: 20px;
+  border: 4px solid #fff;
+  backdrop-filter: blur(10px);
 }
+.input-label{
+  position: absolute;
+  color:#fff;
+  right: 10px;
+  top:6px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.btn-login{
+  color: #808080;
+  background: #fff;
+}
+
 @media (max-width: 576px) {
   .login-box,
   .register-box {
@@ -19,7 +49,15 @@
   }
 }
 
-.login-box .card,
-.register-box .card {
+.login-box .card{
   margin-bottom: 0;
+}
+
+a {
+  text-decoration: none; /* 去除超連結的下劃線 */
+  color: #fff; /* 超連結文字顏色 */
+}
+
+a:hover {
+  color: #FE9167; /* 當滑鼠懸停在超連結上時的文字顏色 */
 }

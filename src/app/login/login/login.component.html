@@ -1,28 +1,40 @@
 <div class="login-page" style="background-color: inherit;">
+  <img src="assets/img/login-bg.png" class="login-img">
   <div class="login-box">
     <div class="card">
       <div class="card-header text-center">
-        <img src="assets/img/logo-colorful.svg" style="margin-top:-15px;width: 40px;padding-right: 5px;">
-        <span class="h3"><b>昇茂訂單管理系統</b></span>
+        <span class="h3" style="color: white"><b>Sheng Mao System</b></span>
       </div>
       <div class="card-body">
         <div [formGroup]="formLogin">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="帳號" formControlName="user">
-
+          <div class="input-group">
+            <mat-icon class="input-icon">person</mat-icon>
+            <label for="user" class="input-label">Account</label>
+            <input type="text" class="form-control" autocomplete="off" formControlName="user">
           </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="密碼" formControlName="pass"
+          <div class="input-group">
+            <mat-icon class="input-icon">lock</mat-icon>
+            <label for="password" class="input-label">Password</label>
+            <input type="password" class="form-control" autocomplete="off" formControlName="pass"
               (keyup.enter)="!(formLogin.invalid || formLogin.pristine || processing) && login()">
-
           </div>
           <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-primary btn-block" (click)="login()"
-                [disabled]="formLogin.invalid || formLogin.pristine || processing">登入
+            <div class="col-12" style="display: flex; justify-content: center;">
+              <div style="width: 200px;">
+                <button type="button" class="btn btn-login btn-block" (click)="login()"
+                [disabled]="formLogin.invalid || formLogin.pristine || processing">Log In
               </button>
+              </div>
+
             </div>
           </div>
+          <div class="col-7">
+            <small class="forget-pass ">
+              <a style="display: flex; align-items: center; cursor: pointer;" target="_blank" href="https://www.instagram.com/zhigang.tw/">Dont have an account ?<mat-icon>call</mat-icon></a>
+            </small>
+          </div>
+
+          
         </div>
       </div>
     </div>

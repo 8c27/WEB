@@ -1718,3 +1718,10 @@ animated-button ~ animated-button12 沒事不要打開很長
       }
       /*# sourceMappingURL=button.css.map */
 }
+
+.bg{
+  background-image: url('/assets/img/login-bg.png');
+  background-size: cover;
+  background-position: center; /* 將背景圖片置中 */
+  background-repeat: no-repeat; /* 避免背景圖片重複顯示 */
+}

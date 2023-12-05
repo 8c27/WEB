@@ -1,5 +1,7 @@
 .form-name{
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 .modal-content{
@@ -14,6 +16,14 @@
 .errorText {
   color: #FF69B4;
   padding-left: 120px;
+}
+.special-input{
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  color: #ECB88A;
+  font-weight: bold;
+  background-color:rgba(209, 194, 233, 0.3);
 }
 
 

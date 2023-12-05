@@ -5,19 +5,28 @@
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row">
-            <div class="col-4 form-name">昇貿規格</div>
-            <input class="col-6" formControlName="stockName">
+            <div class="col-4 form-name">
+                <span>昇貿規格</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="stockName">
             <small class="errorText" *ngIf="errorType('stockName','required')">*必填欄位</small>
         </div>
         <div class="row">
-            <div class="col-4 form-name">單重 ( g )</div>
-            <input class="col-6" formControlName="weight">
+            <div class="col-4 form-name">
+                <span>單重 ( g )</span>
+                <mat-icon style="flex:1">fitness_center</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="weight">
             <small class="errorText" *ngIf="errorType('weight','required')">*必填欄位</small>
         </div>
 
         <div class="row" >
-            <div class="col-4 form-name">數量</div>
-            <input class="col-6" formControlName="finishAmount">
+            <div class="col-4 form-name">
+                <span>數量</span>
+                <mat-icon style="flex:1">123</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="finishAmount">
         </div>
     </div>
     <div class="modal-footer">

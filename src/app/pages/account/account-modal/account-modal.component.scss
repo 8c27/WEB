@@ -1,7 +1,11 @@
 .form-name{
-    text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
 }
-
+.first-td{
+  max-width: 15%;
+}
 .modal-content{
   color: #CCCCCC;
   .modal-title {
@@ -9,12 +13,35 @@
   }
 }
 .invalid{
-  border: 3px solid #FF69B4;
+border: 3px solid #FF69B4;
 }
 .errorText {
-  color: #FF69B4;
-  padding-left: 120px;
+color: #FF69B4;
+padding-left: 120px;
 }
+
+.special-input{
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  color: #ECB88A;
+  font-weight: bold;
+  background-color:rgba(209, 194, 233, 0.3);
+}
+.coment-input {
+  border-radius: 6px;
+}
+
+
+/*強制更改ng-selcet css*/
+.ng-select.custom ::ng-deep .ng-select-container{
+  background-color: rgba(209, 194, 233, 0.3);
+  color: #ECB88A;
+  font-weight: bold;
+  border: none;
+}
+
+
 
 /* CSS ANIMATION*/
 button {

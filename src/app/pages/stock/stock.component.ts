@@ -154,7 +154,7 @@ export class StockComponent implements OnInit {
   edit(){
     if (this.selected){
       const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'})
-      modal.componentInstance.title = '編輯你媽啦'
+      modal.componentInstance.title = '編輯庫存'
       modal.componentInstance.formData = this.selected
       modal.result.then( e => {
         if (e) this.api.editStock(e.id , e).subscribe(

@@ -4,27 +4,39 @@
   </div>
   <div class="modal-body" [formGroup]="formGroup" >
       <div class="row">
-        <div class="col-3 form-name">使用者名稱</div>
-        <input class="col-6" type="text" id="username" formControlName="username" [class.invalid]="isError('username')">
+        <div class="col-3 form-name">
+          <span>帳號</span>
+          <mat-icon style="flex:1">person_3</mat-icon>
+        </div>
+        <input class="col-6 special-input" type="text" id="username" formControlName="username" autocomplete="off" [class.invalid]="isError('username')">
         <small class="errorText" *ngIf="errorType('username', 'required')">*必填欄位</small>
       </div>
 
       <div class="row">
-        <div class="col-3 form-name">使用者密碼</div>
-        <input class="col-5" type="password" id="password" formControlName="password" [class.invalid]="isError('password')">
+        <div class="col-3 form-name">
+          <span>密碼</span>
+          <mat-icon style="flex:1;">key</mat-icon>
+        </div>
+        <input class="col-5 special-input" type="password" id="password" formControlName="password" autocomplete="off" [class.invalid]="isError('password')">
         <span class="col-1"(mousedown)="show_pass()" (window:mouseup)="hidden_pass()"><i class="tim-icons icon-zoom-split" style="color:#fadf53"></i></span>
         <small class="errorText" *ngIf="errorType('password', 'maxlength')">*不可超過30字元</small>
         <small class="errorText" *ngIf="errorType('password', 'pattern')">*數字、字母、符號至少兩種，大於8字元</small>
       </div>
       
       <div class="row">
-        <div class="col-3 form-name">敘述</div>
-        <input class="col-6" type="text" id="description" formControlName="description" [class.invalid]="isError('description')">
+        <div class="col-3 form-name">
+          <span>敘述</span>
+          <mat-icon style="flex:1">translate</mat-icon>
+        </div>
+        <input class="col-6 special-input" type="text" id="description" formControlName="description" [class.invalid]="isError('description')">
         <small class="errorText" *ngIf="errorType('description', 'required')">*必填欄位</small>
       </div>
 
       <div class="row">
-        <div class="col-3 form-name">是否停用</div>
+        <div class="col-3 form-name">
+          <span>是否停用</span>
+          <mat-icon style="flex:1">do_not_disturb_off</mat-icon>
+        </div>
         <div class="col-1 form-check form-name">
           <label class="form-check-label">
             <input checked="" class=" form-check-input" type="checkbox" formControlName="disabled">
@@ -34,18 +46,26 @@
    
       </div>
 
-      <div style="padding: 2.5%">
-        <label for="description">角色職位</label>
-        <ng-select formControlName="roles">
+      <div class="row">
+        <div class="col-3 form-name">
+          <span>角色職位</span>
+          <mat-icon style="flex:1">group</mat-icon>
+        </div>
+        <ng-select formControlName="roles" class="custom col-6" style="padding-left: 0">
           <ng-option *ngFor="let data of rolesList" [value]="data.id">{{data.role_name}}</ng-option>
         </ng-select>
       </div>
   </div>
+
   <div class="modal-footer">
-    <button type="button" class="btn btn-cancel" (click)="modal.dismiss('cancel click')">取消</button>
-    <button type="button" class="btn btn-danger" (click)="submit()"
-      [disabled]="!formGroup.valid || formGroup.pristine">確認</button>
-  </div>
+    <!--button 未填寫完成不可確認-->
+    <button style="--clr:#a1eafb" (click)="submit()" [disabled]="!formGroup.valid || formGroup.pristine">
+        <span style="color: #a1eafb">SAVE</span><i></i>
+    </button>
+    <button style="--clr:#ffcccc" (click)="modal.dismiss('cancel click')">
+        <span style="color: #ffcccc">CANCEL</span><i></i>
+    </button>
+</div>
 </div>
 
   

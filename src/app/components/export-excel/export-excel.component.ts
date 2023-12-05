@@ -9,7 +9,8 @@ import * as XLSX from 'xlsx';
 })
 export class ExportExcelComponent implements OnInit {
   @Input()client: any
-
+  days : any;
+  nowTime: any;
   data:any;
   fileName= 'ExcelSheet.xlsx'; 
   constructor(private route: ActivatedRoute) {
@@ -25,11 +26,18 @@ export class ExportExcelComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-  
+    ngOnInit() {
     
-  }
+      this.nowTime = new Date();
+      this.formatTime()
 
+    }
+  formatTime(){
+    var year = this.nowTime.getFullYear();
+    var month = (this.nowTime.getMonth()+1).toString().padStart(2, '0');
+    var day = this.nowTime.getDate().toString().padStart(2, '0')
+    this.days = `${year}-${month}-${day}`;
+  }
 
   exportexcel(): void 
     {

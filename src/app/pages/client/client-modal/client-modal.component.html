@@ -5,44 +5,71 @@
       </div>
       <div class="modal-body" [formGroup]="formGroup">
           <div class="row" >
-              <div class="col-3 form-name">廠商名稱</div>
-              <input class="col-8" formControlName="name" [class.invalid]="isError('name')">
+              <div class="col-3 form-name">
+                <span>廠商名稱</span>
+                <mat-icon style="flex:1">factory</mat-icon>
+            </div>
+              <input class="col-8 special-input" formControlName="name" [class.invalid]="isError('name')">
               <small class="errorText" *ngIf="errorType('name','required')">*必填欄位</small>
           </div>
           <div class="row">
-            <div class="col-3 form-name">廠商編號</div>
-            <input class="col-8" formControlName="number" [class.invalid]="isError('number')">
+            <div class="col-3 form-name">
+                <span>廠商編號</span>
+                <mat-icon style="flex:1">tag</mat-icon>
+            </div>
+            <input class="col-8 special-input" formControlName="number" [class.invalid]="isError('number')">
             <small class="errorText " *ngIf="errorType('number' , 'required')">*必填欄位</small>
           </div>
           <div class="row" >
-              <div class="col-3 form-name">地址</div>
-              <input class="col-8" formControlName="address" [class.invalid]="isError('address')">
+              <div class="col-3 form-name">
+                <span>地址</span>
+                <mat-icon style="flex:1">home</mat-icon>
+            </div>
+              <input class="col-8 special-input" formControlName="address" [class.invalid]="isError('address')">
               <small class="errorText " *ngIf="errorType('address' , 'required')">*必填欄位</small>
           </div>
           <div class="row">
-            <div class="col-3 form-name">發票地址</div>
-            <input class="col-8" formControlName="invoice">
+            <div class="col-3 form-name">
+                <span>發票地址</span>
+                <mat-icon style="flex:1">drafts</mat-icon>
+            </div>
+            <input class="col-8 special-input" formControlName="invoice">
           </div>
           <div class="row" >
-              <div class="col-3 form-name">負責人</div>
-              <input class="col-5" formControlName="person">
+              <div class="col-3 form-name">
+                <span>負責人</span>
+                <mat-icon style="flex:1">support_agent</mat-icon>
+            </div>
+              <input class="col-5 special-input" formControlName="person">
           </div>
   
           <div class="row" >
-              <div class="col-3 form-name">聯絡電話</div>
-              <input class="col-3" formControlName="telephone">
+              <div class="col-3 form-name">
+                <span>聯絡電話</span>
+                <mat-icon style="flex:1">call</mat-icon>
+            </div>
+              <input class="col-3 special-input" formControlName="telephone">
           </div>
           <div class="row">
-            <div class="col-3 form-name">行動電話</div>
-            <input class="col-3" formControlName="mobile">
+            <div class="col-3 form-name">
+                <span>行動電話</span>
+                <mat-icon style="flex:1">phone_iphone</mat-icon>
+            </div>
+            <input class="col-3 special-input" formControlName="mobile">
           </div>
           <div class="row" >
-              <div class="col-3 form-name">統編</div>
-              <input class="col-3 form-name" formControlName="compiled">
+              <div class="col-3 form-name">
+                <span>統編</span>
+                <mat-icon style="flex:1">all_inclusive</mat-icon>
+            </div>
+              <input class="col-3 form-name special-input" formControlName="compiled">
           </div>
           <div class="row">
-            <div class="col-3 form-name">備註</div>
-            <input class="col-8 form-name" formControlName="description">
+            <div class="col-3 form-name">
+                <span>備註</span>
+                <mat-icon style="flex:1">app_registration</mat-icon>
+            </div>
+            <input class="col-8 form-name special-input" formControlName="description">
           </div>
       </div>
       <div class="modal-footer">

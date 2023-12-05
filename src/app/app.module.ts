@@ -38,6 +38,9 @@ import { environment } from "src/environments/environment";
 import { AccountComponent } from "./pages/account/account.component";
 import { AccountModalConponent } from "./pages/account/account-modal/account-modal.component";
 import { MultiSelectComponent } from "./components/multi-select/multi-select.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from '@angular/material/input';
+
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
 }
@@ -75,6 +78,8 @@ function getJwtConfig(): JwtConfig {
     JwtModule.forRoot({
       config: getJwtConfig(),
     }),
+    MatFormFieldModule,
+    MatInputModule
     
   ],
   declarations: [

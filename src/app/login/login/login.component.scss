@@ -40,6 +40,12 @@
   color: #808080;
   background: #fff;
 }
+.logo{
+  position: absolute;
+  top: 14px;
+  left: 320px;
+  width: 45px;
+}
 
 @media (max-width: 576px) {
   .login-box,

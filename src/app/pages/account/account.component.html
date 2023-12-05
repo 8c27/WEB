@@ -4,6 +4,11 @@
       <div class=" col-12">
         <div class=" card card-chart">
           <div class="card-head">
+            <div class="fieldinput" style="float: right; color: #FF9F1C">
+              <mat-form-field >
+                <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
+              </mat-form-field>
+            </div>
             <button class="btn btn-primary" (click)="open()">
               新增
             </button>
@@ -13,7 +18,9 @@
             <button class="btn btn-info" (click)="edit()">
               編輯 / 預覽
             </button>
+
           </div>
+
           <mat-card>
             <mat-card-content>
             <sm-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"

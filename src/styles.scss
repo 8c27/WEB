@@ -51,11 +51,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Webkit 捲動條的背景顏色 */
 ::-webkit-scrollbar {
-  background-color: #DC625A; /* 替換為您想要的背景顏色 */
+  background-color: #27293D; /* 替換為您想要的背景顏色 */
+  border-radius: 10px;
 }
 
 /* Webkit 捲動條手柄的顏色 */
 ::-webkit-scrollbar-thumb {
-  background-color: #F6475D; /* 替換為您想要的手柄顏色 */
+  background-color: #DC625A; /* 替換為您想要的手柄顏色 */
   border-radius: 10px;
 }

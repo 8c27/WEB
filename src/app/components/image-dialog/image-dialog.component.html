@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(img)">
               <img *ngIf="img" [src]="sanitize(img)" height="200" width="300" style="margin: 3px;"><br>
-              <label id="file-label">
+              <label style="color: #fff" id="file-label">
                 {{dataname[index].imgName}}
               </label>
               </div>
@@ -14,7 +14,7 @@
               <img *ngIf="file.url" [src]="file.url" height="200" width="300" style="margin: 3px;">
         
               <div style="padding-top: 5px;"><mat-progress-bar *ngIf="file.url" [value]="file.progress"></mat-progress-bar></div>
-              <label id="file-label">
+              <label style="color: #fff" id="file-label">
                 {{file.data.name}}
               </label>
               <mat-icon color="accent" (click)="cancel(index)"style="cursor: pointer"*ngIf="file.progress!=100">clear</mat-icon>
@@ -26,13 +26,13 @@
       <mat-card-actions>
         <div class="row" *ngIf="(view!='dispatchConfirm'&&view!='dispatchQuery')">
           <div class="col-md-6">
-            <button  mat-button color="primary" (click)="onClick()"style="width: 100%;">
+            <button  mat-button class="img-btn-b" (click)="onClick()"style="width: 100%;">
               <mat-icon>tab_unselected</mat-icon>
               選擇圖片
             </button>
           </div>
           <div class="col-md-6">
-            <button mat-button color="warn" (click)="uploadFiles()" style="width: 100%;">
+            <button mat-button class="img-btn-r" (click)="uploadFiles()" style="width: 100%;">
               <mat-icon>file_upload</mat-icon>
               上傳圖片
             </button>

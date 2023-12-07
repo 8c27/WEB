@@ -9,10 +9,20 @@
               <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
             </mat-form-field>
           </div>
-          <button class="btn btn-fill btn-success" (click)="open()">新增</button>   
-          <button class="btn btn-fill btn-danger" (click)="delete()">刪除</button>
-          <button class="btn btn-fill btn-info" (click)="edit()">編輯 / 預覽</button>
-          <button class="btn btn-fill btn-primary" (click)="xlxs()">汇出</button>
+          <div class="btn-sort">
+            <div class="circle" style="--color:#4c9173 " (click)="open()">
+              <mat-icon class="circle-icon">add</mat-icon>
+            </div>
+            <div class="circle" style="--color:#f96d6d" (click)="delete()">
+              <mat-icon class="circle-icon">delete</mat-icon>
+            </div>
+            <div class="circle" style="--color:#FFC107" (click)="edit()">
+              <mat-icon class="circle-icon">edit_note</mat-icon>
+            </div>
+            <div class="circle" style="--color:#8B5FBF" (click)="xlxs()">
+              <mat-icon class="circle-icon">output</mat-icon>
+            </div>
+          </div>
         </div>
         <mat-card>
           <mat-card-content>

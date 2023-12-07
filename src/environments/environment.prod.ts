@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl : "https://localhost:7201",
+  apiUrl : "http://192.168.2.107:5487",
   jwt: {
     allowedDomains: ['*'],
     disallowedRoutes: ['*'],

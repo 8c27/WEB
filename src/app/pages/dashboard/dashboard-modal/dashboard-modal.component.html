@@ -111,15 +111,15 @@
             <input class="col-lg-2 special-input" formControlName="mm">
             <div class="col-lg-1"></div>
             <div class="col-lg-2 form-name">
-                <span>打耳別</span>
-                <mat-icon style="flex:1">hearing</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="ear">
-            <div class="col-lg-2 form-name">
                 <span>插-珠槽</span>
                 <mat-icon style="flex:1">sports</mat-icon>
             </div>
-            <input class="col-lg-1 special-input" formControlName="ditch">
+            <input class="col-lg-2 special-input" formControlName="ditch">
+            <div class="col-lg-2 form-name">
+                <span>車錐度</span>
+                <mat-icon style="flex:1">airware</mat-icon>
+            </div>
+            <input class="col-lg-1 special-input" formControlName="taper">
         </div>
 
         <div class="row col-12">
@@ -151,20 +151,6 @@
                 <mat-icon style="flex:1">looks_two</mat-icon>
             </div>
             <input class="col-lg-2 special-input" formControlName="hole2">
-            <div class="col-lg-2 form-name">
-                <span>車錐度</span>
-                <mat-icon style="flex:1">airware</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="taper">
-        </div>
-
-        <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">
-                <span>加工項目</span>
-                <mat-icon style="flex:1">rule</mat-icon>
-            </div>
-            <input class="col-lg-6 special-input" formControlName="project" placeholder="加工项目在这">
-            <div class="col-lg-1"></div>
             <div class="col-lg-2 form-name" *ngIf="showDiv">
                 <span>訂單狀態</span>
                 <mat-icon style="flex:1">mark_chat_read</mat-icon>
@@ -177,6 +163,21 @@
             </div>
         </div>
 
+        <div class="row col-12" >
+            <div class="col-lg-2 form-name  ">
+                <span>加工項目</span>
+                <mat-icon style="flex:1">rule</mat-icon>
+            </div>
+            <input class="col-lg-6 special-input" formControlName="project" placeholder="加工项目在这">
+            <div class="col-lg-1"></div>
+        </div>
+        <div class="row col-12">
+            <div class="col-lg-2 form-name">
+                <span>打耳別</span>
+                <mat-icon style="flex:1">hearing</mat-icon>
+            </div>
+            <input class="col-lg-6 special-input" formControlName="ear">
+        </div>
         <div class="row col-12">
             <div class="col-lg-2 form-name  ">
                 <span>備註</span>

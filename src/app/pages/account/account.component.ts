@@ -6,6 +6,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
 import { tap } from "rxjs";
 import { AccountModalConponent } from "./account-modal/account-modal.component";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-account",
@@ -48,7 +49,12 @@ export class AccountComponent implements OnInit {
   proformas: Object;
   rolesList: any[];
 
-  constructor(public apiSvc: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,
+  constructor(
+    public apiSvc: FeedService, 
+    public signalRSvc: SignalrService, 
+    private ngbModal: NgbModal, 
+    private toastr: ToastrService,
+    private snackbar: MatSnackBar,
    ) {
   }
 
@@ -91,6 +97,8 @@ export class AccountComponent implements OnInit {
     })
   }
   delete() {
+    const ref = this.snackbar.open('你確定要刪除嗎(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
+    ref.onAction().subscribe(() =>{
       this.apiSvc.deleteLoginInfo(this.selected.id).subscribe(
         (respon) => {
           this.onload()
@@ -125,8 +133,7 @@ export class AccountComponent implements OnInit {
    
         }
       )
-    
-    
+    }) 
   }
   edit(){
     if (this.selected){

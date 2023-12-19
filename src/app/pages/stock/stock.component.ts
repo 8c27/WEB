@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { StockModalConponent } from "./stock-modal/stock-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 interface  IStock{
   id: number;
@@ -63,7 +64,14 @@ export class StockComponent implements OnInit {
   organizations: Object;
   proformas: Object;
 
-  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,) {
+  constructor(
+    public api: FeedService,
+    public signalRSvc: SignalrService, 
+    private ngbModal: NgbModal, 
+    private toastr: ToastrService,
+    private snackbar: MatSnackBar
+    ) 
+    {
   }
 
   ngOnInit() {
@@ -117,39 +125,42 @@ export class StockComponent implements OnInit {
     })
   }
   delete(){
-    this.api.deleteStock(this.selected.id).subscribe(
-      (respon) =>{
-        //刪除成功
-        this.toastr.success(
-          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
-          '刪除成功'
-          + '</span>',
-          "",
-          {
-            timeOut: 3000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-success alert-with-icon",
-            positionClass: "toast-bottom-center"
-          }
+    const ref = this.snackbar.open('你確定要刪除嗎(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
+    ref.onAction().subscribe(() => {
+      this.api.deleteStock(this.selected.id).subscribe(
+        (respon) =>{
+          //刪除成功
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除成功'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-success alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        },
+        (errro) => {
+          this.toastr.error(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除失敗'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-error alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
         );
-      },
-      (errro) => {
-        this.toastr.error(
-          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
-          '刪除失敗'
-          + '</span>',
-          "",
-          {
-            timeOut: 3000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-error alert-with-icon",
-            positionClass: "toast-bottom-center"
-          }
-      );
-      }
-    )
+        }
+      )
+    })
   }
   edit(){
     if (this.selected){

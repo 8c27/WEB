@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { MatTableDataSource } from "@angular/material/table";
 import { ClientModalConponent } from "./client-modal/client-modal.component";
 import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-client",
@@ -28,15 +29,15 @@ export class ClientComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' },
-      { name: 'name', displayName: '廠商名稱' },
       { name: 'number', displayName: '廠商編號' },
+      { name: 'name', displayName: '廠商名稱' },
       { name: 'address', displayName: '地址', width:300},
-      { name: 'person', displayName: '負責人'},   
+      { name: 'person', displayName: '聯絡人'},   
       { name: 'telephone', displayName: '聯絡電話'},
-      { name: 'mobile', displayName: '手機' },
+      { name: 'mobile', displayName: '傳真' },
       { name: 'compiled', displayName: '統編'},
-      { name: 'description', displayName: '備註'}
+      { name: 'description', displayName: '備註'},
+      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' },
     ]
   };
   subs: any;
@@ -50,7 +51,12 @@ export class ClientComponent implements OnInit {
   organizations: Object;
   proformas: Object;
 
-  constructor(public api: FeedService, public signalRSvc: SignalrService, private ngbModal: NgbModal, private toastr: ToastrService,
+  constructor(
+    public api: FeedService, 
+    public signalRSvc: SignalrService, 
+    private ngbModal: NgbModal, 
+    private toastr: ToastrService,
+    private snackbar: MatSnackBar,
    ) {
   }
 
@@ -89,6 +95,8 @@ export class ClientComponent implements OnInit {
     })
   }
   delete() {
+    const ref = this.snackbar.open('你確定要刪除嗎(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
+    ref.onAction().subscribe(() =>{
       this.api.deleteClient(this.selected.id).subscribe(
         (respon) => {
           //刪除成功
@@ -123,6 +131,8 @@ export class ClientComponent implements OnInit {
    
         }
       )
+    })
+
     
     
   }

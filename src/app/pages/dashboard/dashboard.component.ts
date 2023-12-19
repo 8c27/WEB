@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { flatten } from "@angular/compiler";
 import { createConstructSignature } from "typescript";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 
 
@@ -65,7 +66,8 @@ export class DashboardComponent implements OnInit {
     public signalRSvc: SignalrService, 
     private ngbModal: NgbModal,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private snackbar: MatSnackBar,
     ){}
  
   ngOnInit() {
@@ -116,38 +118,42 @@ export class DashboardComponent implements OnInit {
 
   }
   delete(){
-    this.api.deleteFeed(this.selected.id).subscribe(
-      (respon) => {
-        this.toastr.success(
-          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
-          '刪除成功'
-          + '</span>',
-          "",
-          {
-            timeOut: 3000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-success alert-with-icon",
-            positionClass: "toast-bottom-center"
-          }
-        );
-      },
-      (error) => {
-        this.toastr.error(
-          '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
-          '刪除失敗'
-          + '</span>',
-          "",
-          {
-            timeOut: 3000,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-error alert-with-icon",
-            positionClass: "toast-bottom-center"
-          }
-        );
-      }
-    )
+    const ref = this.snackbar.open('你確定要刪除嗎?  記得確認訂單狀態(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
+    ref.onAction().subscribe(() =>{
+      this.api.deleteFeed(this.selected.id).subscribe(
+        (respon) => {
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除成功'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-success alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        },
+        (error) => {
+          this.toastr.error(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '刪除失敗'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-error alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        }
+      )
+    })
+ 
   }
   edit(){
     if(this.selected){

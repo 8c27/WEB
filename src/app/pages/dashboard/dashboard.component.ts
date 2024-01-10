@@ -36,15 +36,14 @@ export class DashboardComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' , width: 120},
+      { name: 'status', displayName: '訂單狀態', width:100, templateRef: '完成狀態'},
       { name: 'feedNumber', displayName: '訂單編號' },
       { name: 'clientName', displayName: '廠商名稱', width: 200 },
-      { name: 'itemNumber', displayName: '物品編號'},
-      { name: 'itemName', displayName: '物品名稱' },
-      { name: 'stockName', displayName: '昇茂規格', width: 200},   
+      { name: 'stockName', displayName: '昇茂規格', width: 200},  
+      { name: 'quantity', displayName: '數量' }, 
+      { name: 'project', displayName: '加工項目' },
       { name: 'class', displayName: '料別'},
-      { name: 'machine', displayName: '機台編號' },
-      { name: 'material', displayName: '材質'},
+      { name: 'creationTime', displayName: '創建日期', templateRef: 'checkbox' , width: 120},
     ]
   };
   subs: any;
@@ -98,6 +97,7 @@ export class DashboardComponent implements OnInit {
 
     this.selected = $event;
   }
+
   open(){
     const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg',});
     modal.componentInstance.title = '新增訂單'
@@ -117,6 +117,7 @@ export class DashboardComponent implements OnInit {
     })
 
   }
+
   delete(){
     const ref = this.snackbar.open('你確定要刪除嗎?  記得確認訂單狀態(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
     ref.onAction().subscribe(() =>{
@@ -155,6 +156,7 @@ export class DashboardComponent implements OnInit {
     })
  
   }
+
   edit(){
     if(this.selected){
       const modal = this.ngbModal.open(dashboardModalContent , {size:'lg'});
@@ -202,6 +204,7 @@ export class DashboardComponent implements OnInit {
       })
     }
   }
+  
   xlxs(){
     this.selected.address = this.clientList.find(e=>e.id == this.selected.clientId).address
     this.selected.number = this.clientList.find(e =>e.id == this.selected.clientId).number

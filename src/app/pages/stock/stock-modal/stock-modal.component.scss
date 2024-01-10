@@ -3,6 +3,12 @@
     align-items: center;
     flex-direction: row-reverse;
 }
+.ng-select.custom ::ng-deep .ng-select-container{
+  background-color: rgba(209, 194, 233, 0.3);
+  color: #ECB88A;
+  font-weight: bold;
+  border: none;
+}
 
 .modal-content{
   color: #CCCCCC;

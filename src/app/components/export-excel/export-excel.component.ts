@@ -7,12 +7,24 @@ import * as XLSX from 'xlsx';
   templateUrl: "./export-excel.component.html",
   styleUrls: ["./export-excel.component.css"]
 })
+
+
 export class ExportExcelComponent implements OnInit {
   @Input()client: any
   days : any;
   nowTime: any;
   data:any;
-  fileName= 'ExcelSheet.xlsx'; 
+  fileName= 'ExcelSheet.xlsx';
+  options = 
+  [
+  '回廠', '忠光', '輯興', 
+  '昱誠', '錦陽', '錳剛', 
+  '冠昱', '立剛', '鑫興', 
+  '振興--折彎', '鑫興--鑽孔',
+  '春雨--折彎', '協昌--折彎',
+  '忠光-茱銘', '輯興-源億',
+  '冠昱-->鑫鎮業', '冠昱-->振傑'
+  ] 
   constructor(private route: ActivatedRoute) {
    this.route.queryParams.subscribe( params =>{
     
@@ -52,6 +64,9 @@ export class ExportExcelComponent implements OnInit {
        /* save to file */
        XLSX.writeFile(wb, this.fileName);
 			
+    }
+    onSelectChange(){
+      console.log(111)
     }
 }
 

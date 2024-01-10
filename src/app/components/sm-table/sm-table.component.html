@@ -40,6 +40,14 @@
             <span class="badge badge-danger" *ngIf="element[column.name]==true">已停用</span>
             </div>
           </ng-container>
+
+          <ng-container *ngSwitchCase="'完成狀態'">
+            <div style="text-overflow:clip">
+            <span class="badge badge-success" *ngIf="element[column.name]==true">已完成</span>
+            </div>
+          </ng-container>
+
+
           <ng-container *ngSwitchCase="'boolean'">
             <div style="width:80%" class="text-center">
             <i class="nc-icon nc-check-2" *ngIf="element[column.name]==true"></i>

@@ -13,11 +13,11 @@ import { FeedService } from "src/app/services/feed.service";
 export class StockModalConponent implements OnInit {
   @Input() title: String = "Feed";
   @Input() formData: any;
-
+  @Input() stockList: any;
   @Output() submitevent = new EventEmitter<any>();
 
   formGroup: FormGroup ;
-  
+  hideonbush: boolean = true;
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
@@ -29,7 +29,7 @@ export class StockModalConponent implements OnInit {
       updateTime: [null], // 更新時間
       stockName: [null, Validators.required], // 昇貿規格
       finishAmount: [0], //完成數量  
-      weight: [null, Validators.required],  // 單重g
+      weight: [0, Validators.required],  // 單重g
       isDeleted: [false , Validators.required],
     })
   }

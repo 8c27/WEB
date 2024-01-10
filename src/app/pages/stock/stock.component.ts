@@ -49,8 +49,8 @@ export class StockComponent implements OnInit {
       { name: 'weight', displayName: '單重'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
-      { name: 'lackPcs', displayName: '缺料支數'},
-      { name: 'lackWeight', displayName: '缺料重量', templateRef:'data_decimal'},
+      { name: 'lackPcs', displayName: '剩餘支數'},
+      { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal'},
     ]
   };
   subs: any;
@@ -63,7 +63,7 @@ export class StockComponent implements OnInit {
   customers: Object;
   organizations: Object;
   proformas: Object;
-
+  hideonbush : boolean = false;
   constructor(
     public api: FeedService,
     public signalRSvc: SignalrService, 
@@ -86,6 +86,7 @@ export class StockComponent implements OnInit {
         s.lackPcs=lackPcs
         s.lackWeight=lackWeight
       })
+      this.stockList=e
       this.dataSource = new MatTableDataSource<any>(e)
       if(this.selected){
         this.selected = e.find(e => e.id == this.selected.id)
@@ -107,7 +108,7 @@ export class StockComponent implements OnInit {
         s.lackPcs=lackPcs
         s.lackWeight=lackWeight
       })
-      console.log(e)
+      this.stockList=e
       this.dataSource= new MatTableDataSource<any>(e)
     }) //訂閱Feed資料
   }
@@ -205,5 +206,20 @@ export class StockComponent implements OnInit {
         console.log('Error in modal result', error)
       })
     }
+  }
+  add(){
+    const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
+    modal.componentInstance.title = '庫存調整'
+    modal.componentInstance.hideonbush = this.hideonbush
+    console.log(this.stockList)
+    modal.componentInstance.stockList=this.stockList
+    modal.result.then(e => {
+      console.log(e)
+      if (e){
+        this.api.editAmountStock(e, e.finishAmount).subscribe(e=>console.log(e))
+      } 
+    }).catch((error) => {
+      console.log('Error in modal result:', error)
+    })
   }
 }

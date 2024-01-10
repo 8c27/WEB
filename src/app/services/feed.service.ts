@@ -49,6 +49,11 @@ export class FeedService {
         // 透過restful put 編輯 Feed 
         return this.http.put(apiUrl + "/Stock/" + id, data)
     }
+
+    public editAmountStock(data, quantity){
+        return this.http.put(apiUrl + "/stockedit/" +quantity, data )
+    }
+
     public getClient(){
         return this.http.get(apiUrl + "/Client")
     }
@@ -69,20 +74,20 @@ export class FeedService {
           Username,
           Password,
         });
-      }
-      public refreshToken(username,token) {
-    
-        return this.http.post<{ token: string }>(apiUrl + "/refreshToken", {username:username,token:token});
-    
-      }
+    }
+    public refreshToken(username,token) {
 
-      public readLoginRoles(){
-        return this.http.get<any[]>(apiUrl + "/LoginRoles");
-      }
+    return this.http.post<{ token: string }>(apiUrl + "/refreshToken", {username:username,token:token});
 
-      public readLoginInfo(){
-        return this.http.get<any[]>(apiUrl + "/LoginInfo");
-      }
+    }
+
+    public readLoginRoles(){
+    return this.http.get<any[]>(apiUrl + "/LoginRoles");
+    }
+
+    public readLoginInfo(){
+    return this.http.get<any[]>(apiUrl + "/LoginInfo");
+    }
      
     public addLoginInfo(data){
         return this.http.post(apiUrl + "/LoginInfo" , data) 

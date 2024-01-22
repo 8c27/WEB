@@ -86,6 +86,7 @@ export class StockComponent implements OnInit {
         s.lackPcs=lackPcs
         s.lackWeight=lackWeight
       })
+
       this.stockList=e
       this.dataSource = new MatTableDataSource<any>(e)
       if(this.selected){
@@ -120,7 +121,9 @@ export class StockComponent implements OnInit {
     const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
     modal.componentInstance.title = '新增規格'
     modal.result.then(e => {
-      if (e) this.api.addStock(e).subscribe()
+      if (e) this.api.addStock(e).subscribe(e=>{
+        this.onload()
+      })
     }).catch( (error) => {
       console.log('Error in modal result:', error)
     })
@@ -130,6 +133,7 @@ export class StockComponent implements OnInit {
     ref.onAction().subscribe(() => {
       this.api.deleteStock(this.selected.id).subscribe(
         (respon) =>{
+          this.onload()
           //刪除成功
           this.toastr.success(
             '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
@@ -171,6 +175,7 @@ export class StockComponent implements OnInit {
       modal.result.then( e => {
         if (e) this.api.editStock(e.id , e).subscribe(
           (respon) => {
+            this.onload()
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
               '編輯成功'
@@ -214,9 +219,9 @@ export class StockComponent implements OnInit {
     console.log(this.stockList)
     modal.componentInstance.stockList=this.stockList
     modal.result.then(e => {
-      console.log(e)
+      
       if (e){
-        this.api.editAmountStock(e, e.finishAmount).subscribe(e=>console.log(e))
+        this.api.editAmountStock(e, e.finishAmount).subscribe(e=>this.onload())
       } 
     }).catch((error) => {
       console.log('Error in modal result:', error)

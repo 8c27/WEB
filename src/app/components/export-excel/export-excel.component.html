@@ -1,121 +1,120 @@
 
 <div style="background-color: white; width: 100%;height: 100%;transition: scale(10);">
-<table id="excel-table"  cellpadding='0' cellspacing='0' width='664' style='border-collapse: 
- collapse;table-layout:fixed;width:498pt'>
- <col width='84' style='mso-width-source:userset;width:63pt'/>
- <col width='72' span='4' style='width:54pt'/>
- <col width='84' style='mso-width-source:userset;width:63pt'/>
- <col width='68' span='2' style='mso-width-source:userset;width:51pt'/>
- <col width='72' style='width:54pt'/>
- <tr height='37' style='mso-height-source:userset;height:28.2pt'>
-<td colspan='9' height='37' class='x29' width='664' style='height:28.2pt;'>昇<span style='mso-spacerun:yes;'>&nbsp;&nbsp; </span>貿<span style='mso-spacerun:yes;'>&nbsp;&nbsp; </span>工業股份有限公司</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='32' class='x21' style='height:24.6pt;'>客戶編號:</td>
-<td colspan='5' class='x30' style='border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.number"></td>
-<td colspan='3' class='x31' style='border-bottom:1px solid windowtext;'>製 程 加 工 單</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>加工類別:</td>
-<td colspan='4' class='x32' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.itemName"></td>
-<td class='x22'>料別:</td>
-<td class='x23'><input style="border: none; width: 100%; text-align: center;" [value]="data.class"></td>
-<td class='x22'>料長:mm</td>
-<td class='x24'><input style="border: none; width: 100%;  text-align: center;" [value]="data.mm"></td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>頭部尺寸:</td>
-<td colspan='4' class='x32' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.size"></td>
-<td class='x22'>進料數:</td>
-<td class='x24'><input style="border: none; width: 100%; text-align: center;"></td>
-<td class='x22'>件別:</td>
-<td class='x25'><input style="border: none; width: 100%; text-align: center;"></td>
- </tr>
- <tr height='29' style='mso-height-source:userset;height:22.2pt'>
-<td height='27' class='x22' style='height:20.7pt;'>撥皮其他:</td>
-<td colspan='8' class='x26' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.peel1 + data.peel2">
-</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>昇貿規格:</td>
-<td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.stockName">
-</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>特殊備註:</td>
-<td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.typing + data.chamfer + data.hole1 + data.hole2 + data.ditch + data.taper + data.ear + data.special">
-</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>特殊備註:</td>
-<td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.description">
-</td>
- </tr>
- <tr height='44' style='mso-height-source:userset;height:33pt'>
-<td height='42' class='x22' style='height:31.5pt;'>數<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp; </span>量:</td>
-<td colspan='4' class='x46' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.pcs">
-</td>
-<td class='x22'>材<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp; </span>質:</td>
-<td colspan='3' class='x49' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.material">
-</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>加工項目:</td>
-<td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.project">
-</td>
- </tr>
- <tr height='32' style='mso-height-source:userset;height:24.6pt'>
-<td height='30' class='x22' style='height:23.1pt;'>出貨廠商:</td>
-<td colspan='4' class='x35' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" [value]="data.clientName">
-</td>
-<td class='x22'>指送地點:</td>
-<td colspan='3' class='x38' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
-    <input style="border: none; width: 100%; text-align: center;" list="oplist1">
-    <datalist id=oplist1>
-        <option>回廠</option>
-        <option>忠光</option>
-        <option>輯興</option>
-        <option>昱誠</option>
-        <option>錦陽</option>
-        <option>錳剛</option>
-        <option>冠昱</option>
-        <option>立剛</option>
-        <option>鑫興</option>
-        <option>協昌--折彎</option>
-        <option>忠光-茱銘</option>
-        <option>輯興-源億</option>
-        <option>振興--折彎</option>
-        <option>鑫新--鑽孔</option>
-        <option>春雨--折彎</option>
-        <option>冠昱-->鑫鎮業</option>
-        <option>冠昱-->振傑</option>
-    </datalist>
-</td>
- </tr>
- <tr height='26' style='mso-height-source:userset;height:19.8pt'>
-<td height='26' class='x21' style='height:19.8pt;'>開單日期:</td>
-<td colspan='4' class='x41'><input style="border: none; width: 100%; text-align: center;" [value]="days"></td>
-<td class='x21'></td>
-<td class='x21'>經辦人:</td>
-<td colspan='2' class='x42'><input style="border: none; width: 100%; text-align: center;" value="許先生" ></td>
- </tr>
+    <table id="excel-table"  cellpadding='0' cellspacing='0' width='664' style='border-collapse: 
+    collapse;table-layout:fixed;width:498pt'>
+    <col width='84' style='mso-width-source:userset;width:63pt'/>
+    <col width='72' span='4' style='width:54pt'/>
+    <col width='84' style='mso-width-source:userset;width:63pt'/>
+    <col width='68' span='2' style='mso-width-source:userset;width:51pt'/>
+    <col width='72' style='width:54pt'/>
+    <tr height='37' style='mso-height-source:userset;height:28.2pt'>
+    <td colspan='9' height='37' class='x29' width='664' style='height:28.2pt;'>昇<span style='mso-spacerun:yes;'>&nbsp;&nbsp; </span>貿<span style='mso-spacerun:yes;'>&nbsp;&nbsp; </span>工業股份有限公司</td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='32' class='x21' style='height:24.6pt;'>客戶編號:</td>
+    <td colspan='5' class='x30' style='border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.number"></td>
+    <td colspan='3' class='x31' style='border-bottom:1px solid windowtext;'>製 程 加 工 單</td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>加工類別:</td>
+    <td colspan='4' class='x32' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.itemName"></td>
+    <td class='x22'>料別:</td>
+    <td class='x23'><input style="border: none; width: 100%; text-align: center;" [value]="data.class"></td>
+    <td class='x22'>料長:mm</td>
+    <td class='x24'><input style="border: none; width: 100%;  text-align: center;" [value]="data.mm"></td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>頭部尺寸:</td>
+    <td colspan='4' class='x32' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'><input style="border: none; width: 100%; text-align: center;" [value]="data.size"></td>
+    <td class='x22'>進料數:</td>
+    <td class='x24'><input style="border: none; width: 100%; text-align: center;"></td>
+    <td class='x22'>件別:</td>
+    <td class='x25'><input style="border: none; width: 100%; text-align: center;"></td>
+    </tr>
+    <tr height='29' style='mso-height-source:userset;height:22.2pt'>
+    <td height='27' class='x22' style='height:20.7pt;'>撥皮其他:</td>
+    <td colspan='8' class='x26' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.peel1 + data.peel2">
+    </td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>昇貿規格:</td>
+    <td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.stockName">
+    </td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>特殊備註:</td>
+    <td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.typing + data.chamfer + data.hole1 + data.hole2 + data.ditch + data.taper + data.ear + data.special">
+    </td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>特殊備註:</td>
+    <td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.description">
+    </td>
+    </tr>
+    <tr height='44' style='mso-height-source:userset;height:33pt'>
+    <td height='42' class='x22' style='height:31.5pt;'>數<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp; </span>量:</td>
+    <td colspan='4' class='x46' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.pcs">
+    </td>
+    <td class='x22'>材<span style='mso-spacerun:yes;'>&nbsp;&nbsp;&nbsp; </span>質:</td>
+    <td colspan='3' class='x49' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.material">
+    </td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>加工項目:</td>
+    <td colspan='8' class='x43' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.project">
+    </td>
+    </tr>
+    <tr height='32' style='mso-height-source:userset;height:24.6pt'>
+    <td height='30' class='x22' style='height:23.1pt;'>出貨廠商:</td>
+    <td colspan='4' class='x35' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" [value]="data.clientName">
+    </td>
+    <td class='x22'>指送地點:</td>
+    <td colspan='3' class='x38' style='border-right:1px solid windowtext;border-bottom:1px solid windowtext;'>
+        <input style="border: none; width: 100%; text-align: center;" list="oplist1">
+        <datalist id=oplist1>
+            <option>回廠</option>
+            <option>忠光</option>
+            <option>輯興</option>
+            <option>昱誠</option>
+            <option>錦陽</option>
+            <option>錳剛</option>
+            <option>冠昱</option>
+            <option>立剛</option>
+            <option>鑫興</option>
+            <option>協昌--折彎</option>
+            <option>忠光-茱銘</option>
+            <option>輯興-源億</option>
+            <option>振興--折彎</option>
+            <option>鑫新--鑽孔</option>
+            <option>春雨--折彎</option>
+            <option>冠昱-->鑫鎮業</option>
+            <option>冠昱-->振傑</option>
+        </datalist>
+    </td>
+    </tr>
+    <tr height='26' style='mso-height-source:userset;height:19.8pt'>
+    <td height='26' class='x21' style='height:19.8pt;'>開單日期:</td>
+    <td colspan='4' class='x41'><input style="border: none; width: 100%; text-align: center;" [value]="days"></td>
+    <td class='x21'></td>
+    <td class='x21'>經辦人:</td>
+    <td colspan='2' class='x42'><input style="border: none; width: 100%; text-align: center;" value="許先生" ></td>
+    </tr>
 
- <tr height='0' style='display:none'>
-  <td width='84' style='width:63pt;'></td>
-  <td width='288' colspan='4' style='width:216pt;mso-ignore:colspan;'></td>
-  <td width='84' style='width:63pt;'></td>
-  <td width='136' colspan='2' style='width:102pt;mso-ignore:colspan;'></td>
-  <td width='72' style='width:54pt;'></td>
- </tr>
+    <tr height='0' style='display:none'>
+    <td width='84' style='width:63pt;'></td>
+    <td width='288' colspan='4' style='width:216pt;mso-ignore:colspan;'></td>
+    <td width='84' style='width:63pt;'></td>
+    <td width='136' colspan='2' style='width:102pt;mso-ignore:colspan;'></td>
+    <td width='72' style='width:54pt;'></td>
+    </tr>
 
-</table>
-
+    </table>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, ɵɵtrustConstantHtml, HostListener  } from "@angular/core";
 import { FormBuilder, Validators, FormGroup  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { tap } from "rxjs/operators";
@@ -18,7 +18,26 @@ export class dashboardModalContent implements OnInit {
   @Input() stockList: any;
   @Output() submitevent = new EventEmitter<any>();
   formGroup: any ;
-  
+  filterStock: any
+  placeList = [
+    '回廠',
+    '忠光',
+    '輯興',
+    '昱誠',
+    '錦陽',
+    '錳剛',
+    '冠昱',
+    '立剛',
+    '鑫興',
+    '協昌--折彎',
+    '忠光-茱銘',
+    '輯興-源億',
+    '振興--折彎',
+    '鑫新--鑽孔',
+    '春雨--折彎',
+    '冠昱-->鑫鎮業',
+    '冠昱-->振傑'
+  ]
   showDiv:boolean = true; // 照片功能不顯示
 
   constructor(
@@ -59,7 +78,11 @@ export class dashboardModalContent implements OnInit {
       isDeleted: [false , Validators.required],
       status: [false, Validators.required],
       feedNumber: [null], 
+      place: [null],
     })
+  }
+  log(){
+    console.log(777)
   }
   isError(item: string) {
     // 檢查item有無被修改或被觸碰過
@@ -76,7 +99,18 @@ export class dashboardModalContent implements OnInit {
       this.formGroup.patchValue(this.formData)
       this.photo.sitedata = this.formData
     }
-      
+    this.formGroup.get('clientId').valueChanges.subscribe( e => {
+      this.filterStock = this.stockList.filter(x => x.clientId == e)  
+    })
+ 
+  }
+  @HostListener('window:keydown.enter', ['$event'])
+  enterKey(event: KeyboardEvent){
+    event.preventDefault();
+    // 调用保存方法
+    if (this.formGroup.valid && !this.formGroup.pristine) {
+      this.save();
+    }
   }
 
   save(){

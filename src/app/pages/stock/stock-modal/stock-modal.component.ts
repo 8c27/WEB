@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators, FormGroup, RequiredValidator  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { tap } from "rxjs/operators";
@@ -14,6 +14,7 @@ export class StockModalConponent implements OnInit {
   @Input() title: String = "Feed";
   @Input() formData: any;
   @Input() stockList: any;
+  @Input() clientList: any;
   @Output() submitevent = new EventEmitter<any>();
 
   formGroup: FormGroup ;
@@ -31,6 +32,7 @@ export class StockModalConponent implements OnInit {
       finishAmount: [0], //完成數量  
       weight: [0, Validators.required],  // 單重g
       isDeleted: [false , Validators.required],
+      clientId: [null]
     })
   }
 
@@ -47,7 +49,15 @@ export class StockModalConponent implements OnInit {
   errorType(item: string, type: string){
     return this.isError(item) && this.formGroup.get(item)?.hasError(type);
   }
-
+  
+  @HostListener('window:keydown.enter', ['$event'])
+  enterKey(event: KeyboardEvent){
+    event.preventDefault();
+    // 调用保存方法
+    if (this.formGroup.valid && !this.formGroup.pristine) {
+      this.save();
+    }
+  }
   save(){
       let data = this.formGroup.getRawValue();
       this.modal.close(data)

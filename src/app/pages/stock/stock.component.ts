@@ -34,7 +34,7 @@ export class StockComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   data: any;
   search: string;
-
+  clientList:any;
   table_config: any = {
     checkable: true,
     serverSide: true,
@@ -44,13 +44,14 @@ export class StockComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long'  },
+      { name: 'clientName', displayName: '廠商名稱',  width: 200 },
       { name: 'stockName', displayName: '昇貿規格', width:200 },
       { name: 'weight', displayName: '單重'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
       { name: 'lackPcs', displayName: '剩餘支數'},
       { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal'},
+      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long'  },
     ]
   };
   subs: any;
@@ -112,6 +113,7 @@ export class StockComponent implements OnInit {
       this.stockList=e
       this.dataSource= new MatTableDataSource<any>(e)
     }) //訂閱Feed資料
+    this.api.getClient().subscribe( (e:any) =>this.clientList=e)
   }
 
   onSelect($event: any) {
@@ -120,6 +122,7 @@ export class StockComponent implements OnInit {
   open(){
     const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
     modal.componentInstance.title = '新增規格'
+    modal.componentInstance.clientList=this.clientList
     modal.result.then(e => {
       if (e) this.api.addStock(e).subscribe(e=>{
         this.onload()
@@ -172,6 +175,7 @@ export class StockComponent implements OnInit {
       const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'})
       modal.componentInstance.title = '編輯庫存'
       modal.componentInstance.formData = this.selected
+      modal.componentInstance.clientList=this.clientList
       modal.result.then( e => {
         if (e) this.api.editStock(e.id , e).subscribe(
           (respon) => {

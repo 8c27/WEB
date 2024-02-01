@@ -7,6 +7,15 @@
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row">
             <div class="col-4 form-name">
+                <span>廠商名稱</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <ng-select class="col-lg-6 custom" style="padding:0" formControlName="clientId" >
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
                 <span>昇貿規格</span>
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
@@ -16,7 +25,7 @@
             </ng-container>
             <ng-template #selectTemplate>
                 <ng-select class="col-6 custom" style="padding:0" formControlName="stockName">
-                    <ng-option *ngFor="let x of stockList" [value]="x.stockName">{{x.stockName}}</ng-option>
+                    <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
                 </ng-select>
             </ng-template>
         </div>

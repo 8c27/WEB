@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators, FormGroup  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { tap } from "rxjs/operators";
@@ -48,6 +48,15 @@ export class AccountModalConponent implements OnInit {
   }
   errorType(item: string, type: string) {
     return this.isError(item) && this.formGroup.get(item)?.hasError(type);
+  }
+
+  @HostListener('window:keydown.enter', ['$event'])
+  enterKey(event: KeyboardEvent){
+    event.preventDefault();
+    // 调用保存方法
+    if (this.formGroup.valid && !this.formGroup.pristine) {
+      this.submit();
+    }
   }
   submit() {
     let data = this.formGroup.getRawValue();

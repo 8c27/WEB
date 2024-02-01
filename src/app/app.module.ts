@@ -40,6 +40,7 @@ import { AccountModalConponent } from "./pages/account/account-modal/account-mod
 import { MultiSelectComponent } from "./components/multi-select/multi-select.component";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
+import { ShipComponent } from "./pages/ship/ship.component";
 
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
@@ -96,6 +97,7 @@ function getJwtConfig(): JwtConfig {
     StockModalConponent,
     ClientModalConponent,
     ClientComponent,
+    ShipComponent,
     ImageDialogComponent,
     ExportExcelComponent,
     LoginComponent,

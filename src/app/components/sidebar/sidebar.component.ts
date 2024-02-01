@@ -32,6 +32,12 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-badge",
     class: ""
   },
+  {
+    path: "/ship",
+    title: "出貨進度",
+    icon: "icon-bus-front-12",
+    class: ""
+  }
 ];
 
 @Component({

@@ -1,9 +1,9 @@
 
-<div class="modal-content border-ani " style="top:0">
+<div class="modal-content border-ani " style="top:0"  >
     <div class="modal-header" >
         <h1 class="modal-title">{{title}}</h1>
     </div>
-    <div class="modal-body" [formGroup]="formGroup">
+    <div class="modal-body" [formGroup]="formGroup" (keydown.enter)="cancel()">
         <div class="row col-12" >
             <div class="col-lg-2  form-name">
                 <span>廠商ID</span>
@@ -26,11 +26,10 @@
         
         <div class="row col-12" >
             <div class="col-lg-2  form-name">
-                <span>物品編號</span>
+                <span>憑單</span>
                 <mat-icon style="flex:1">format_list_numbered</mat-icon>
             </div>
-            <input class="col-lg-2 special-input " formControlName="itemNumber">
-            <div class="col-lg-1"></div>
+            <input class="col-lg-3 special-input " formControlName="itemNumber">
             <div class="col-lg-2  form-name">
                 <span>頭部尺寸</span>
                 <mat-icon style="flex:1">build</mat-icon>
@@ -89,8 +88,8 @@
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
             <ng-select class="col-lg-3 custom" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
-                <ng-option *ngFor="let x of stockList" [value]="x.id">{{x.stockName}}</ng-option>
-            </ng-select>
+                <ng-option *ngFor="let x of filterStock" [value]="x.id">{{x.stockName}}</ng-option>
+              </ng-select>
             <div class="col-lg-2 form-name">
                 <span>打字別</span>
                 <mat-icon style="flex:1">border_color</mat-icon>
@@ -162,7 +161,7 @@
                 </label>
             </div>
         </div>
-
+        
         <div class="row col-12" >
             <div class="col-lg-2 form-name  ">
                 <span>加工項目</span>
@@ -176,7 +175,14 @@
                 <span>打耳別</span>
                 <mat-icon style="flex:1">hearing</mat-icon>
             </div>
-            <input class="col-lg-6 special-input" formControlName="ear">
+            <input class="col-lg-5 special-input" formControlName="ear">
+            <div class="col-lg-2 form-name">
+                <span>指定地點</span>
+                <mat-icon style="flex:1">alternate_email</mat-icon>
+            </div>
+            <ng-select class="col-lg-3 custom" style="padding:0; text-align: center;" formControlName="place">
+                <ng-option *ngFor="let x of placeList" [value]="x">{{x}}</ng-option>
+            </ng-select>
         </div>
         <div class="row col-12">
             <div class="col-lg-2 form-name  ">
@@ -190,7 +196,7 @@
     </div>
     <div class="modal-footer">
         <!--button 未填寫完成不可確認-->
-        <button style="--clr:#a1eafb" (click)="save()" [disabled]="!formGroup.valid || formGroup.pristine">
+        <button style="--clr:#a1eafb" (click)="save()"[disabled]="!formGroup.valid || formGroup.pristine">
             <span style="color: #a1eafb">SAVE</span><i></i>
         </button>
         <button style="--clr:#ffcccc" (click)="cancel()">

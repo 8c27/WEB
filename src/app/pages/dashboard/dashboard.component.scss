@@ -69,3 +69,17 @@
 ::ng-deep.badge-success{
   background-color: #2A9D8F;
 }
+
+.card-head{
+  .search{
+    display: flex;
+    justify-content: flex-end;
+    .select-search-bar{
+      color: #FF9F1C;
+      margin-right: 5px;
+    }
+  }
+  .btn-sort{
+    display: flex;
+  }
+}

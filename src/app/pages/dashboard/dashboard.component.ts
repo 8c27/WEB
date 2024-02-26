@@ -59,6 +59,8 @@ export class DashboardComponent implements OnInit {
   customers: Object;
   organizations: Object;
   proformas: Object;
+  company: number;
+  copydata: any;
 
   clientList:any;
   stockList: any;
@@ -80,7 +82,7 @@ export class DashboardComponent implements OnInit {
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
       this.dataSource= new MatTableDataSource<any>(data)
-
+      this.copydata = [...this.dataSource.data]
       // 避免同步刪除發生錯誤
       if(this.selected){
         this.selected = data.find(e => e.id == this.selected.id)
@@ -93,9 +95,13 @@ export class DashboardComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
-    this.api.getFeed().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
+    this.api.getFeed().subscribe( (e:any) =>{
+      this.dataSource= new MatTableDataSource<any>(e)
+      this.copydata = [...this.dataSource.data]
+    } ) //訂閱Feed資料
     this.api.getClient().subscribe( (e:any) =>this.clientList=e) //訂閱Client資料
     this.api.getStock().subscribe( (e:any) =>this.stockList=e) //訂閱Stock資料
+   
   }
 
   formatTime(){
@@ -221,17 +227,22 @@ export class DashboardComponent implements OnInit {
     }
   }
   
-  xlxs(){
-    this.selected.address = this.clientList.find(e=>e.id == this.selected.clientId).address
-    this.selected.number = this.clientList.find(e =>e.id == this.selected.clientId).number
-    var printdata = JSON.stringify(this.selected)
-    console.log(this.selected.address)
-    const targetUrl = `#/print?json=${printdata}`;
-
-    // 使用 window.open 打开新窗口或标签页
-    window.open(targetUrl, '_blank');
+  companySelect(){
+    let newData = this.copydata.filter( e => 
+      e.clientId == this.company 
+    )
+    // 更新數據
+    this.dataSource.data = newData
   }
 
+  clearSelect(){
+    // 清空 搜尋條件
+    if (this.company !== undefined ) {
+      this.company = undefined
+      this.onload()
+    }
+  }
+  
   shipChange(){
     if(this.checked){
       for(let i of this.checked){

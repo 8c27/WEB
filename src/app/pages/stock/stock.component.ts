@@ -127,6 +127,15 @@ export class StockComponent implements OnInit {
     this.dataSource.data = newData
     console.log(newData)
   }
+
+  clearSelect(){
+    // 清空 搜尋條件
+    if (this.company !== undefined ) {
+      this.company = undefined
+      this.onload()
+    }
+  }
+  
   onSelect($event: any) {
     this.selected = $event;
   }

@@ -2,14 +2,9 @@
 <div class=" content bg">
   <div class=" row">
     <div class=" col-12">
-      <div class=" card card-chart">
-        <div class="card-head">
-          <div class="fieldinput" style="float: right; color: #FF9F1C">
-            <mat-form-field >
-              <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
-            </mat-form-field>
-          </div>
-          <div class="btn-sort">
+      <div class=" card card-chart col-12">
+        <div class="card-head  col-12 d-flex flex-row flex-wrap">
+          <div class="btn-sort col-lg-4 col-md-4 col-sm-12">
             <div class="circle" style="--color:#4c9173 " (click)="open()">
               <mat-icon class="circle-icon">add</mat-icon>
             </div>
@@ -25,6 +20,24 @@
             <div class="circle" style="--color:#2196F3 " (click)="shipChange()">
               <mat-icon class="circle-icon">local_shipping</mat-icon>
             </div>
+          </div>
+          <div class="search col-lg-8 col-md-8 col-sm-12">
+            <div class="circle" style="--color:#b6ccd8 " (click)="clearSelect()">
+              <mat-icon class="circle-icon">close</mat-icon>
+            </div>
+            <div class="select-search-bar">
+              <mat-form-field>
+                <mat-label>廠商</mat-label>
+                <mat-select [(ngModel)]="company" (ngModelChange)="companySelect()" id="company">
+                  <mat-option *ngFor="let c of clientList" [value]="c.id">{{c.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+           </div>
+           <div class="fieldinput">
+            <mat-form-field >
+              <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
+            </mat-form-field>
+          </div>
           </div>
         </div>
         <mat-card>

@@ -22,12 +22,15 @@
             <div class="circle" style="--color:#8B5FBF" (click)="export()">
               <mat-icon class="circle-icon">output</mat-icon>
             </div>
+            <div class="circle" style="--color:#2196F3 " (click)="shipChange()">
+              <mat-icon class="circle-icon">local_shipping</mat-icon>
+            </div>
           </div>
         </div>
         <mat-card>
           <mat-card-content>
-          <sm-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
-          [dataSource]="dataSource" (select)="onSelect($event)"  [status]="status"></sm-table>
+          <sm-table [showCheckbox]="true" [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
+          [dataSource]="dataSource"(check)="onCheck($event)" (select)="onSelect($event)"  [status]="status"></sm-table>
         </mat-card-content>
       </mat-card>
       </div>

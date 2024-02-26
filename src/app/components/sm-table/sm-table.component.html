@@ -12,9 +12,9 @@
     [matSortDisableClear]="config.sort && config.sort.disableClear" [class.disabled]="disabled">
 <!--隱藏的checkbox-->
     <ng-container matColumnDef="checkbox" >
-      <th mat-header-cell *matHeaderCellDef class="hidden"></th>
-      <td mat-cell *matCellDef="let element; let i = index" class="hidden">
-        <mat-checkbox [checked]="selectedId === i" (change)="onSelect(element, i)"></mat-checkbox>
+      <th mat-header-cell *matHeaderCellDef ></th>
+      <td mat-cell *matCellDef="let element; let i = index" >
+        <mat-checkbox  *ngIf="showCheckbox" [checked]="checkId.includes(element.id)" (change)="onCheck(element.id, $event.checked)"></mat-checkbox>
       </td>
     </ng-container>
 <!--th td迴圈-->

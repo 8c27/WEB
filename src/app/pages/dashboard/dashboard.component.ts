@@ -52,6 +52,8 @@ export class DashboardComponent implements OnInit {
   maxTableHeight = '100%';
   minTableHeight = 'unset';
   selected: any;
+  checked: any;
+  selectedItem: any[] = []
   loaded = false;
   status: Object;
   customers: Object;
@@ -106,6 +108,10 @@ export class DashboardComponent implements OnInit {
   onSelect($event: any) {
 
     this.selected = $event;
+  }
+
+  onCheck($event:any){
+    this.checked = $event
   }
 
   open(){
@@ -225,12 +231,38 @@ export class DashboardComponent implements OnInit {
     // 使用 window.open 打开新窗口或标签页
     window.open(targetUrl, '_blank');
   }
+
+  shipChange(){
+    if(this.checked){
+      for(let i of this.checked){
+        let list = this.dataSource.data.filter(e => e.id == i)
+        list[0].status = true
+        this.api.editFeed(list[0].id, list[0]).subscribe(
+          (respon) =>{
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+        )
+      }
+    }
+  }
   
   export(){
     if (this.selected){
       this.selected.address = this.clientList.find(e => e.id == this.selected.clientId).address
       this.selected.number = this.clientList.find(e => e.id == this.selected.clientId).number
-      console.log(this.selected)
+      // console.log(this.selected)
     // 建立工作簿
     const wb = new ExcelJS.Workbook();
     // 建立工作表

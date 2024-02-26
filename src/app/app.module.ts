@@ -42,6 +42,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { ShipComponent } from "./pages/ship/ship.component";
 import { MatSelectModule } from "@angular/material/select";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
@@ -82,8 +83,8 @@ function getJwtConfig(): JwtConfig {
       config: getJwtConfig(),
     }),
     MatFormFieldModule,
-    MatInputModule
-    
+    MatInputModule,
+    MatCheckboxModule
   ],
   declarations: [
     AppComponent,

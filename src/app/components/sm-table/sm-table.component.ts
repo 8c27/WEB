@@ -42,6 +42,7 @@ export interface NamiTableColumns {
 })
 export class TableComponent implements OnInit, OnChanges {
   selectedId: number = -1;
+  checkId: any[] = [];
   innerDataSource: any;
 
 
@@ -55,7 +56,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() status: any;
   @Input() status_key: string = "status";
   @Output() select = new EventEmitter<any>();
-
+  @Output() check = new EventEmitter<any>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -64,7 +65,7 @@ export class TableComponent implements OnInit, OnChanges {
 
   translate_back: Map<string, string> | null = null;
   status_filter: string = "";
-
+  @Input() showCheckbox: boolean = false;
   temp_data: string[] = [];
 
   constructor() { }
@@ -157,6 +158,16 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
+
+  onCheck( itemId:any , isChecked: boolean){
+    // 針對轉交出貨單的複選框使用
+    if (isChecked) {
+      this.checkId.push(itemId)
+    }else {
+      this.checkId = this.checkId.filter( id => id != itemId)
+    }
+    this.check.emit(this.checkId)
+  }
   reverseMap(origin: Map<any, any>){
     return new Map(Array.from(this.translate_table, entry => [entry[1], entry[0]]));
   }

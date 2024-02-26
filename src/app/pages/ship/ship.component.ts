@@ -36,7 +36,6 @@ export class ShipComponent implements OnInit {
         diableClear: true
         },
         columns: [
-          { name: 'status', displayName: '訂單狀態', width:100, templateRef: '完成狀態'},
           { name: 'feedNumber', displayName: '訂單編號' },
           { name: 'clientName', displayName: '廠商名稱', width: 200 },
           { name: 'stockName', displayName: '昇茂規格', width: 200},  

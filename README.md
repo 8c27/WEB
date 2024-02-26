@@ -29,7 +29,6 @@ black-dashboard-angular
 │   │   ├── app-routing.module.ts
 │   │   ├── app.component.html
 │   │   ├── app.component.scss
-│   │   ├── app.component.spec.ts
 │   │   ├── app.component.ts
 │   │   ├── app.module.ts
 │   │   ├── components
@@ -37,30 +36,37 @@ black-dashboard-angular
 │   │   │   ├── footer
 │   │   │   │   ├── footer.component.css
 │   │   │   │   ├── footer.component.html
-│   │   │   │   ├── footer.component.spec.ts
-│   │   │   │   └── footer.component.ts
+│   │   │   │   └── footer.component.ts
 │   │   │   ├── navbar
 │   │   │   │   ├── navbar.component.css
 │   │   │   │   ├── navbar.component.html
-│   │   │   │   ├── navbar.component.spec.ts
 │   │   │   │   └── navbar.component.ts
-│   │   │   └── sidebar
-│   │   │       ├── sidebar.component.css
-│   │   │       ├── sidebar.component.html
-│   │   │       ├── sidebar.component.spec.ts
-│   │   │       └── sidebar.component.ts
+│   │   │   ├── sidebar
+│   │   │   │   ├── sidebar.component.css
+│   │   │   │   ├── sidebar.component.html
+│   │   │   │   └── sidebar.component.ts
+│   │   │   ├── image-dialog
+│   │   │   │   ├── image-dialog.component.scss
+│   │   │   │   ├── image-dialog.component.html
+│   │   │   │   └── image-dialog.component.ts
+│   │   │   ├── multi-select
+│   │   │   │   ├── multi-select.component.scss
+│   │   │   │   ├── multi-select.component.html
+│   │   │   │   └── multi-select.component.ts
+│   │   │   └── sm-table
+│   │   │        ├── sm-table.component.scss
+│   │   │        ├── sm-table.component.html
+│   │   │        └── sm-table.component.ts
 │   │   ├── layouts
 │   │   │   ├── admin-layout
 │   │   │   │   ├── admin-layout.component.html
 │   │   │   │   ├── admin-layout.component.scss
-│   │   │   │   ├── admin-layout.component.spec.ts
 │   │   │   │   ├── admin-layout.component.ts
 │   │   │   │   ├── admin-layout.module.ts
 │   │   │   │   └── admin-layout.routing.ts
 │   │   │   └── auth-layout
 │   │   │       ├── auth-layout.component.html
 │   │   │       ├── auth-layout.component.scss
-│   │   │       ├── auth-layout.component.spec.ts
 │   │   │       ├── auth-layout.component.ts
 │   │   │       ├── auth-layout.module.ts
 │   │   │       └── auth-layout.routing.ts
@@ -123,12 +129,6 @@ black-dashboard-angular
 
 Social Media:
 
-Twitter: <https://twitter.com/CreativeTim>
+Facebook: <https://www.facebook.com/profile.php?id=100004377398043&locale=zh_TW>
 
-Facebook: <https://www.facebook.com/CreativeTim>
-
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
+Instagram: <https://www.instagram.com/_8c27/>

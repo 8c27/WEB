@@ -15,6 +15,15 @@
   .modal-title {
     color: #CCCCCC;
   }
+  .sp-txt {
+    display: flex;
+    width: 60%;
+    span{
+      flex: 0 0 auto;
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+  }
 }
 .invalid{
   border: 3px solid #FF69B4;

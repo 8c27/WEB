@@ -1,0 +1,29 @@
+
+<div class=" content bg">
+    <div class=" row">
+      <div class=" col-12">
+        <div class=" card card-chart">
+          <div class="card-head">
+            <div class="fieldinput" style="float: right; color: #FF9F1C">
+              <mat-form-field >
+                <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
+              </mat-form-field>
+            </div>
+            <div class=""></div>
+            <div class="btn-sort">
+              <div class="circle" style="--color:#8B5FBF" (click)="export()">
+                <mat-icon class="circle-icon">output</mat-icon>
+              </div>
+            </div>
+          </div>
+          <mat-card>
+            <mat-card-content>
+            <sm-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
+            [dataSource]="dataSource" (select)="onSelect($event)"  [status]="status"></sm-table>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -2,15 +2,23 @@
 <div class="modal-content border-ani">
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
-        <span *ngIf="!hideonbush" style="position: relative; top: 50px; left: -124px">如果要減少的話加個 " - " 就可以了</span>
+        <div class="sp-txt" >
+            <span>Ø</span>
+            <span>⊙khoan lo</span>
+            <span>□</span>
+            <span>Θ</span>
+            <span>⊕</span>
+            <span>◇</span>
+            <span>°</span>
+        </div>
     </div>
     <div class="modal-body" [formGroup]="formGroup">
         <div class="row">
             <div class="col-4 form-name">
                 <span>廠商名稱</span>
-                <mat-icon style="flex:1">handyman</mat-icon>
+                <mat-icon style="flex:1">home</mat-icon>
             </div>
-            <ng-select class="col-lg-6 custom" style="padding:0" formControlName="clientId" >
+            <ng-select class="col-6 custom" style="padding:0" formControlName="clientId" >
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
         </div>

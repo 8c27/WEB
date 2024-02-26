@@ -5,6 +5,8 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import * as ExcelJS from 'exceljs'
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: "app-ship",
@@ -34,14 +36,14 @@ export class ShipComponent implements OnInit {
         diableClear: true
         },
         columns: [
-        { name: 'clientName', displayName: '廠商名稱',  width: 200 },
-        { name: 'stockName', displayName: '昇貿規格', width:200 },
-        { name: 'weight', displayName: '單重'},
-        { name: 'finishAmount', displayName: '庫存數量' },
-        { name: 'feedQuantity', displayName: '訂單數量',},   
-        { name: 'lackPcs', displayName: '剩餘支數'},
-        { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal'},
-        { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long'  },
+          { name: 'status', displayName: '訂單狀態', width:100, templateRef: '完成狀態'},
+          { name: 'feedNumber', displayName: '訂單編號' },
+          { name: 'clientName', displayName: '廠商名稱', width: 200 },
+          { name: 'stockName', displayName: '昇茂規格', width: 200},  
+          { name: 'quantity', displayName: '數量' }, 
+          { name: 'project', displayName: '加工項目' },
+          { name: 'class', displayName: '料別'},
+          { name: 'creationTime', displayName: '創建日期', templateRef: 'date' , width: 120},
         ]
     };
     subs: any;
@@ -70,7 +72,8 @@ export class ShipComponent implements OnInit {
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.dataSource= new MatTableDataSource<any>(data)
+      this.feedList = data.filter( g => g.status == true)
+      this.dataSource= new MatTableDataSource<any>(this.feedList)
 
       // 避免同步刪除發生錯誤
       if(this.selected){
@@ -84,7 +87,11 @@ export class ShipComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
-    this.api.getFeed().subscribe( (e:any) => this.dataSource= new MatTableDataSource<any>(e)) //訂閱Feed資料
+    this.api.getFeed().subscribe( (e:any) => {
+      this.feedList = e.filter( g => g.status == true)
+      this.dataSource= new MatTableDataSource<any>(this.feedList)
+      
+    }) //訂閱Feed資料
     this.api.getClient().subscribe( (e:any) =>this.clientList=e) //訂閱Client資料
     this.api.getStock().subscribe( (e:any) =>this.stockList=e) //訂閱Stock資料
   }
@@ -92,4 +99,14 @@ export class ShipComponent implements OnInit {
   onSelect($event: any) {
     this.selected = $event;
   }
+
+  export(){
+    if (this.selected){
+      // 建立工作簿
+      const wb = new ExcelJS.Workbook();
+      // 建立工作表
+      const ws = wb.addWorksheet('出貨單')
+    }
+  }
+
 }

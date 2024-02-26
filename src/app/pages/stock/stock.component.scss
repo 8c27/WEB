@@ -1,7 +1,6 @@
 
 
 .td-container {
-
     text-align: center  ;
 }
 
@@ -22,11 +21,20 @@
  /*change color of underline when focused*/
  background-color: #FF9F1C !important;
 }
-
-.btn-sort{
-  display: flex;
-
+.card-head{
+  .search{
+    display: flex;
+    justify-content: flex-end;
+    .select-search-bar{
+      color: #FF9F1C;
+      margin-right: 5px;
+    }
+  }
+  .btn-sort{
+    display: flex;
+  }
 }
+
 .circle {
   position: relative;
   width: 40px;

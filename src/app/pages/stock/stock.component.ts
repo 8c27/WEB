@@ -28,11 +28,12 @@ interface  IStock{
 
 
 export class StockComponent implements OnInit {
-
+  company: number; 
   stockList: any;  // feed =>stockList資料庫
   modalReference: NgbModalRef;
   dataSource!: MatTableDataSource<any>;
   data: any;
+  copydata: any;
   search: string;
   clientList:any;
   table_config: any = {
@@ -90,13 +91,15 @@ export class StockComponent implements OnInit {
 
       this.stockList=e
       this.dataSource = new MatTableDataSource<any>(e)
+      this.copydata = [...this.dataSource.data]
+      // 避免同步刪除發生錯誤
       if(this.selected){
         this.selected = e.find(e => e.id == this.selected.id)
       }
     })
     this.onload()
+    
   }
-
   onload() {
     // 載入
     let today = (new Date());
@@ -112,10 +115,18 @@ export class StockComponent implements OnInit {
       })
       this.stockList=e
       this.dataSource= new MatTableDataSource<any>(e)
+      this.copydata = [...this.dataSource.data]
     }) //訂閱Feed資料
     this.api.getClient().subscribe( (e:any) =>this.clientList=e)
   }
-
+  companySelect(){
+    let newData = this.copydata.filter( e => 
+      e.clientId == this.company 
+    )
+    // 更新數據
+    this.dataSource.data = newData
+    console.log(newData)
+  }
   onSelect($event: any) {
     this.selected = $event;
   }
@@ -231,4 +242,6 @@ export class StockComponent implements OnInit {
       console.log('Error in modal result:', error)
     })
   }
+
+
 }

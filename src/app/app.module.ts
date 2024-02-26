@@ -41,6 +41,7 @@ import { MultiSelectComponent } from "./components/multi-select/multi-select.com
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { ShipComponent } from "./pages/ship/ship.component";
+import { MatSelectModule } from "@angular/material/select";
 
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
@@ -76,6 +77,7 @@ function getJwtConfig(): JwtConfig {
     MatSnackBarModule,
     NgImageFullscreenViewModule ,
     MatIconModule,
+    MatSelectModule,
     JwtModule.forRoot({
       config: getJwtConfig(),
     }),

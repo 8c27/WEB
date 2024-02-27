@@ -69,3 +69,22 @@
 ::ng-deep.badge-success{
   background-color: #2A9D8F;
 }
+
+.card-head{
+  .search{
+    display: flex;
+    justify-content: flex-end;
+    .date-search-bar{
+      color: #FF9F1C;
+      margin-right: 5px;
+    }
+  }
+  .btn-sort{
+    display: flex;
+  }
+}
+
+/*變更material datetimepicker 主題*/
+::ng-deep .mat-calendar {
+  background: linear-gradient(45deg, #f2dae2 0%, #f2dae2 50%, #ffe4ff 100%);
+}

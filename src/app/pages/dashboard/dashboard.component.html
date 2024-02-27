@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="search col-lg-8 col-md-8 col-sm-12">
-            <div class="circle" style="--color:#b6ccd8 " (click)="clearSelect()">
+            <div *ngIf="this.company !== undefined" class="circle" style="--color:#b6ccd8 " (click)="clearSelect()">
               <mat-icon class="circle-icon">close</mat-icon>
             </div>
             <div class="select-search-bar">

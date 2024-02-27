@@ -2,17 +2,35 @@
 <div class=" content bg">
     <div class=" row">
       <div class=" col-12">
-        <div class=" card card-chart">
-          <div class="card-head">
-            <div class="fieldinput" style="float: right; color: #FF9F1C">
-              <mat-form-field >
-                <input matInput placeholder="快速搜尋" [(ngModel)]="search" >
-              </mat-form-field>
-            </div>
-            <div class=""></div>
-            <div class="btn-sort">
+        <div class=" card card-chart col-12">
+          <div class="card-head  col-12 d-flex flex-row flex-wrap">
+            <div class="btn-sort col-lg-4 col-md-4 col-sm-12">
               <div class="circle" style="--color:#8B5FBF" (click)="export()">
                 <mat-icon class="circle-icon">output</mat-icon>
+              </div>
+            </div>
+            <div class="search col-lg-8 col-md-8 col-sm-12">
+              <div *ngIf="this.dateFm !== undefined || this.company !== undefined" class="circle" style="--color:#b6ccd8 " (click)="clearSelect()">
+                <mat-icon class="circle-icon">close</mat-icon>
+              </div>
+              <div class="select-search-bar" *ngIf="this.dateFm && this.dateTo !== undefined">
+                <mat-form-field>
+                  <mat-label>廠商</mat-label>
+                  <mat-select [(ngModel)]="company" (ngModelChange)="companySelect()" id="company">
+                    <mat-option *ngFor="let c of clientList" [value]="c.id">{{c.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+             </div>
+              <div class="date-search-bar">
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-form-field>
+                  <mat-label>選擇日期範圍</mat-label>
+                  <mat-date-range-input [rangePicker]="picker" >
+                    <input matStartDate placeholder="開始日期" [(ngModel)]="dateFm" (ngModelChange)="onDateChange()" name="dateFm" style="color: #ffcccc;">
+                    <input matEndDate placeholder="結束日期" [(ngModel)]="dateTo" (ngModelChange)="onDateChange()" name="dateTo" style="color: #ffcccc">
+                  </mat-date-range-input>
+                </mat-form-field>
+                <mat-date-range-picker #picker></mat-date-range-picker>
               </div>
             </div>
           </div>

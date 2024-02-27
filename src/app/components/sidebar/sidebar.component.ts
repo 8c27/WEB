@@ -34,7 +34,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/ship",
-    title: "出貨進度",
+    title: "交貨進度",
     icon: "icon-bus-front-12",
     class: ""
   }

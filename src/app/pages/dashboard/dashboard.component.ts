@@ -285,12 +285,12 @@ export class DashboardComponent implements OnInit {
     ws.mergeCells('G2', 'I2')
     ws.mergeCells('B3', 'E3')
     ws.mergeCells('B4', 'E4')
+    ws.mergeCells('G4', 'I4')
     ws.mergeCells('B5', 'I5')
     ws.mergeCells('B6', 'I6')
     ws.mergeCells('B7', 'I7')
     ws.mergeCells('B8', 'I8')
     ws.mergeCells('B9', 'E9')
-    ws.mergeCells('G9', 'I9')
     ws.mergeCells('B10', 'I10')
     ws.mergeCells('B11', 'E11')
     ws.mergeCells('G11', 'I11')
@@ -372,6 +372,7 @@ export class DashboardComponent implements OnInit {
     ws.getCell('F3').font = fixedFont
     ws.getCell('F4').font = fixedFont
     ws.getCell('F9').font = fixedFont
+    ws.getCell('H9').font = fixedFont
     ws.getCell('F11').font = fixedFont
     ws.getCell('F12').font = fixedFont
     ws.getCell('I3').font = insertFont
@@ -385,14 +386,14 @@ export class DashboardComponent implements OnInit {
     ws.getCell('F3').value = '料別：'
     ws.getCell('H3').value = '料長：mm'
     ws.getCell('A4').value = '頭部尺寸：'
-    ws.getCell('F4').value = '進料數：'
-    ws.getCell('H4').value = '件別：'
-    ws.getCell('A5').value = '撥皮其他：'
-    ws.getCell('A6').value = '昇貿規格：'
-    ws.getCell('A7').value = '特殊備註：'
-    ws.getCell('A8').value = '特殊備註：'
+    ws.getCell('F4').value = '注意事項：'
+    ws.getCell('A5').value = '昇茂規格：'
+    ws.getCell('A6').value = '備註：'
+    ws.getCell('A7').value = '剝皮其他'
+    ws.getCell('A8').value = '打扁：'
     ws.getCell('A9').value = '數量：'
     ws.getCell('F9').value = '材質：'
+    ws.getCell('H9').value = '進料數: '
     ws.getCell('A10').value = '加工項目：'
     ws.getCell('A11').value = '出貨廠商：'
     ws.getCell('F11').value = '指送地點：'
@@ -403,23 +404,23 @@ export class DashboardComponent implements OnInit {
       { cell: 'B2', value: this.selected.number },
       { cell: 'B3', value: this.selected.itemName },
       { cell: 'B4', value: this.selected.size },
+      { cell: 'B5', value: this.selected.stockName },
       {
-        cell: 'B5',
-        value: (this.selected.peel1 ||'') +(this.selected.peel2 ||'') + (this.selected.ditch ||'') + (this.selected.taper ||'') + (this.selected.chamfer ||'') + (this.selected.hole1 ||'') + (this.selected.hole2 ||'')
+        cell: 'B6',
+         value: this.selected.description
       },
-      { cell: 'B6', value: this.selected.stockName },
       {
         cell: 'B7',
-        value: (this.selected.typing || '') + (this.selected.ear || '') + (this.selected.special || '')
+        value: (`${this.selected.peel1}、` ||'') +(`${this.selected.peel2}、` ||'') + (`${this.selected.ditch}、` ||'') + (`${this.selected.taper}、`||'') + (`${this.selected.chamfer}、`||'') + (`${this.selected.hole1}、` ||'') + (`${this.selected.hole2}、` ||'')
       },
-      { cell: 'B8', value: this.selected.description },
+      { cell: 'B8', value: (`${this.selected.typing}、` || '') + (`${this.selected.ear}、` || '') + (`${this.selected.special}、` || '') },
       { cell: 'B9', value: this.selected.quantity },
       { cell: 'B10', value: this.selected.project},
       { cell: 'B11', value: this.selected.clientName},
       { cell: 'B12', value: this.days},
       { cell: 'G3', value: this.selected.class},
       { cell: 'G9', value: this.selected.material},
-      { cell: 'G11', value: '指送地點'},
+      { cell: 'G11', value: this.selected.place},
       { cell: 'I3', value: this.selected.mm},
     ]
     cellValues.forEach( cv => {

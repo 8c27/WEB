@@ -407,13 +407,25 @@ export class DashboardComponent implements OnInit {
       { cell: 'B5', value: this.selected.stockName },
       {
         cell: 'B6',
-         value: this.selected.description
+        value: [
+          this.selected.typing,
+          this.selected.special,
+          this.selected.description ? `(${this.selected.description})` : null
+        ].filter(item => item).join('、') || ''
       },
       {
         cell: 'B7',
-        value: (`${this.selected.peel1}、` ||'') +(`${this.selected.peel2}、` ||'') + (`${this.selected.ditch}、` ||'') + (`${this.selected.taper}、`||'') + (`${this.selected.chamfer}、`||'') + (`${this.selected.hole1}、` ||'') + (`${this.selected.hole2}、` ||'')
+        value: [
+          this.selected.peel1,
+          this.selected.peel2,
+          this.selected.ditch,
+          this.selected.taper,
+          this.selected.chamfer,
+          this.selected.hole1,
+          this.selected.hole2
+        ].filter(item => item).join('、') || ''
       },
-      { cell: 'B8', value: (`${this.selected.typing}、` || '') + (`${this.selected.ear}、` || '') + (`${this.selected.special}、` || '') },
+      { cell: 'B8', value: this.selected.ear || ''},
       { cell: 'B9', value: this.selected.quantity },
       { cell: 'B10', value: this.selected.project},
       { cell: 'B11', value: this.selected.clientName},

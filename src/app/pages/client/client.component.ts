@@ -29,7 +29,7 @@ export class ClientComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'number', displayName: '廠商編號' },
+      { name: 'number', displayName: '廠商編號', width: 100 },
       { name: 'name', displayName: '廠商名稱' },
       { name: 'address', displayName: '地址', width:300},
       { name: 'person', displayName: '聯絡人'},   

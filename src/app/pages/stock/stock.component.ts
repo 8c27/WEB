@@ -47,7 +47,7 @@ export class StockComponent implements OnInit {
     columns: [
       { name: 'clientName', displayName: '廠商名稱',  width: 200 },
       { name: 'stockName', displayName: '昇貿規格', width:200 },
-      { name: 'weight', displayName: '單重'},
+      { name: 'weight', displayName: '單重', width: 100},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
       { name: 'lackPcs', displayName: '剩餘支數'},

@@ -9,7 +9,7 @@
   </ng-container>
   <mat-table [dataSource]="innerDataSource" matSort [matSortActive]="config.sort && config.sort.active"
     [matSortDisabled]="!config.serverSide" [matSortDirection]="config.sort && config.sort.direction"
-    [matSortDisableClear]="config.sort && config.sort.disableClear" [class.disabled]="disabled">
+    [matSortDisableClear]="config.sort && config.sort.disableClear" [class.disabled]="disabled" style="max-height: 500px;">
 <!--隱藏的checkbox-->
     <ng-container matColumnDef="checkbox" >
       <th mat-header-cell *matHeaderCellDef ></th>

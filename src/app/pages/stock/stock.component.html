@@ -5,16 +5,16 @@
       <div class=" card card-chart col-12">
         <div class="card-head col-12 d-flex flex-row flex-wrap">
           <div class="btn-sort col-lg-4 col-md-4 col-sm-12">
-            <div class="circle" style="--color:#4c9173 " (click)="open()">
+            <div class="circle" style="--color:#4c9173 " (click)="open()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="新增">
               <mat-icon class="circle-icon">add</mat-icon>
             </div>
-            <div class="circle" style="--color:#f96d6d" (click)="delete()">
+            <div class="circle" style="--color:#f96d6d" (click)="delete()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="刪除">
               <mat-icon class="circle-icon">delete</mat-icon>
             </div>
-            <div class="circle" style="--color:#FFC107" (click)="edit()">
+            <div class="circle" style="--color:#FFC107" (click)="edit()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="編輯">
               <mat-icon class="circle-icon">edit_note</mat-icon>
             </div>
-            <div class="circle" style="--color: #9C8FBC" (click)="add()">
+            <div class="circle" style="--color: #9C8FBC" (click)="add()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="庫存更改">
               <mat-icon class="circle-icon">add_shopping_cart</mat-icon>
             </div>
           </div>

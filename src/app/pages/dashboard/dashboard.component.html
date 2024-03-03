@@ -5,19 +5,19 @@
       <div class=" card card-chart col-12">
         <div class="card-head  col-12 d-flex flex-row flex-wrap">
           <div class="btn-sort col-lg-4 col-md-4 col-sm-12">
-            <div class="circle" style="--color:#4c9173 " (click)="open()">
+            <div class="circle" style="--color:#4c9173 " (click)="open()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="新增">
               <mat-icon class="circle-icon">add</mat-icon>
             </div>
-            <div class="circle" style="--color:#f96d6d" (click)="delete()">
-              <mat-icon class="circle-icon">delete</mat-icon>
+            <div class="circle" style="--color:#f96d6d" (click)="delete()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="刪除">
+              <mat-icon class="circle-icon">delete</mat-icon> 
             </div>
-            <div class="circle" style="--color:#FFC107" (click)="edit()">
+            <div class="circle" style="--color:#FFC107" (click)="edit()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="編輯"> 
               <mat-icon class="circle-icon">edit_note</mat-icon>
             </div>
-            <div class="circle" style="--color:#8B5FBF" (click)="export()">
+            <div class="circle" style="--color:#8B5FBF" (click)="export()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="匯出加工單">
               <mat-icon class="circle-icon">output</mat-icon>
             </div>
-            <div class="circle" style="--color:#2196F3 " (click)="shipChange()">
+            <div class="circle" style="--color:#2196F3 " (click)="shipChange()" data-bs-toggle="tooltip" data-bs-placement="bottom" title="轉出貨單">
               <mat-icon class="circle-icon">local_shipping</mat-icon>
             </div>
           </div>

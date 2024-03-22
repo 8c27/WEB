@@ -1,0 +1,8 @@
+li.active > a > i {
+    color: #fdf6fd !important;
+    border-radius: 6px;
+    background-color: #424874;
+}
+li.active > a > p {
+    color: #424874 !important
+}

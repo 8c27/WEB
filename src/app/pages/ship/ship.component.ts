@@ -35,11 +35,11 @@ export class ShipComponent implements OnInit {
         diableClear: true
         },
         columns: [
-          { name: 'feedNumber', displayName: '訂單編號' },
+          { name: 'feedNumber', displayName: '訂單編號',width: 150 },
           { name: 'clientName', displayName: '廠商名稱', width: 200 },
-          { name: 'stockName', displayName: '昇茂規格', width: 200},  
-          { name: 'quantity', displayName: '數量', width: 100 }, 
-          { name: 'project', displayName: '加工項目' },
+          { name: 'stockName', displayName: '昇茂規格', width: 250},  
+          { name: 'quantity', displayName: '數量'}, 
+          { name: 'project', displayName: '加工項目',width:150 },
           { name: 'class', displayName: '料別'},
           { name: 'creationTime', displayName: '訂單日期', templateRef: 'date' , width: 120},
         ]

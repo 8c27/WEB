@@ -15,9 +15,9 @@
       *ngFor="let menuItem of authSvc.state.menus"
       class="{{ menuItem.class }} nav-item"
     >
-      <a [routerLink]="[menuItem.url]">
-        <i class="tim-icons  {{ menuItem.icon }}"></i>
-        <p style="font-size: 18px; font-weight: bold;">{{ menuItem.menuName }}</p>
+      <a [routerLink]="[menuItem.url]" [ngClass]="{ 'active': 'test' }">
+        <i style="color:#64748b" class="tim-icons {{ menuItem.icon }}"></i>
+        <p style="font-size: 18px; font-weight: bold; color:#64748b">{{ menuItem.menuName }}</p>
       </a>
     </li>
   </ul>

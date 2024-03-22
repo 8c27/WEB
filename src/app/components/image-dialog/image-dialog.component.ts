@@ -114,7 +114,7 @@ ngOnInit(){
 
     });
     if(Number(this.repeat)!=0){
-    const ref = this.snackbar.open('派工單已有相同名稱圖片，你確定要覆蓋嗎?', '確定', { duration: 3000 });
+    const ref = this.snackbar.open('已有相同名稱圖片，你確定要覆蓋嗎?', '確定', { duration: 3000 });
     ref.onAction().subscribe(() => {
      this.repeat.forEach(file => {
        this.uploadFile(file);

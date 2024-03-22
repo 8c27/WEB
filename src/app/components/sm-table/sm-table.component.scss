@@ -1,11 +1,11 @@
 .nami-table-container {
-  max-height: 500px;
+  max-height: calc(100vh - 300px)!important;
   width: 100%;
   overflow: auto;
   margin: auto;
 
   .mat-table {
-    background-color: #27293D;
+    background:  #DCD6F7;
     width: 100%;
     vertical-align: middle;
     text-align: -webkit-center;
@@ -14,8 +14,8 @@
       white-space: nowrap;
       padding: 5px 15px;
       font-size: 14px;
-      border-bottom:1px solid #ffcccc;
-      color: #D4D4D8;
+      border-bottom:1px solid #bbb9e9;
+      color: #64748b;
     }
     
 
@@ -23,19 +23,22 @@
       transition: background-color 0.2s;
 
       &.selected {
-        background-color: rgba(179, 230, 255,0.5);
+        background-color: #424874;
+        div{
+          color: #fdf6fd!important;
+        }
       }
 
       .mat-cell {
         text-align: left;
-        border-bottom: 1px solid #ffcccc;
+        border-bottom: 1px solid #bbb9e9;
         div {
           white-space: nowrap;
           padding: 5px 15px;
           overflow: hidden;
           text-overflow: ellipsis;
-          width: 150px;
-          color: #D4D4D8;
+          width: 100px;
+          color: #64748b;
         }
         &.mat-column-checkbox {
           width: 50px;
@@ -66,21 +69,10 @@
   background-color: transparent;
 }
 ::ng-deep.mat-paginator{
-  background-color: #27293D;
-  color: #fff
+  background-color: #DCD6F7;
+  color: #292524
 }
-::ng-deep.mat-select-value{
-  color: #fff;
-}
-::ng-deep.mat-select-arrow {
-  color: #fff;
-}
-::ng-deep.mat-form-field-infix {
-  border-bottom:1px solid #fff;
-}
-::ng-deep.mat-button-wrapper{
-  color: #fff;
-}
+
 .hidden {
   display: none;
 }
@@ -94,7 +86,7 @@ th{
   margin: 2px 3px 0 0;
   border-radius: 5px;
   background-color: #f8f9fa;
-  border: 1px solid #ffcccc;
+  border: 1px solid #bbb9e9;
   font-size: 13px;
   font-weight: 600;
   display: inline-block;
@@ -102,5 +94,27 @@ th{
 }
 
 ::ng-deep .mat-checkbox .mat-checkbox-frame {
-  border-color: #2196F3; /* 设置为白色或您选择的颜色 */
+  border-color: #D9ACF5; /* 设置为白色或您选择的颜色 */
+}
+.nami-foot{
+  ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #292524 !important;
+  } 
+  ::ng-deep.mat-button-wrapper{
+    color: #292524;
+  }
+  ::ng-deep.mat-select-arrow {
+    color: #292524;
+  }
+  ::ng-deep.mat-select-value{
+    color: #292524;
+  }
+  ::ng-deep .mat-select-value-text{
+    color:#292524;
+  }
+}
+
+li.active > a > i{
+  color: #ffcccc
 }

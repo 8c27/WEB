@@ -19,6 +19,26 @@ export class StockModalConponent implements OnInit {
 
   formGroup: FormGroup ;
   hideonbush: boolean = true;
+
+  placeList = [
+    '回廠',
+    '忠光',
+    '輯興',
+    '昱誠',
+    '錦陽',
+    '錳剛',
+    '冠昱',
+    '立剛',
+    '鑫興',
+    '協昌--折彎',
+    '忠光-茱銘',
+    '輯興-源億',
+    '振興--折彎',
+    '鑫新--鑽孔',
+    '春雨--折彎',
+    '冠昱-->鑫鎮業',
+    '冠昱-->振傑'
+  ]
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
@@ -32,7 +52,25 @@ export class StockModalConponent implements OnInit {
       finishAmount: [0], //完成數量  
       weight: [0, Validators.required],  // 單重g
       isDeleted: [false , Validators.required],
-      clientId: [null]
+      clientId: [null],
+      material: [null],
+      size: [null], 
+      pcs: [null],
+      cost: [null],
+      raise: [0],
+      class: ['加工'],
+      peel1: [null],
+      peel2: [null],
+      typing: [null],
+      chamfer: [null],
+      hole1: [null],
+      hole2: [null],
+      ditch: [null],
+      taper: [null],
+      ear: [null],
+      special: [null],
+      mm: [null],
+      place: [null],
     })
   }
 

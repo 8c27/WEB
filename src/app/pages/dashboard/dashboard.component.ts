@@ -37,14 +37,13 @@ export class DashboardComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'status', displayName: '訂單狀態', width:100, templateRef: '完成狀態'},
-      { name: 'feedNumber', displayName: '訂單編號' },
+      { name: 'status', displayName: '訂單狀態', templateRef: '完成狀態'},
+      { name: 'feedNumber', displayName: '訂單編號',width: 150 },
       { name: 'clientName', displayName: '廠商名稱', width: 200 },
-      { name: 'stockName', displayName: '昇茂規格', width: 200},  
+      { name: 'stockName', displayName: '昇茂規格', width: 250},  
+      { name: 'project', displayName: '加工項目',width: 150 },
       { name: 'quantity', displayName: '數量' }, 
-      { name: 'project', displayName: '加工項目' },
-      { name: 'class', displayName: '料別'},
-      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' , width: 120},
+      { name: 'raw', displayName: '進料數'},
     ]
   };
   subs: any;
@@ -121,7 +120,7 @@ export class DashboardComponent implements OnInit {
   }
 
   open(){
-    const modal = this.ngbModal.open(dashboardModalContent, {size: 'lg',});
+    const modal = this.ngbModal.open(dashboardModalContent, {size: 'sm',});
     modal.componentInstance.title = '新增訂單'
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.stockList=this.stockList
@@ -181,7 +180,7 @@ export class DashboardComponent implements OnInit {
 
   edit(){
     if(this.selected){
-      const modal = this.ngbModal.open(dashboardModalContent , {size:'lg'});
+      const modal = this.ngbModal.open(dashboardModalContent , {size:'sm'});
       modal.componentInstance.title = '編輯訂單'
       modal.componentInstance.formData = this.selected;
       modal.componentInstance.clientList = this.clientList;

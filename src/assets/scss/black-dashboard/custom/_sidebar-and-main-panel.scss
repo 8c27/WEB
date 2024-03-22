@@ -188,17 +188,6 @@
                 i,p{
                   color: white;
                 }
-
-                &:before{
-                  content: " ";
-                  position: absolute;
-                  height: 6px;
-                  width: 6px;
-                  top: 22px;
-                  left: -4px;
-                  background: $white;
-                  border-radius: 50%;
-                }
             }
 
             &.active > a[data-toggle="collapse"]{

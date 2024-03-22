@@ -46,13 +46,13 @@ export class StockComponent implements OnInit {
     },
     columns: [
       { name: 'clientName', displayName: '廠商名稱',  width: 200 },
-      { name: 'stockName', displayName: '昇貿規格', width:200 },
-      { name: 'weight', displayName: '單重', width: 100},
+      { name: 'stockName', displayName: '昇貿規格', width:250 },
+      { name: 'weight', displayName: '單重'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
       { name: 'lackPcs', displayName: '剩餘支數'},
-      { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal'},
-      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long'  },
+      { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal',width: 120},
+      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long' ,width: 120 },
     ]
   };
   subs: any;
@@ -140,7 +140,7 @@ export class StockComponent implements OnInit {
     this.selected = $event;
   }
   open(){
-    const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
+    const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'});
     modal.componentInstance.title = '新增規格'
     modal.componentInstance.clientList=this.clientList
     modal.result.then(e => {
@@ -192,7 +192,7 @@ export class StockComponent implements OnInit {
   }
   edit(){
     if (this.selected){
-      const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'})
+      const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'})
       modal.componentInstance.title = '編輯庫存'
       modal.componentInstance.formData = this.selected
       modal.componentInstance.clientList=this.clientList

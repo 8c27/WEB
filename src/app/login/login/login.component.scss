@@ -1,67 +1,136 @@
 
-.login-box{
-  margin: auto;
-  height: 100vh;
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+body {
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #fff;
-
-}
-.input-group{
-  border-bottom: 1px solid #fff;
-  input{
-    border: none
-  }
-}
-.login-img{
-  position: absolute;
+  align-items: center;
+  min-height: 100vh;
+  background: #111;
   width: 100%;
-  height: 100%;
+  overflow: hidden;
 }
-
-.card{
-  width: 400px;
-  background-color: transparent;
-  border-radius: 20px;
-  border: 4px solid #fff;
-  backdrop-filter: blur(10px);
+.login-page {
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.input-label{
-  position: absolute;
-  color:#fff;
-  right: 10px;
-  top:6px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.btn-login{
-  color: #808080;
-  background: #fff;
-}
-.logo{
-  position: relative;
-  width: 150px;
-}
-
 @media (max-width: 576px) {
   .login-box,
-  .register-box {
+  .login {
     margin-top: .5rem;
     width: 90%;
   }
 }
-
-.login-box .card{
-  margin-bottom: 0;
+.ring {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 400px;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-a {
-  text-decoration: none; /* 去除超連結的下劃線 */
-  color: #fff; /* 超連結文字顏色 */
+.ring i {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #fff;
+  transition: 0.5s;
 }
-
-a:hover {
-  color: #FE9167; /* 當滑鼠懸停在超連結上時的文字顏色 */
+.ring i:nth-child(1) {
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  animation: animate 6s linear infinite;
+}
+.ring i:nth-child(2) {
+  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+  animation: animate 4s linear infinite;
+}
+.ring i:nth-child(3) {
+  border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+  animation: animate2 10s linear infinite;
+}
+.ring:hover i {
+  border: 6px solid var(--clr);
+  filter: drop-shadow(0 0 20px var(--clr));
+}
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes animate2 {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.login {
+  position: absolute;
+  width: 80%;
+  max-width: 300px;
+  min-width: 250px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.login h2 {
+  font-size: 2em;
+  color: #fff;
+}
+.login .inputBx {
+  position: relative;
+  width: 100%;
+}
+.login .inputBx input {
+  position: relative;
+  width: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  font-size: 1.2em;
+  color: #fff;
+  box-shadow: none;
+  outline: none;
+}
+.login .inputBx input[type="submit"] {
+  width: 100%;
+  background: #0078ff;
+  background: linear-gradient(45deg, #ff357a, #fff172);
+  border: none;
+  cursor: pointer;
+}
+.login .inputBx input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+.login .links {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.login .links a {
+  color: #fff;
+  text-decoration: none;
 }

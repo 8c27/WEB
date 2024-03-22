@@ -1,11 +1,11 @@
 .card{
-    background: $card-black-background;
+    background: linear-gradient(to left, #424874, #A6B1E1, #424874);
     border: 0;
     position: relative;
     width: 100%;
     margin-bottom: 30px;
     box-shadow: $box-shadow;
-
+    max-height: calc( 100vh - 150px);
 
     label{
       color: rgba($white, 0.6);

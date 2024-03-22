@@ -50,35 +50,15 @@ export class dashboardModalContent implements OnInit {
       id: [0],
       creationTime: [null],
       clientId: [null, Validators.required], // 廠商ID
-      itemNumber: [null],
-      itemName: [null],
       stockId: [null, Validators.required], // 昇茂規格
-      size: [null], // 頭部尺寸
-      material: [null],    //材質
-      pcs: [null],  //1kg幾支
-      weight: [null],  //單重
+      weight: [null],  //訂單總重
       quantity: [null, Validators.required], // 數量
-      cost: [null],   // 成本價
-      raise: [0],   // 調漲單價
-      class: ['加工'],  // 料別
-      peel1: [null], // 剝皮
-      peel2: [null], 
-      typing: [null], // 打字別
-      chamfer: [null], // 尾倒角
-      hole1: [null], // 鑽孔
-      hole2: [null], 
-      ditch: [null], // 豬槽
-      taper: [null], // 追度
-      ear: [null],  // 打耳別
-      special: [null], // 特殊別
       description: [null], // 備註
       machine:[null],  // 機台編號
-      project: [null], // 加工項目
-      mm: [null],  // 廖長
       isDeleted: [false , Validators.required],
       status: [false, Validators.required],
-      feedNumber: [null], 
-      place: [null],
+      feedNumber: [null],
+      raw: [null],
     })
   }
   log(){
@@ -98,9 +78,11 @@ export class dashboardModalContent implements OnInit {
     if (this.formData){
       this.formGroup.patchValue(this.formData)
       this.photo.sitedata = this.formData
+      this.filterStock = this.stockList.filter(e => e.clientId == this.formData.clientId)
     }
     this.formGroup.get('clientId').valueChanges.subscribe( e => {
       this.filterStock = this.stockList.filter(x => x.clientId == e)  
+      if (this.formGroup.get('stockId')) this.formGroup.get('stockId').setValue(null);
     })
  
   }

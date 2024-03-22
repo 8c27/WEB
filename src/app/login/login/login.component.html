@@ -1,42 +1,27 @@
-<div class="login-page" style="background-color: inherit;">
-  <img src="assets/img/login-bg.png" class="login-img">
-  <div class="login-box">
-    <div class="card">
-      <div class="card-header text-center">
-        <img src="assets/img/logo.png" class="logo">
+
+<!--ring div starts here-->
+<div class="login-page" [formGroup]="formLogin">
+  <div class="ring">
+    <i style="--clr:#00ff0a;"></i>
+    <i style="--clr:#ff0057;"></i>
+    <i style="--clr:#fffd44;"></i>
+    <div class="login">
+      <h2>Login</h2>
+      <div class="inputBx">
+        <input type="text" placeholder="Username" formControlName="user">
       </div>
-      <div class="card-body">
-        <div [formGroup]="formLogin">
-          <div class="input-group">
-            <mat-icon class="input-icon">person</mat-icon>
-            <label for="user" class="input-label">Account</label>
-            <input type="text" class="form-control" autocomplete="off" formControlName="user">
-          </div>
-          <div class="input-group">
-            <mat-icon class="input-icon">lock</mat-icon>
-            <label for="password" class="input-label">Password</label>
-            <input type="password" class="form-control" autocomplete="off" formControlName="pass"
-              (keyup.enter)="!(formLogin.invalid || formLogin.pristine || processing) && login()">
-          </div>
-          <div class="row">
-            <div class="col-12" style="display: flex; justify-content: center;">
-              <div style="width: 200px;">
-                <button type="button" class="btn btn-login btn-block" (click)="login()"
-                [disabled]="formLogin.invalid || formLogin.pristine || processing">Log In
-              </button>
-              </div>
-
-            </div>
-          </div>
-          <div class="col-7">
-            <small class="forget-pass ">
-              <a style="display: flex; align-items: center; cursor: pointer;" target="_blank" href="https://www.instagram.com/zhigang.tw/">Dont have an account ?<mat-icon>call</mat-icon></a>
-            </small>
-          </div>
-
-          
-        </div>
+      <div class="inputBx">
+        <input type="password" placeholder="Password" formControlName="pass" (keyup.enter)="!(formLogin.invalid || formLogin.pristine || processing) && login()">
+      </div>
+      <div class="inputBx" (click)="login()">
+        <input type="submit" value="Log in">
+      </div>
+      <div class="links">
+        <a href="#">Forget Password</a>
+        <a href="#">Signup</a>
       </div>
     </div>
   </div>
 </div>
+
+<!--ring div ends here-->

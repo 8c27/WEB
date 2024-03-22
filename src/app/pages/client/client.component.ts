@@ -29,15 +29,15 @@ export class ClientComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'number', displayName: '廠商編號', width: 100 },
-      { name: 'name', displayName: '廠商名稱' },
+      { name: 'number', displayName: '廠商編號'},
+      { name: 'name', displayName: '廠商名稱',width:200 },
       { name: 'address', displayName: '地址', width:300},
-      { name: 'person', displayName: '聯絡人'},   
-      { name: 'telephone', displayName: '聯絡電話'},
-      { name: 'mobile', displayName: '傳真' },
+      { name: 'person', displayName: '聯絡人',width: 120},   
+      { name: 'telephone', displayName: '聯絡電話', width: 120},
+      { name: 'mobile', displayName: '傳真', width: 120 },
       { name: 'compiled', displayName: '統編'},
       { name: 'description', displayName: '備註'},
-      { name: 'creationTime', displayName: '創建日期', templateRef: 'date' },
+      { name: 'creationTime', displayName: '創建日期', templateRef: 'date',width:120 },
     ]
   };
   subs: any;

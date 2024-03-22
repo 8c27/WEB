@@ -4,24 +4,30 @@
 
     text-align: center  ;
 }
+::ng-deep .mat-select-value-text{
+  color:#fdf6fd;
+}
 
+::ng-deep.mat-select-arrow {
+  color: #fdf6fd;
+}
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
-    color : #fff
+    color : #fdf6fd
 }
 ::ng-deep .mat-focused .mat-form-field-label {
   /*change color of label*/
-  color: #FF9F1C !important;
+  color: #D9ACF5 !important;
  }
 
  ::ng-deep.mat-form-field-underline {
   /*change color of underline*/
-  background-color: #fff !important;
+  background-color: #fdf6fd !important;
 } 
 
 ::ng-deep.mat-form-field-ripple {
  /*change color of underline when focused*/
- background-color: #FF9F1C !important;
+ background-color: #D9ACF5 !important;
 }
 
 .btn-sort{
@@ -67,7 +73,8 @@
   font-size: 14px;
 }
 ::ng-deep.badge-success{
-  background-color: #2A9D8F;
+  background-color: #A6B1E1;
+  color: #fdf6fd;
 }
 
 .card-head{
@@ -75,7 +82,7 @@
     display: flex;
     justify-content: flex-end;
     .select-search-bar{
-      color: #FF9F1C;
+      color: #fff;
       margin-right: 5px;
     }
   }

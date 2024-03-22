@@ -3,7 +3,7 @@
     <div class="modal-header" >
         <h1 class="modal-title">{{title}}</h1>
     </div>
-    <div class="modal-body" [formGroup]="formGroup" (keydown.enter)="cancel()">
+    <!-- <div class="modal-body" [formGroup]="formGroup" (keydown.enter)="cancel()">
         <div class="row col-12" >
             <div class="col-lg-2  form-name">
                 <span>廠商ID</span>
@@ -110,7 +110,7 @@
             <input class="col-lg-2 special-input" formControlName="mm">
             <div class="col-lg-1"></div>
             <div class="col-lg-2 form-name">
-                <span>插-珠槽</span>
+                <span>插-珠槽</span>t
                 <mat-icon style="flex:1">sports</mat-icon>
             </div>
             <input class="col-lg-2 special-input" formControlName="ditch">
@@ -193,6 +193,63 @@
         </div>
         <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
 
+    </div> -->
+    
+    <div class="modal-body" [formGroup]="formGroup"(keydown.enter)="cancel()">
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>廠商名稱</span>
+                <mat-icon style="flex: 1">home</mat-icon>
+            </div>
+            <ng-select class="col-6 custom" style="padding:0" formControlName="clientId" >
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>昇貿規格</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <ng-select class="col-6 custom" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
+                <ng-option *ngFor="let x of filterStock" [value]="x.id">{{x.stockName}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>數量</span>
+                <mat-icon style="flex: 1">123</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="quantity">
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>進料數</span>
+                <mat-icon style="flex: 1">redeem</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="raw">
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>訂單重量</span>
+                <mat-icon style="flex: 1">monitor_weight</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="weight">
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>機台編號</span>
+                <mat-icon style="flex: 1">tag</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="machine">
+        </div>
+        <div class="row">
+            <div class="col-4 form-name">
+                <span>注意事項</span>
+                <mat-icon style="flex: 1">gesture</mat-icon>
+            </div>
+            <input class="col-6 special-input" formControlName="description">
+        </div>
+        <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
     </div>
     <div class="modal-footer">
         <!--button 未填寫完成不可確認-->

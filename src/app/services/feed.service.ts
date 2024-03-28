@@ -98,4 +98,16 @@ export class FeedService {
     public deleteLoginInfo(id){
         return this.http.delete(apiUrl + "/LoginInfo/" + id)
     }
+
+    public getDelivery(){
+        return this.http.get(apiUrl + "/Delivery")
+    }
+
+    public addDelivery(data){
+        return this.http.post(apiUrl + "/Delivery", data)
+    }
+
+    public deleteDelivery(id){
+        return this.http.delete(apiUrl + "/Delivery/"+ id)
+    }
 }

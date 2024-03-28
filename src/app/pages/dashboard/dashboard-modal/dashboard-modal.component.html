@@ -3,201 +3,9 @@
     <div class="modal-header" >
         <h1 class="modal-title">{{title}}</h1>
     </div>
-    <!-- <div class="modal-body" [formGroup]="formGroup" (keydown.enter)="cancel()">
-        <div class="row col-12" >
-            <div class="col-lg-2  form-name">
-                <span>廠商ID</span>
-                <mat-icon style="flex:1">factory</mat-icon>
-            </div>
-            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" [class.invalid]="isError('clientId')">
-                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
-            </ng-select>
-            <div class="col-lg-2  form-name">
-                <span>材質</span>
-                <mat-icon style="flex:1">webhook</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="material">
-            <div class="col-lg-2   form-name">
-                <span>數量</span>
-                <mat-icon style="flex:1">123</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="quantity" [class.invalid]="isError('quantity')">
-        </div>
-        
-        <div class="row col-12" >
-            <div class="col-lg-2  form-name">
-                <span>憑單</span>
-                <mat-icon style="flex:1">format_list_numbered</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input " formControlName="itemNumber">
-            <div class="col-lg-2  form-name">
-                <span>頭部尺寸</span>
-                <mat-icon style="flex:1">build</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="size">
-            <div class="col-lg-2  form-name">
-                <span>1kg/支</span>
-                <mat-icon style="flex:1">icecream</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="pcs">
-        </div>
-
-        <div class="row col-12">
-            <div class="col-lg-2 form-name">
-                <span>物品名稱</span>
-                <mat-icon style="flex:1">badge</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input" formControlName="itemName">
-            <div class="col-lg-2  form-name">
-                <span>加工別</span>
-                <mat-icon style="flex:1">hotel_class</mat-icon>
-            </div>
-            <ng-select class="col-lg-2 custom" style="padding: 0" formControlName="class">
-                <ng-option value="加工">加工</ng-option>
-                <ng-option value="代工">代工</ng-option>
-            </ng-select>
-            <div class="col-lg-2  form-name">
-                <span>單重(KG)</span>
-                <mat-icon style="flex:1">monitor_weight</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="weight">
-        </div>
-
-        <div class="row col-12" >
-            <div class="col-lg-2 form-name">
-                <span>機台編號</span>
-                <mat-icon style="flex:1">tag</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input " formControlName="machine">
-            <div class="col-lg-1 "></div>
-            <div class="col-lg-2 form-name">
-                <span>特殊別</span>
-                <mat-icon style="flex:1">local_fire_department</mat-icon>
-            </div>  
-            <input class="col-lg-2 special-input" formControlName="special">
-            <div class="col-lg-2 form-name">
-                <span>成本價</span>
-                <mat-icon style="flex:1">attach_money</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="cost">
-        </div>
-        
-        <div class="row col-12">
-            <div class="col-lg-2 form-name  ">
-                <span>昇茂規格</span>
-                <mat-icon style="flex:1">handyman</mat-icon>
-            </div>
-            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="stockId" [class.invalid]="isError('stockId')">
-                <ng-option *ngFor="let x of filterStock" [value]="x.id">{{x.stockName}}</ng-option>
-              </ng-select>
-            <div class="col-lg-2 form-name">
-                <span>打字別</span>
-                <mat-icon style="flex:1">border_color</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="typing">
-            <div class="col-lg-2 form-name">
-                <span>調漲(%)</span>
-                <mat-icon style="flex:1">percent</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="raise">
-        </div>
-  
-        <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">
-                <span>料長(mm)</span>
-                <mat-icon style="flex:1">keyboard_tab</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="mm">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-2 form-name">
-                <span>插-珠槽</span>t
-                <mat-icon style="flex:1">sports</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="ditch">
-            <div class="col-lg-2 form-name">
-                <span>車錐度</span>
-                <mat-icon style="flex:1">airware</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="taper">
-        </div>
-
-        <div class="row col-12">
-            <div class="col-lg-2 form-name  ">
-                <span>剝皮一</span>
-                <mat-icon style="flex:1">filter_1</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input" formControlName="peel1">
-            <div class="col-lg-2 form-name">
-                <span>鑽孔一</span>
-                <mat-icon style="flex:1">looks_one</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="hole1">
-            <div class="col-lg-2 form-name">
-                <span>尾倒角</span>
-                <mat-icon style="flex:1">wifi</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="chamfer">
-        </div>
-
-        <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">
-                <span>剝皮二</span>
-                <mat-icon style="flex:1">filter_2</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input" formControlName="peel2">
-            <div class="col-lg-2 form-name">
-                <span>鑽孔二</span>
-                <mat-icon style="flex:1">looks_two</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="hole2">
-            <div class="col-lg-2 form-name" *ngIf="showDiv">
-                <span>訂單狀態</span>
-                <mat-icon style="flex:1">mark_chat_read</mat-icon>
-            </div>
-            <div class="col-lg-1 form-check form-name" *ngIf="showDiv">
-                <label class=" form-check-label">
-                    <input checked="" class=" form-check-input" type="checkbox" formControlName="status" >
-                    <span class=" form-check-sign"><span class=" check"></span></span>
-                </label>
-            </div>
-        </div>
-        
-        <div class="row col-12" >
-            <div class="col-lg-2 form-name  ">
-                <span>加工項目</span>
-                <mat-icon style="flex:1">rule</mat-icon>
-            </div>
-            <input class="col-lg-6 special-input" formControlName="project" placeholder="加工项目在这">
-            <div class="col-lg-1"></div>
-        </div>
-        <div class="row col-12">
-            <div class="col-lg-2 form-name">
-                <span>打耳別</span>
-                <mat-icon style="flex:1">hearing</mat-icon>
-            </div>
-            <input class="col-lg-5 special-input" formControlName="ear">
-            <div class="col-lg-2 form-name">
-                <span>指定地點</span>
-                <mat-icon style="flex:1">alternate_email</mat-icon>
-            </div>
-            <ng-select class="col-lg-3 custom" style="padding:0; text-align: center;" formControlName="place">
-                <ng-option *ngFor="let x of placeList" [value]="x">{{x}}</ng-option>
-            </ng-select>
-        </div>
-        <div class="row col-12">
-            <div class="col-lg-2 form-name  ">
-                <span>備註</span>
-                <mat-icon style="flex:1">note_add</mat-icon>
-            </div>
-            <input class="col-lg-8 special-input" formControlName="description" placeholder="这里可备注">
-        </div>
-        <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
-
-    </div> -->
-    
     <div class="modal-body" [formGroup]="formGroup"(keydown.enter)="cancel()">
         <div class="row">
-            <div class="col-4 form-name">
+            <div class="col-4 form-name required">
                 <span>廠商名稱</span>
                 <mat-icon style="flex: 1">home</mat-icon>
             </div>
@@ -206,7 +14,7 @@
             </ng-select>
         </div>
         <div class="row">
-            <div class="col-4 form-name">
+            <div class="col-4 form-name required">
                 <span>昇貿規格</span>
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
@@ -215,7 +23,7 @@
             </ng-select>
         </div>
         <div class="row">
-            <div class="col-4 form-name">
+            <div class="col-4 form-name required">
                 <span>數量</span>
                 <mat-icon style="flex: 1">123</mat-icon>
             </div>
@@ -248,6 +56,18 @@
                 <mat-icon style="flex: 1">gesture</mat-icon>
             </div>
             <input class="col-6 special-input" formControlName="description">
+        </div>
+        <div class="row">
+            <div class="col-4 form-name" *ngIf="showDiv">
+                <span>訂單狀態</span>
+                <mat-icon style="flex:1">mark_chat_read</mat-icon>
+            </div>
+            <div class="col-lg-1 form-check form-name" *ngIf="showDiv">
+                <label class=" form-check-label">
+                    <input checked="" class=" form-check-input" type="checkbox" formControlName="status" >
+                    <span class=" form-check-sign"><span class=" check"></span></span>
+                </label>
+            </div>
         </div>
         <app-image-dialog class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
     </div>

@@ -37,6 +37,12 @@ export const ROUTES: RouteInfo[] = [
     title: "交貨進度",
     icon: "icon-bus-front-12",
     class: ""
+  },
+  {
+    path: '/delivery',
+    title: "指送地點",
+    icon: "icon-settings-gear-63",
+    class: ""
   }
 ];
 

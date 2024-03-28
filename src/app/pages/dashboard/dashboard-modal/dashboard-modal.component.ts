@@ -16,6 +16,7 @@ export class dashboardModalContent implements OnInit {
   @Input() formData: any;
   @Input() clientList: any;
   @Input() stockList: any;
+  @Input() type: any;
   @Output() submitevent = new EventEmitter<any>();
   formGroup: any ;
   filterStock: any

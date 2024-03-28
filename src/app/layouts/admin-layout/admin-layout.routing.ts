@@ -6,6 +6,7 @@ import { AuthGuard } from '../../auth.guard';
 import { LoginComponent } from "src/app/login/login/login.component";
 import { AccountComponent } from "src/app/pages/account/account.component";
 import { ShipComponent } from "src/app/pages/ship/ship.component";
+import { DeliveryComponent } from "src/app/pages/delivery/delivery.component";
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -14,4 +15,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: "client", component: ClientComponent, canActivate: [AuthGuard]},
   { path: "account", component: AccountComponent, canActivate: [AuthGuard]},
   { path: "ship", component: ShipComponent, canActivate: [AuthGuard]},
+  { path: "delivery", component: DeliveryComponent,canActivate: [AuthGuard] }
 ];

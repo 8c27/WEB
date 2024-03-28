@@ -3,7 +3,7 @@
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
         <div class="sp-txt" >
-            <span>Ø</span>
+            <span>Φ</span>
             <span>⊙khoan lo</span>
             <span>□</span>
             <span>Θ</span>
@@ -12,16 +12,16 @@
             <span>°</span>
         </div>
     </div>
-    <div class="modal-body" [formGroup]="formGroup">
+    <div class="modal-body" [formGroup]="formGroup" *ngIf="hideonbush">
         <div class="row col-12">
-            <div class="col-lg-2 form-name">
+            <div class="col-lg-2 form-name required">
                 <span>廠商名稱</span>
                 <mat-icon style="flex:1">home</mat-icon>
             </div>
             <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" >
                 <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
             </ng-select>
-            <div class="col-lg-2 form-name">
+            <div class="col-lg-2 form-name required">
                 <span>昇貿規格</span>
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
@@ -29,7 +29,7 @@
                 <input class="col-lg-5 special-input" formControlName="stockName">
             </ng-container>
             <ng-template #selectTemplate>
-                <ng-select class="col-lg-5 custom" style="padding:0" formControlName="stockName">
+                <ng-select class="col-lg-5 custom required" style="padding:0" formControlName="stockName">
                     <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
                 </ng-select>
             </ng-template>
@@ -44,7 +44,7 @@
                 <span>材質</span>
                 <mat-icon style="flex: 1">webhook</mat-icon>
             </div>
-            <input class="col-lg-2 special-input" formControlName="webhook">
+            <input class="col-lg-2 special-input" formControlName="material">
             <div class="col-lg-2 form-name" *ngIf="hideonbush">
                 <span>單重 ( g )</span>
                 <mat-icon style="flex: 1">fitness_center</mat-icon>
@@ -127,8 +127,8 @@
                 <span>指送地點</span>
                 <mat-icon style="flex: 1">alternate_email</mat-icon>
             </div>
-            <ng-select class="col-lg-3 custom" style="padding:0">
-                <ng-option *ngFor="let x of placeList" [value]="x">{{x}}</ng-option>
+            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="place">
+                <ng-option *ngFor="let x of placeList" [value]="x.name">{{x.name}}</ng-option>
             </ng-select>
             <div class="col-lg-2 form-name">
                 <span>插-珠槽</span>
@@ -146,8 +146,8 @@
                 <span>加工項目</span>
                 <mat-icon style="flex: 1">rule</mat-icon>
             </div>
-            <input class="col-lg-6 special-input" formControlNam="project">
-            <div class="col-lg-2 form-name">
+            <input class="col-lg-6 special-input" formControlName="project">
+            <div class="col-lg-2 form-name required">
                 <span>庫存數量</span>
                 <mat-icon style="flex: 1">123</mat-icon>
             </div>
@@ -159,6 +159,38 @@
                 <mat-icon style="flex: 1">hearing</mat-icon>
             </div>
             <input class="col-lg-6 special-input" formControlName="ear">
+            <div class="col-lg-2 form-name">
+                <span>加工類別</span>
+                <mat-icon style="flex: 1">rule</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="omi">
+        </div>
+    </div>
+    <div class="modal-body" [formGroup]="formGroup" *ngIf="!hideonbush">
+        <div class="row ">
+            <div class="col-lg-4 form-name">
+                <span>廠商名稱</span>
+                <mat-icon style="flex:1">home</mat-icon>
+            </div>
+            <ng-select class="col-lg-6 custom" style="padding:0" formControlName="clientId" >
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 form-name">
+                <span>昇貿規格</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <ng-select class="col-lg-6 custom" style="padding:0" formControlName="stockName">
+                <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 form-name">
+                <span>新增/減少</span>
+                <mat-icon style="flex: 1">123</mat-icon>
+            </div>
+            <input class="col-lg-6 special-input" formControlName="finishAmount"/>
         </div>
     </div>
     <div class="modal-footer">

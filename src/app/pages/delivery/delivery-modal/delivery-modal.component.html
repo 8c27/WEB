@@ -1,0 +1,23 @@
+
+<div class="modal-content border-ani">
+    <div class="modal-header " >
+          <h1 class="modal-title">{{title}}</h1>
+      </div>
+      <div class="modal-body" [formGroup]="formGroup">
+          <div class="row" >
+              <div class="col-4 form-name">
+                <span>指送地點</span>
+                <mat-icon style="flex:1">factory</mat-icon>
+            </div>
+              <input class="col-6 special-input" formControlName="name" [class.invalid]="isError('name')">
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button style="--clr:#a1eafb" (click)="save()" [disabled]="!formGroup.valid || formGroup.pristine">
+              <span style="color: #a1eafb" >SAVE</span><i></i>
+          </button>
+          <button style="--clr:#ffcccc" (click)="cancel()">
+              <span style="color: #ffcccc">CANCEL</span><i></i>
+          </button>
+      </div>
+  </div>

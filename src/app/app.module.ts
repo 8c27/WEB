@@ -45,6 +45,8 @@ import { MatSelectModule } from "@angular/material/select";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { DeliveryModalComponent } from './pages/delivery/delivery-modal/delivery-modal.component';
+import { DeliveryComponent } from "./pages/delivery/delivery.component";
 
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
@@ -112,7 +114,9 @@ function getJwtConfig(): JwtConfig {
     LoginComponent,
     AccountComponent,
     AccountModalConponent,
-    MultiSelectComponent
+    MultiSelectComponent,
+    DeliveryModalComponent,
+    DeliveryComponent,
   ],
   exports:[
     MultiSelectComponent

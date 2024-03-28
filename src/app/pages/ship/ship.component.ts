@@ -39,7 +39,7 @@ export class ShipComponent implements OnInit {
           { name: 'clientName', displayName: '廠商名稱', width: 200 },
           { name: 'stockName', displayName: '昇茂規格', width: 250},  
           { name: 'quantity', displayName: '數量'}, 
-          { name: 'project', displayName: '加工項目',width:150 },
+          { name: 'project', displayName: '加工項目',width: 150 , templateRef: 'stock'},
           { name: 'class', displayName: '料別'},
           { name: 'creationTime', displayName: '訂單日期', templateRef: 'date' , width: 120},
         ]
@@ -79,6 +79,13 @@ export class ShipComponent implements OnInit {
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
       this.feedList = data.filter( g => g.status == true)
+      this.feedList.forEach( e => {
+        if (e.stock && e.stock.length > 0){
+          e.cost = e.stock[0].cost
+        }else {
+          e.cost = 0
+        }
+      })
       this.dataSource= new MatTableDataSource<any>(this.feedList)
       this.copydata = [...this.dataSource.data]
       // 避免同步刪除發生錯誤
@@ -93,6 +100,13 @@ export class ShipComponent implements OnInit {
     // 載入
     this.api.getFeed().subscribe( (e:any) => {
       this.feedList = e.filter( g => g.status == true)
+      this.feedList.forEach( e => {
+        if (e.stock && e.stock.length > 0){
+          e.cost = e.stock[0].cost
+        }else {
+          e.cost = 0
+        }
+      })
       this.dataSource= new MatTableDataSource<any>(this.feedList)
       this.copydata = [...this.dataSource.data]
     }) //訂閱Feed資料
@@ -138,7 +152,6 @@ export class ShipComponent implements OnInit {
 
 
   export(){
-    console.log(this.finalData)
     if (this.finalData){
       // 建立工作簿
       const wb = new ExcelJS.Workbook();
@@ -208,7 +221,7 @@ export class ShipComponent implements OnInit {
 
       // 資料帶入
       const header = ['公司', '日期', '憑單', '品名規格', '數量', '單價', '金額']
-      const initData = ['clientName', 'creationTime', 'itemNumber', 'stockName', 'quantity', 'cost'];
+      const initData = ['clientName', 'creationTime', 'feedNumber', 'stockName', 'quantity', 'cost'];
       const headerRow = ws.addRow(header)
       headerRow.height = 36
       headerRow.font = headerFont
@@ -234,9 +247,9 @@ export class ShipComponent implements OnInit {
       console.log(this.finalData)
       this.finalData.forEach( data => {
         // 計算總金額和數量ˋ
-        totalAmount += data.quantity * data.cost
+        totalAmount += data.quantity * data.stock[0].cost
         totalQuantity += data.quantity 
-        const amount = data.quantity * data.cost 
+        const amount = data.quantity * data.stock[0].cost 
 
         // 過濾時間格式
         const date = data.creationTime.split('T')[0]  //分割ISO8001格式

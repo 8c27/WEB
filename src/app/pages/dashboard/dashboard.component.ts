@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       { name: 'feedNumber', displayName: '訂單編號',width: 150 },
       { name: 'clientName', displayName: '廠商名稱', width: 200 },
       { name: 'stockName', displayName: '昇茂規格', width: 250},  
-      { name: 'project', displayName: '加工項目',width: 150 },
+      { name: 'project', displayName: '加工項目',width: 150 , templateRef: 'stock'},
       { name: 'quantity', displayName: '數量' }, 
       { name: 'raw', displayName: '進料數'},
     ]
@@ -79,6 +79,10 @@ export class DashboardComponent implements OnInit {
     this.formatTime()
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('FeedChange', (data) => {
+      if (data.stock && data.stock.length > 0){
+        data.project = data.stock[0].project
+      }
+
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
       this.dataSource= new MatTableDataSource<any>(data)
       this.copydata = [...this.dataSource.data]
@@ -111,7 +115,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelect($event: any) {
-
     this.selected = $event;
   }
 
@@ -124,7 +127,7 @@ export class DashboardComponent implements OnInit {
     modal.componentInstance.title = '新增訂單'
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.stockList=this.stockList
-    modal.componentInstance.showDiv = false  
+    modal.componentInstance.showDiv = false
     modal.result.then(e => {
       if (e){
         // 關聯規格表和客戶資料
@@ -245,7 +248,8 @@ export class DashboardComponent implements OnInit {
   shipChange(){
     if(this.checked){
       for(let i of this.checked){
-        let list = this.dataSource.data.filter(e => e.id == i)
+        let list = this.dataSource.data.filter(e => e.id == i).map(({ stock, ...rest }) => rest);
+        console.log(list)
         list[0].status = true
         this.api.editFeed(list[0].id, list[0]).subscribe(
           (respon) =>{
@@ -272,7 +276,7 @@ export class DashboardComponent implements OnInit {
     if (this.selected){
       this.selected.address = this.clientList.find(e => e.id == this.selected.clientId).address
       this.selected.number = this.clientList.find(e => e.id == this.selected.clientId).number
-      // console.log(this.selected)
+      console.log(this.selected)
     // 建立工作簿
     const wb = new ExcelJS.Workbook();
     // 建立工作表
@@ -297,29 +301,30 @@ export class DashboardComponent implements OnInit {
     ws.mergeCells('G12', 'I12')
 
     // 設定欄位寬
-    ws.getColumn('A').width = 14.5
-    ws.getColumn('B').width = 17.88 
+    ws.getColumn('A').width = 14.37
+    ws.getColumn('B').width = 17.87
     ws.getColumn('C').width = 8.25
     ws.getColumn('D').width = 7
-    ws.getColumn('E').width = 4.5
-    ws.getColumn('F').width = 12.63
-    ws.getColumn('G').width = 8.88
+    ws.getColumn('E').width = 4.37
+    ws.getColumn('F').width = 13.12
+    ws.getColumn('G').width = 9.25
     ws.getColumn('H').width = 11.75
-    ws.getColumn('I').width = 11.75
+    ws.getColumn('I').width = 16.87
 
     // 設置列高
-    ws.getRow(1).height = 34.2
+    ws.getRow(1).height = 34.4
     ws.getRow(2).height = 24
-    for (let i = 3; i<=12; i++){
-      ws.getRow(i).height = 33.6
+    for (let i = 3; i<=11; i++){
+      ws.getRow(i).height = 37.5
     }
+    ws.getRow(12).height = 33.6
 
     // 字體設置
     const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // A到I的列標記
     columns.forEach( e => {
       if (e != 'B'){
         ws.getColumn(e).eachCell({ includeEmpty: true }, (cell)=> {
-          cell.alignment = {  vertical: 'middle', horizontal: 'center' }
+          cell.alignment = {  vertical: 'middle', horizontal: 'left' }
         })
       }
       for(let i= 3; i<=11; i++){
@@ -331,27 +336,27 @@ export class DashboardComponent implements OnInit {
         }
       }
     })
-
+    ws.getCell('A1').alignment = { vertical: 'middle', horizontal: 'center'}
     const G2Font = {
       name: '標楷體',
       family: 4,
-      size: 18,
+      size: 14,
       italic: true,
     }
     const titleFont = {
       name: '標楷體',
       family: 4,
-      size: 20,
+      size: 16,
     }
     const fixedFont = {
       name: '標楷體',
       family: 4,
-      size: 11, 
+      size: 12, 
     }
     const insertFont = {
       name: '標楷體',
       family: 4,
-      size: 18, 
+      size: 12, 
     }
     ws.getCell('A1').font = titleFont
     for (let i = 2; i<=12; i++){
@@ -375,64 +380,67 @@ export class DashboardComponent implements OnInit {
     ws.getCell('F11').font = fixedFont
     ws.getCell('F12').font = fixedFont
     ws.getCell('I3').font = insertFont
+    ws.getCell('I9').font = insertFont
     ws.getCell('I4').font = insertFont
 
     // 賦值
     ws.getCell('A1').value = '昇 貿 工業股份有限公司'
     ws.getCell('G2').value = '製程加工單'
-    ws.getCell('A2').value = '客戶編號：'
-    ws.getCell('A3').value = '加工類別：'
-    ws.getCell('F3').value = '料別：'
-    ws.getCell('H3').value = '料長：mm'
-    ws.getCell('A4').value = '頭部尺寸：'
-    ws.getCell('F4').value = '注意事項：'
-    ws.getCell('A5').value = '昇茂規格：'
-    ws.getCell('A6').value = '備註：'
+    ws.getCell('A2').value = '客戶編號'
+    ws.getCell('A3').value = '加工類別'
+    ws.getCell('F3').value = '料別'
+    ws.getCell('H3').value = '料長:mm'
+    ws.getCell('A4').value = '頭部尺寸'
+    ws.getCell('F4').value = '注意事項'
+    ws.getCell('A5').value = '昇貿規格'
+    ws.getCell('A6').value = '備註'
     ws.getCell('A7').value = '剝皮其他'
-    ws.getCell('A8').value = '打扁：'
-    ws.getCell('A9').value = '數量：'
-    ws.getCell('F9').value = '材質：'
-    ws.getCell('H9').value = '進料數: '
-    ws.getCell('A10').value = '加工項目：'
-    ws.getCell('A11').value = '出貨廠商：'
-    ws.getCell('F11').value = '指送地點：'
-    ws.getCell('A12').value = '開單日期：'
-    ws.getCell('F12').value = '經辦人：'
+    ws.getCell('A8').value = '後加工'
+    ws.getCell('A9').value = '數量'
+    ws.getCell('F9').value = '材質'
+    ws.getCell('H9').value = '進料數'
+    ws.getCell('A10').value = '加工項目'
+    ws.getCell('A11').value = '出貨廠商'
+    ws.getCell('F11').value = '指送地點'
+    ws.getCell('A12').value = '開單日期'
+    ws.getCell('F12').value = '經辦人' 
+    ws.getCell('G12').value = '許先生'   // 未來改為帳號使用者名稱
     // 填入欄位
     const cellValues = [
       { cell: 'B2', value: this.selected.number },
-      { cell: 'B3', value: this.selected.itemName },
-      { cell: 'B4', value: this.selected.size },
+      { cell: 'B3', value: this.selected.stock[0].omi},
+      { cell: 'B4', value: this.selected.stock[0].size },
       { cell: 'B5', value: this.selected.stockName },
       {
         cell: 'B6',
         value: [
-          this.selected.typing,
-          this.selected.special,
+          this.selected.stock[0].typing,
+          this.selected.stock[0].special,
           this.selected.description ? `(${this.selected.description})` : null
         ].filter(item => item).join('、') || ''
       },
       {
         cell: 'B7',
         value: [
-          this.selected.peel1,
-          this.selected.peel2,
-          this.selected.ditch,
-          this.selected.taper,
-          this.selected.chamfer,
-          this.selected.hole1,
-          this.selected.hole2
+          this.selected.stock[0].peel1,
+          this.selected.stock[0].peel2,
+          this.selected.stock[0].ditch,
+          this.selected.stock[0].taper,
+          this.selected.stock[0].chamfer,
+          this.selected.stock[0].hole1,
+          this.selected.stock[0].hole2
         ].filter(item => item).join('、') || ''
       },
-      { cell: 'B8', value: this.selected.ear || ''},
+      { cell: 'B8', value: this.selected.stock[0].ear || ''},
       { cell: 'B9', value: this.selected.quantity },
-      { cell: 'B10', value: this.selected.project},
+      { cell: 'B10', value: this.selected.stock[0].project},
       { cell: 'B11', value: this.selected.clientName},
       { cell: 'B12', value: this.days},
-      { cell: 'G3', value: this.selected.class},
-      { cell: 'G9', value: this.selected.material},
-      { cell: 'G11', value: this.selected.place},
-      { cell: 'I3', value: this.selected.mm},
+      { cell: 'G3', value: this.selected.stock[0].class},
+      { cell: 'G9', value: this.selected.stock[0].material},
+      { cell: 'G11', value: this.selected.stock[0].place},
+      { cell: 'I3', value: this.selected.stock[0].mm},
+      { cell: 'I9', value: this.selected.raw},
     ]
     cellValues.forEach( cv => {
       ws.getCell(cv.cell).value = cv.value == null ? '': cv.value

@@ -1,3 +1,4 @@
+import { computeMsgId } from "@angular/compiler";
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators, FormGroup, RequiredValidator  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
@@ -15,30 +16,12 @@ export class StockModalConponent implements OnInit {
   @Input() formData: any;
   @Input() stockList: any;
   @Input() clientList: any;
+  @Input() placeList: any;
+  @Input() type: any;
   @Output() submitevent = new EventEmitter<any>();
-
+  filterStock: any
   formGroup: FormGroup ;
   hideonbush: boolean = true;
-
-  placeList = [
-    '回廠',
-    '忠光',
-    '輯興',
-    '昱誠',
-    '錦陽',
-    '錳剛',
-    '冠昱',
-    '立剛',
-    '鑫興',
-    '協昌--折彎',
-    '忠光-茱銘',
-    '輯興-源億',
-    '振興--折彎',
-    '鑫新--鑽孔',
-    '春雨--折彎',
-    '冠昱-->鑫鎮業',
-    '冠昱-->振傑'
-  ]
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
@@ -71,14 +54,24 @@ export class StockModalConponent implements OnInit {
       special: [null],
       mm: [null],
       place: [null],
+      project: [null],
+      omi: [null]
     })
   }
 
   ngOnInit() {
     if (this.formData){
       this.formGroup.patchValue(this.formData)
+      if (this.type == 'add'){
+        this.filterStock = this.stockList.filter(e => e.clientId == this.formData.clientId)
+      }
     }
-      
+    if (this.type =='add'){
+      this.formGroup.get('clientId').valueChanges.subscribe( e => {
+        this.filterStock = this.stockList.filter(x => x.clientId == e)  
+        if (this.formGroup.get('stockId')) this.formGroup.get('stockId').setValue(null);
+      })
+    }
   }
   isError(item: string) {
     return this.formGroup.get(item)?.invalid &&
@@ -98,6 +91,7 @@ export class StockModalConponent implements OnInit {
   }
   save(){
       let data = this.formGroup.getRawValue();
+      console.log(data)
       this.modal.close(data)
   }
 

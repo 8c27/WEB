@@ -5,28 +5,25 @@
       </div>
       <div class="modal-body" [formGroup]="formGroup">
           <div class="row" >
-              <div class="col-3 form-name">
+              <div class="col-3 form-name required">
                 <span>廠商名稱</span>
                 <mat-icon style="flex:1">factory</mat-icon>
             </div>
               <input class="col-8 special-input" formControlName="name" [class.invalid]="isError('name')">
-              <small class="errorText" *ngIf="errorType('name','required')">*必填欄位</small>
           </div>
           <div class="row">
-            <div class="col-3 form-name">
+            <div class="col-3 form-name required">
                 <span>廠商編號</span>
                 <mat-icon style="flex:1">tag</mat-icon>
             </div>
             <input class="col-8 special-input" formControlName="number" [class.invalid]="isError('number')">
-            <small class="errorText " *ngIf="errorType('number' , 'required')">*必填欄位</small>
           </div>
           <div class="row" >
-              <div class="col-3 form-name">
+              <div class="col-3 form-name required">
                 <span>地址</span>
                 <mat-icon style="flex:1">home</mat-icon>
             </div>
               <input class="col-8 special-input" formControlName="address" [class.invalid]="isError('address')">
-              <small class="errorText " *ngIf="errorType('address' , 'required')">*必填欄位</small>
           </div>
           <div class="row">
             <div class="col-3 form-name">

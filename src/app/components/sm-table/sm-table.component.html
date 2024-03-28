@@ -47,6 +47,11 @@
             </div>
           </ng-container>
 
+          <ng-container *ngSwitchCase="'stock'">
+            <!--第二層stock資料可以用這種方法展示-->
+            <div [style.width.px]="column.width">{{ element.stock?.[0]?.[column.name]}}</div>
+          </ng-container>
+
 
           <ng-container *ngSwitchCase="'boolean'">
             <div style="width:80%" class="text-center">

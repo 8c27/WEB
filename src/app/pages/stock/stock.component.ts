@@ -36,6 +36,7 @@ export class StockComponent implements OnInit {
   copydata: any;
   search: string;
   clientList:any;
+  placeList: any;
   table_config: any = {
     checkable: true,
     serverSide: true,
@@ -118,6 +119,7 @@ export class StockComponent implements OnInit {
       this.copydata = [...this.dataSource.data]
     }) //訂閱Feed資料
     this.api.getClient().subscribe( (e:any) =>this.clientList=e)
+    this.api.getDelivery().subscribe( (e: any) => this.placeList = e)
   }
   companySelect(){
     let newData = this.copydata.filter( e => 
@@ -143,6 +145,7 @@ export class StockComponent implements OnInit {
     const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'});
     modal.componentInstance.title = '新增規格'
     modal.componentInstance.clientList=this.clientList
+    modal.componentInstance.placeList = this.placeList
     modal.result.then(e => {
       if (e) this.api.addStock(e).subscribe(e=>{
         this.onload()
@@ -151,12 +154,12 @@ export class StockComponent implements OnInit {
       console.log('Error in modal result:', error)
     })
   }
+
   delete(){
     const ref = this.snackbar.open('你確定要刪除嗎(◍•ᴗ•◍)ゝ', '確定', {duration: 5000, panelClass:['alert-danger', 'alert'],})
     ref.onAction().subscribe(() => {
       this.api.deleteStock(this.selected.id).subscribe(
         (respon) =>{
-          this.onload()
           //刪除成功
           this.toastr.success(
             '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
@@ -190,16 +193,17 @@ export class StockComponent implements OnInit {
       )
     })
   }
+
   edit(){
     if (this.selected){
       const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'})
       modal.componentInstance.title = '編輯庫存'
       modal.componentInstance.formData = this.selected
       modal.componentInstance.clientList=this.clientList
+      modal.componentInstance.placeList = this.placeList
       modal.result.then( e => {
         if (e) this.api.editStock(e.id , e).subscribe(
           (respon) => {
-            this.onload()
             this.toastr.success(
               '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
               '編輯成功'
@@ -236,16 +240,18 @@ export class StockComponent implements OnInit {
       })
     }
   }
+
   add(){
     const modal = this.ngbModal.open(StockModalConponent, {size: 'sm'});
     modal.componentInstance.title = '庫存調整'
     modal.componentInstance.hideonbush = this.hideonbush
-    console.log(this.stockList)
     modal.componentInstance.stockList=this.stockList
+    modal.componentInstance.clientList = this.clientList
+    modal.componentInstance.type = 'add'
     modal.result.then(e => {
       
       if (e){
-        this.api.editAmountStock(e, e.finishAmount).subscribe(e=>this.onload())
+        this.api.editAmountStock(e, e.finishAmount).subscribe()
       } 
     }).catch((error) => {
       console.log('Error in modal result:', error)

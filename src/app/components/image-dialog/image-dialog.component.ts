@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { formatDate } from '@angular/common';
 import { PhotoService } from 'src/app/services/photo.service';
 import { MatSnackBar} from '@angular/material/snack-bar';
+import { checkPrimeSync } from 'crypto';
 
 @Component({
   selector: 'app-image-dialog',
@@ -29,7 +30,7 @@ export class ImageDialogComponent {
   url: any = '';
   geturl:any;
   dataname:any;
- 
+  photoList: any;
 
   view:any;
   repeat:any=[];
@@ -160,12 +161,19 @@ ngOnInit(){
     };
     fileUpload.click();
   }
-  showLightbox(data){
-    const newWindow = window.open();
-    console.log(data)
-    newWindow.document.write(`  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <img style="" src="${data}" alt="Image">
-  </div>`);
+  showLightbox(index, img){
+    let photo  = this.dataname[index]
+    console.log(photo)
+    if (photo.fileType !== '.pdf'){
+      const newWindow = window.open();
+      newWindow.document.write(`  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      <img style="" src="${img}" alt="Image">
+      </div>`);
+    }else {
+      const newWindow = window.open();
+      newWindow.document.write(`  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <iframe style="height: 100%; width: 100%" src="https://www.youtube.com/"></iframe>
+      </div>`);
+    }
   }
-
 }

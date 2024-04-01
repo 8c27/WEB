@@ -47,7 +47,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { DeliveryModalComponent } from './pages/delivery/delivery-modal/delivery-modal.component';
 import { DeliveryComponent } from "./pages/delivery/delivery.component";
-
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
 }
@@ -93,6 +93,7 @@ function getJwtConfig(): JwtConfig {
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    PdfViewerModule
   ],
   declarations: [
     AppComponent,
@@ -116,7 +117,7 @@ function getJwtConfig(): JwtConfig {
     AccountModalConponent,
     MultiSelectComponent,
     DeliveryModalComponent,
-    DeliveryComponent,
+    DeliveryComponent,  
   ],
   exports:[
     MultiSelectComponent

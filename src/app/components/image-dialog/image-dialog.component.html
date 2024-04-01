@@ -3,7 +3,7 @@
       <mat-card-content>
         <div class="form-group">
           <div class="row">
-            <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(img)">
+            <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(index, img)">
               <img *ngIf="img" [src]="sanitize(img)" height="200" width="300" style="margin: 3px;"><br>
               <label style="color: #fff" id="file-label">
                 {{dataname[index].imgName}}
@@ -20,6 +20,7 @@
               <mat-icon color="accent" (click)="cancel(index)"style="cursor: pointer"*ngIf="file.progress!=100">clear</mat-icon>
               <!-- <div><mat-icon color="accent" (click)="cancel(index)">clear</mat-icon></div> -->
             </div>
+  
           </div>
         </div>
       </mat-card-content>

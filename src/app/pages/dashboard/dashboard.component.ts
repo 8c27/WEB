@@ -132,9 +132,9 @@ export class DashboardComponent implements OnInit {
       if (e){
         // 關聯規格表和客戶資料
         console.log(e)
-        this.api.addFeed(e).subscribe(() =>{
+        this.api.addFeed(e).subscribe(
           
-        }); 
+        ); 
       }
     }).catch((error) => {
       console.log('Error in modal result:', error)

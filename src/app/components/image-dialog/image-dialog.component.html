@@ -4,11 +4,19 @@
         <div class="form-group">
           <div class="row">
             <div class="col-xl-4" *ngFor="let img of imgURL; let index = index"(click)="showLightbox(index, img)">
-              <img *ngIf="img" [src]="sanitize(img)" height="200" width="300" style="margin: 3px;"><br>
+              <div *ngIf="img">
+                <img [src]="sanitize(img)" height="200" width="300" style="margin: 3px;">
+                <!-- <pdf-viewer [src]="img"
+                [render-text]="true"
+                [original-size]="false"
+                style="width: 400px; height: 500px"></pdf-viewer> -->
+              </div>
+              <br>
               <label style="color: #fff" id="file-label">
                 {{dataname[index].imgName}}
               </label>
               </div>
+            
             <!-- <img *ngIf="url" [src]="sanitize(url)" height="150" width="200px" style="margin: 3px;"> -->
             <div class="col-xl-4" *ngFor="let file of files; let index = index"(click)="showLightbox(file.url)">
               <img *ngIf="file.url" [src]="file.url" height="200" width="300" style="margin: 3px;">

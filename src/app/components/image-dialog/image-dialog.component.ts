@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild, ElementRef, Pipe } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Pipe, EventEmitter, Output, Input } from '@angular/core';
 import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -15,13 +15,15 @@ import { checkPrimeSync } from 'crypto';
   styleUrls: ['./image-dialog.component.scss']
 })
 export class ImageDialogComponent {
-
+  @Input() showPdf=false;
+  @Output() showPdfChange = new EventEmitter();
+  @Output() img = new EventEmitter();
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
   currentIndex: number;
 
   constructor(private uploadService: PhotoService,
     private sanitizer: DomSanitizer,
-    private snackbar: MatSnackBar)
+    private snackbar: MatSnackBar,)
   {
   }
   public imagePath;
@@ -31,7 +33,6 @@ export class ImageDialogComponent {
   geturl:any;
   dataname:any;
   photoList: any;
-
   view:any;
   repeat:any=[];
 
@@ -170,10 +171,9 @@ ngOnInit(){
       <img style="" src="${img}" alt="Image">
       </div>`);
     }else {
-      const newWindow = window.open();
-      newWindow.document.write(`  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <iframe style="height: 100%; width: 100%" src="https://www.youtube.com/"></iframe>
-      </div>`);
+      this.showPdf=true
+      this.showPdfChange.emit(this.showPdf);
+      this.img.emit(img)
     }
   }
 }

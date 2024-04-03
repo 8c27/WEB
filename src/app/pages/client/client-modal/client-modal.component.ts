@@ -36,6 +36,7 @@ export class ClientModalConponent implements OnInit {
       mobile: [null],
       compiled: [null],
       description: [null],
+      ltd: [null, Validators.required],
       isDeleted: [false , Validators.required],
     })
   }

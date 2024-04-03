@@ -20,25 +20,6 @@ export class dashboardModalContent implements OnInit {
   @Output() submitevent = new EventEmitter<any>();
   formGroup: any ;
   filterStock: any
-  placeList = [
-    '回廠',
-    '忠光',
-    '輯興',
-    '昱誠',
-    '錦陽',
-    '錳剛',
-    '冠昱',
-    '立剛',
-    '鑫興',
-    '協昌--折彎',
-    '忠光-茱銘',
-    '輯興-源億',
-    '振興--折彎',
-    '鑫新--鑽孔',
-    '春雨--折彎',
-    '冠昱-->鑫鎮業',
-    '冠昱-->振傑'
-  ]
   showDiv:boolean = true; // 照片功能不顯示
 
   constructor(

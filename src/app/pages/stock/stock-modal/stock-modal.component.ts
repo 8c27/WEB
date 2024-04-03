@@ -2,8 +2,10 @@ import { computeMsgId } from "@angular/compiler";
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, Validators, FormGroup, RequiredValidator  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Subscription } from "rxjs";
 import { tap } from "rxjs/operators";
 import { FeedService } from "src/app/services/feed.service";
+import { PhotoService } from "src/app/services/photo.service";
 
 
 @Component({
@@ -19,15 +21,19 @@ export class StockModalConponent implements OnInit {
   @Input() placeList: any;
   @Input() type: any;
   @Output() submitevent = new EventEmitter<any>();
+  showDiv:boolean = true; // 照片功能不顯示
   filterStock: any
   formGroup: FormGroup ;
   hideonbush: boolean = true;
+  showPdf: boolean = false;
+  img: any;
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
     public api: FeedService,
-    
+    public photo : PhotoService,
   ) { 
+
     this.formGroup = this.fb.group({
       id: [0],
       updateTime: [null], // 更新時間
@@ -60,8 +66,10 @@ export class StockModalConponent implements OnInit {
   }
 
   ngOnInit() {
+    this.photo.sitedata=null
     if (this.formData){
       this.formGroup.patchValue(this.formData)
+      this.photo.sitedata = this.formData
       if (this.type == 'add'){
         this.filterStock = this.stockList.filter(e => e.clientId == this.formData.clientId)
       }
@@ -73,6 +81,7 @@ export class StockModalConponent implements OnInit {
       })
     }
   }
+
   isError(item: string) {
     return this.formGroup.get(item)?.invalid &&
       (this.formGroup.get(item)?.dirty || this.formGroup.get(item)?.touched)
@@ -98,7 +107,9 @@ export class StockModalConponent implements OnInit {
   cancel(){
     this.modal.close(false)
   }
-
+  imgchange(e){
+    this.img = e
+  }
 
  
 }

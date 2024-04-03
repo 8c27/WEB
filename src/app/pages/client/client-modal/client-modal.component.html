@@ -4,10 +4,17 @@
           <h1 class="modal-title">{{title}}</h1>
       </div>
       <div class="modal-body" [formGroup]="formGroup">
+          <div class="row">
+            <div class="col-3 form-name required">
+              <span>廠商名稱</span>
+              <mat-icon style="flex: 1">factory</mat-icon>
+            </div>
+            <input class="col-8 special-input" formControlName="ltd" [class.invalid]="isError('ltd')">
+          </div>
           <div class="row" >
               <div class="col-3 form-name required">
-                <span>廠商名稱</span>
-                <mat-icon style="flex:1">factory</mat-icon>
+                <span>暱稱</span>
+                <mat-icon style="flex:1">badge</mat-icon>
             </div>
               <input class="col-8 special-input" formControlName="name" [class.invalid]="isError('name')">
           </div>

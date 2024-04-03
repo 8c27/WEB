@@ -6,6 +6,7 @@ import { StockModalConponent } from "./stock-modal/stock-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { PhotoService } from "src/app/services/photo.service";
 
 interface  IStock{
   id: number;
@@ -72,7 +73,7 @@ export class StockComponent implements OnInit {
     public signalRSvc: SignalrService, 
     private ngbModal: NgbModal, 
     private toastr: ToastrService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
     ) 
     {
   }
@@ -146,10 +147,40 @@ export class StockComponent implements OnInit {
     modal.componentInstance.title = '新增規格'
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.placeList = this.placeList
+    modal.componentInstance.showDiv = false
     modal.result.then(e => {
-      if (e) this.api.addStock(e).subscribe(e=>{
-        this.onload()
-      })
+      if (e) this.api.addStock(e).subscribe(
+        (respon) =>{
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '新增成功'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-success alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        },
+        (error) => {
+          this.toastr.error(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '新增失敗'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-error alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        }
+      )
     }).catch( (error) => {
       console.log('Error in modal result:', error)
     })
@@ -251,7 +282,38 @@ export class StockComponent implements OnInit {
     modal.result.then(e => {
       
       if (e){
-        this.api.editAmountStock(e, e.finishAmount).subscribe()
+        this.api.editAmountStock(e, e.finishAmount).subscribe(
+          (respon) =>{
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+          (error) => {
+            this.toastr.error(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          }
+        )
       } 
     }).catch((error) => {
       console.log('Error in modal result:', error)

@@ -1,5 +1,5 @@
 
-<div class="modal-content border-ani">
+<div class="modal-content border-ani" *ngIf="!showPdf" [showPdf]="showPdf">
   <div class="modal-header " >
         <h1 class="modal-title">{{title}}</h1>
         <div class="sp-txt" >
@@ -165,6 +165,7 @@
             </div>
             <input class="col-lg-2 special-input" formControlName="omi">
         </div>
+        <app-image-dialog (img)="imgchange($event)" [(showPdf)]="showPdf" class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
     </div>
     <div class="modal-body" [formGroup]="formGroup" *ngIf="!hideonbush">
         <div class="row ">
@@ -200,5 +201,17 @@
         <button style="--clr:#ffcccc" (click)="cancel()">
             <span style="color: #ffcccc">CANCEL</span><i></i>
         </button>
+    </div>
+</div>
+
+<div class="modal-content border-ani" *ngIf="showPdf">
+    <div class="modal-body">
+        <div class="row col-12">
+            <pdf-viewer [src]="img"
+            [render-text]="true"
+            [original-size]="false"
+            style="width: 400px; height: 500px">
+            </pdf-viewer>
+        </div>
     </div>
 </div>

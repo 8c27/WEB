@@ -30,7 +30,7 @@ export class ClientComponent implements OnInit {
     },
     columns: [
       { name: 'number', displayName: '廠商編號'},
-      { name: 'name', displayName: '廠商名稱',width:200 },
+      { name: 'name', displayName: '簡稱',width:200 },
       { name: 'address', displayName: '地址', width:300},
       { name: 'person', displayName: '聯絡人',width: 120},   
       { name: 'telephone', displayName: '聯絡電話', width: 120},
@@ -89,7 +89,39 @@ export class ClientComponent implements OnInit {
     modal.componentInstance.title = '客戶資料'
     modal.result.then(e => {
       if (e)
-        this.api.addClient(e).subscribe(); 
+        this.api.addClient(e).subscribe(
+          (respon) =>{
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '新增成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+          (error) => {
+            this.toastr.error(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '新增失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          }
+          
+      ); 
     }).catch((error) => {
       console.log('Error in modal result:', error);
     })

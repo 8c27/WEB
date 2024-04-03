@@ -86,8 +86,36 @@ export class DeliveryComponent implements OnInit {
       if (e){
         // 關聯規格表和客戶資料
         console.log(e)
-        this.api.addDelivery(e).subscribe(() =>{
-          
+        this.api.addDelivery(e).subscribe(           
+          (respon) =>{
+          this.toastr.success(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '新增成功'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-success alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
+        },
+        (error) => {
+          this.toastr.error(
+            '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+            '新增失敗'
+            + '</span>',
+            "",
+            {
+              timeOut: 3000,
+              closeButton: true,
+              enableHtml: true,
+              toastClass: "alert alert-error alert-with-icon",
+              positionClass: "toast-bottom-center"
+            }
+          );
         }); 
       }
     }).catch((error) => {

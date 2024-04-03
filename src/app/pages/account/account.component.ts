@@ -87,9 +87,40 @@ export class AccountComponent implements OnInit {
       if (e){
         var roles =this.rolesList.find(s=>s.id == e.roles)
           e.roles=[roles];
-        this.apiSvc.addLoginInfo(e).subscribe(e=>{
-          this.onload()
-        }); 
+        this.apiSvc.addLoginInfo(e).subscribe(
+          (respon) =>{
+            this.onload()
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+          (error) => {
+            this.onload()
+            this.toastr.error(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '編輯失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          }
+        ); 
       }
        
     }).catch((error) => {

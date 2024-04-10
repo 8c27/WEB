@@ -221,7 +221,7 @@ export class ShipComponent implements OnInit {
 
       // 資料帶入
       const header = ['公司', '日期', '憑單', '品名規格', '數量', '單價', '金額']
-      const initData = ['clientName', 'creationTime', 'feedNumber', 'stockName', 'quantity', 'cost'];
+      const initData = ['ltd', 'creationTime', 'feedNumber', 'stockName', 'quantity', 'cost'];
       const headerRow = ws.addRow(header)
       headerRow.height = 36
       headerRow.font = headerFont

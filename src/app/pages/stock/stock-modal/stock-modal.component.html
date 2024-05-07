@@ -205,13 +205,26 @@
 </div>
 
 <div class="modal-content border-ani" *ngIf="showPdf">
-    <div class="modal-body">
+    <div class="modal-body" #pdfViewerContainer style="cursor: grabbing;">
         <div class="row col-12">
             <pdf-viewer [src]="img"
             [render-text]="true"
             [original-size]="false"
-            style="width: 400px; height: 500px">
+            [rotation]="rotation"
+            [zoom]="zoom"
+            #pdfViewerContainer style="overflow: auto; height: 540px;">
             </pdf-viewer>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="pdf-btn" (click)="rotateClockwise()">
+            <mat-icon>refresh</mat-icon>
+        </div>
+        <div class="pdf-btn" (click)="zoomIn()">
+            <mat-icon>zoom_in</mat-icon>
+        </div>
+        <div class="pdf-btn" (click)="zoomOut()">
+            <mat-icon>zoom_out</mat-icon>
         </div>
     </div>
 </div>

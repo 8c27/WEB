@@ -188,7 +188,6 @@ button {
 }
 
 
-
 @keyframes breath {
   0%, 100% {  color: #CCCCCC; }  /* 完全不透明 */
   50% { color: #ff79b0; }       /* 完全透明 */
@@ -196,4 +195,13 @@ button {
 
 .required {
   animation: breath 2s infinite; /* 动画名称，持续时间，以及重复次数 */
+}
+
+
+.pdf-btn{
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  &:hover{
+    transform: scale(1.5)
+  }
 }

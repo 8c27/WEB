@@ -1,5 +1,5 @@
 import { computeMsgId } from "@angular/compiler";
-import { Component, EventEmitter, HostListener, Input, OnInit, Output } from "@angular/core";
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { FormBuilder, Validators, FormGroup, RequiredValidator  } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { Subscription } from "rxjs";
@@ -27,6 +27,15 @@ export class StockModalConponent implements OnInit {
   hideonbush: boolean = true;
   showPdf: boolean = false;
   img: any;
+
+  // pdf-viewer 設置
+  @ViewChild('pdfViewerContainer') pdfViewerContainer: ElementRef;
+  rotation = 0; 
+  zoom = 1 
+  dragging = false;
+  lastX = 0;
+  lastY = 0;
+
   constructor(
     public modal: NgbActiveModal,
     private fb: FormBuilder,
@@ -111,6 +120,41 @@ export class StockModalConponent implements OnInit {
     this.img = e
   }
 
- 
+  rotateClockwise() {
+    this.rotation += 90; // 每次点击增加90度
+  }
+  
+  zoomIn() {
+    this.zoom *= 1.1; // 放大10%
+  }
+
+  zoomOut() {
+    this.zoom *= 0.9; // 缩小10%
+  }
+
+  @HostListener('mousedown', ['$event'])
+  onMouseDown(event: MouseEvent) {
+    this.dragging = true;
+    this.lastX = event.clientX;
+    this.lastY = event.clientY;
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (this.dragging) {
+      const dx = event.clientX - this.lastX;
+      const dy = event.clientY - this.lastY;
+      const container = this.pdfViewerContainer.nativeElement;
+      container.scrollLeft -= dx;
+      container.scrollTop -= dy;
+      this.lastX = event.clientX;
+      this.lastY = event.clientY;
+    }
+  }
+
+  @HostListener('document:mouseup', ['$event'])
+  onMouseUp(event: MouseEvent) {
+    this.dragging = false;
+  }
 }
 

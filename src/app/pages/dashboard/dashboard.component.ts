@@ -386,16 +386,16 @@ export class DashboardComponent implements OnInit {
     // 賦值
     ws.getCell('A1').value = '昇 貿 工業股份有限公司'
     ws.getCell('G2').value = '製程加工單'
-    ws.getCell('A2').value = '客戶編號'
+    ws.getCell('A2').value = '訂單編號'
     ws.getCell('A3').value = '加工類別'
     ws.getCell('F3').value = '料別'
     ws.getCell('H3').value = '料長:mm'
     ws.getCell('A4').value = '頭部尺寸'
     ws.getCell('F4').value = '注意事項'
     ws.getCell('A5').value = '昇貿規格'
-    ws.getCell('A6').value = '備註'
-    ws.getCell('A7').value = '剝皮其他'
-    ws.getCell('A8').value = '後加工'
+    ws.getCell('A6').value = '剝皮'    
+    ws.getCell('A7').value = '尾加工' 
+    ws.getCell('A8').value = '備註' 
     ws.getCell('A9').value = '數量'
     ws.getCell('F9').value = '材質'
     ws.getCell('H9').value = '進料數'
@@ -407,20 +407,12 @@ export class DashboardComponent implements OnInit {
     ws.getCell('G12').value = '許先生'   // 未來改為帳號使用者名稱
     // 填入欄位
     const cellValues = [
-      { cell: 'B2', value: this.selected.number },
+      { cell: 'B2', value: this.selected.feedNumber },
       { cell: 'B3', value: this.selected.stock[0].omi},
       { cell: 'B4', value: this.selected.stock[0].size },
       { cell: 'B5', value: this.selected.stockName },
       {
         cell: 'B6',
-        value: [
-          this.selected.stock[0].typing,
-          this.selected.stock[0].special,
-          this.selected.description ? `(${this.selected.description})` : null
-        ].filter(item => item).join('、') || ''
-      },
-      {
-        cell: 'B7',
         value: [
           this.selected.stock[0].peel1,
           this.selected.stock[0].peel2,
@@ -431,10 +423,18 @@ export class DashboardComponent implements OnInit {
           this.selected.stock[0].hole2
         ].filter(item => item).join('、') || ''
       },
-      { cell: 'B8', value: this.selected.stock[0].ear || ''},
+      { cell: 'B7',value: this.selected.stock[0].ear || ''},
+      { 
+        cell: 'B8',        
+        value: [
+          this.selected.stock[0].typing,
+          this.selected.stock[0].special,
+          this.selected.description ? `(${this.selected.description})` : null
+        ].filter(item => item).join('、') || ''
+      },
       { cell: 'B9', value: this.selected.quantity },
       { cell: 'B10', value: this.selected.stock[0].project},
-      { cell: 'B11', value: this.selected.clientName},
+      { cell: 'B11', value: this.selected.clientName + ' ' + this.selected.number},
       { cell: 'B12', value: this.days},
       { cell: 'G3', value: this.selected.stock[0].class},
       { cell: 'G9', value: this.selected.stock[0].material},

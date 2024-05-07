@@ -320,5 +320,58 @@ export class StockComponent implements OnInit {
     })
   }
 
+  copy(){
+    // 複製一份新的list不需要亂數廠商名稱, 不代入加工項目
+    if(this.selected){
+      /// console.log(this.selected)
+      const modal = this.ngbModal.open(StockModalConponent, {size: 'lg'});
+      modal.componentInstance.title = '新增規格'
+      modal.componentInstance.clientList=this.clientList
+      modal.componentInstance.placeList = this.placeList
+      modal.componentInstance.formData = this.selected
+      modal.componentInstance.showDiv = false
+      modal.componentInstance.formData.id = 0
+      modal.componentInstance.formData.clientId = null
+      modal.componentInstance.formData.project = null
+      modal.result.then(e => {
+        if (e) this.api.addStock(e).subscribe(
+          (respon) =>{
+            this.toastr.success(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '新增成功'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-success alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          },
+          (error) => {
+            this.toastr.error(
+              '<span data-notify="icon" class="nc-icon nc-bell-55"></span><span data-notify="message">' +
+              '新增失敗'
+              + '</span>',
+              "",
+              {
+                timeOut: 3000,
+                closeButton: true,
+                enableHtml: true,
+                toastClass: "alert alert-error alert-with-icon",
+                positionClass: "toast-bottom-center"
+              }
+            );
+          }
+        )
+      }).catch( (error) => {
+        console.log('Error in modal result:', error)
+      })
+    }
+   
+  }
+
 
 }

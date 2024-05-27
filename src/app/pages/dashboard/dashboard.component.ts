@@ -356,7 +356,7 @@ export class DashboardComponent implements OnInit {
     const insertFont = {
       name: '標楷體',
       family: 4,
-      size: 12, 
+      size: 16, 
     }
     ws.getCell('A1').font = titleFont
     for (let i = 2; i<=12; i++){
@@ -416,17 +416,18 @@ export class DashboardComponent implements OnInit {
         value: [
           this.selected.stock[0].peel1,
           this.selected.stock[0].peel2,
-          this.selected.stock[0].ditch,
-          this.selected.stock[0].taper,
-          this.selected.stock[0].chamfer,
-          this.selected.stock[0].hole1,
-          this.selected.stock[0].hole2
+
         ].filter(item => item).join('、') || ''
       },
       { cell: 'B7',value: this.selected.stock[0].ear || ''},
       { 
         cell: 'B8',        
         value: [
+          this.selected.stock[0].ditch,
+          this.selected.stock[0].taper,
+          this.selected.stock[0].chamfer,
+          this.selected.stock[0].hole1,
+          this.selected.stock[0].hole2,
           this.selected.stock[0].typing,
           this.selected.stock[0].special,
           this.selected.description ? `(${this.selected.description})` : null

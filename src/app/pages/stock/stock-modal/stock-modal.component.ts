@@ -70,7 +70,8 @@ export class StockModalConponent implements OnInit {
       mm: [null],
       place: [null],
       project: [null],
-      omi: [null]
+      omi: [null],
+      stockNumber: [null, Validators.required]
     })
   }
 

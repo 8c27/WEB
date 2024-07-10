@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
       { name: 'status', displayName: '訂單狀態', templateRef: '完成狀態'},
       { name: 'feedNumber', displayName: '訂單編號',width: 150 },
       { name: 'clientName', displayName: '廠商名稱', width: 200 },
-      { name: 'stockName', displayName: '昇茂規格', width: 250},  
+      { name: 'stockName', displayName: '昇貿規格', width: 250},  
       { name: 'project', displayName: '加工項目',width: 150 , templateRef: 'stock'},
       { name: 'quantity', displayName: '數量' }, 
       { name: 'raw', displayName: '進料數'},
@@ -284,8 +284,8 @@ export class DashboardComponent implements OnInit {
 
     // 合併儲存格
     ws.mergeCells('A1', 'I1')
-    ws.mergeCells('B2', 'F2')
-    ws.mergeCells('G2', 'I2')
+    ws.mergeCells('C2', 'D2')
+    ws.mergeCells('E2', 'H2')
     ws.mergeCells('B3', 'E3')
     ws.mergeCells('B4', 'E4')
     ws.mergeCells('G4', 'I4')
@@ -362,10 +362,13 @@ export class DashboardComponent implements OnInit {
     for (let i = 2; i<=12; i++){
       ws.getCell(`A${i}`).font = fixedFont
     }
+    ws.getCell('B2').font = fixedFont
     for (let i = 3; i<=12; i++){
       ws.getCell(`B${i}`).font = insertFont
     }
-    ws.getCell('G2').font = G2Font
+    ws.getCell('C2').font = fixedFont
+    ws.getCell('E2').font = fixedFont
+    ws.getCell('I2').font = G2Font
     ws.getCell('G3').font = insertFont
     ws.getCell('G4').font = insertFont
     ws.getCell('G9').font = insertFont
@@ -385,7 +388,8 @@ export class DashboardComponent implements OnInit {
 
     // 賦值
     ws.getCell('A1').value = '昇 貿 工業股份有限公司'
-    ws.getCell('G2').value = '製程加工單'
+    ws.getCell('C2').value = '廠商編號'
+    ws.getCell('I2').value = '製程加工單'
     ws.getCell('A2').value = '訂單編號'
     ws.getCell('A3').value = '加工類別'
     ws.getCell('F3').value = '料別'
@@ -416,16 +420,19 @@ export class DashboardComponent implements OnInit {
         value: [
           this.selected.stock[0].peel1,
           this.selected.stock[0].peel2,
-
+          this.selected.stock[0].ditch
         ].filter(item => item).join('、') || ''
       },
-      { cell: 'B7',value: this.selected.stock[0].ear || ''},
+      { cell: 'B7',
+        value: [
+          this.selected.stock[0].ear,
+          this.selected.stock[0].chamfer,
+        ].filter(item => item).join('、') || ''
+      },
       { 
         cell: 'B8',        
         value: [
-          this.selected.stock[0].ditch,
           this.selected.stock[0].taper,
-          this.selected.stock[0].chamfer,
           this.selected.stock[0].hole1,
           this.selected.stock[0].hole2,
           this.selected.stock[0].typing,
@@ -437,6 +444,7 @@ export class DashboardComponent implements OnInit {
       { cell: 'B10', value: this.selected.stock[0].project},
       { cell: 'B11', value: this.selected.clientName + ' ' + this.selected.number},
       { cell: 'B12', value: this.days},
+      { cell: 'E2', value: this.selected.stock[0].stockNumber},
       { cell: 'G3', value: this.selected.stock[0].class},
       { cell: 'G9', value: this.selected.stock[0].material},
       { cell: 'G11', value: this.selected.stock[0].place},

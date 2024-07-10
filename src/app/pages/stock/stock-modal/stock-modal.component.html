@@ -15,6 +15,13 @@
     <div class="modal-body" [formGroup]="formGroup" *ngIf="hideonbush">
         <div class="row col-12">
             <div class="col-lg-2 form-name required">
+                <span>廠商編號</span>
+                <mat-icon style="flex:1">home</mat-icon>
+            </div>
+            <input class="col-lg-6 special-input" formControlName="stockNumber"/>
+        </div>  
+        <div class="row col-12">
+            <div class="col-lg-2 form-name required">
                 <span>廠商名稱</span>
                 <mat-icon style="flex:1">home</mat-icon>
             </div>

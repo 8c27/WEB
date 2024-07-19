@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'status', displayName: '訂單狀態', templateRef: '完成狀態'},
       { name: 'feedNumber', displayName: '訂單編號',width: 150 },
       { name: 'clientName', displayName: '廠商名稱', width: 200 },
+      { name: 'stockNumber', displayName: '廠商編號', width: 250},
       { name: 'stockName', displayName: '昇貿規格', width: 250},  
       { name: 'project', displayName: '加工項目',width: 150 , templateRef: 'stock'},
       { name: 'quantity', displayName: '數量' }, 
@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
       }
 
       // 當 FeedChange 事件被監聽到有動作後, 就更新資料
-      this.dataSource= new MatTableDataSource<any>(data)
+      this.dataSource= new MatTableDataSource<any>(data.filter(e => e.status == false))
       this.copydata = [...this.dataSource.data]
       // 避免同步刪除發生錯誤
       if(this.selected){
@@ -98,8 +98,10 @@ export class DashboardComponent implements OnInit {
     // 載入
     let today = (new Date());
     console.log(today)
+  
     this.api.getFeed().subscribe( (e:any) =>{
-      this.dataSource= new MatTableDataSource<any>(e)
+      console.log(e)
+      this.dataSource= new MatTableDataSource<any>(e.filter(i => i.status == false))
       this.copydata = [...this.dataSource.data]
     } ) //訂閱Feed資料
     this.api.getClient().subscribe( (e:any) =>this.clientList=e) //訂閱Client資料

@@ -48,9 +48,10 @@ export class StockComponent implements OnInit {
     },
     columns: [
       { name: 'clientName', displayName: '廠商名稱',  width: 200 },
+      { name: 'stockNumber', displayName: '廠商編號', width: 250},
       { name: 'stockName', displayName: '昇貿規格', width:250 },
-      { name: 'mm', displayName: '料長', width: 100},
-      { name: 'weight', displayName: '單重'},
+      { name: 'mm', displayName: '料長(mm)', width: 100},
+      { name: 'weight', displayName: '單重(g)'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
       { name: 'lackPcs', displayName: '剩餘支數'},
@@ -334,6 +335,7 @@ export class StockComponent implements OnInit {
       modal.componentInstance.formData.id = 0
       modal.componentInstance.formData.clientId = null
       modal.componentInstance.formData.project = null
+      modal.componentInstance.formData.stockNumber = null
       modal.result.then(e => {
         if (e) this.api.addStock(e).subscribe(
           (respon) =>{

@@ -3,6 +3,17 @@
 .td-container {
     text-align: center  ;
 }
+::ng-deep .mat-select-value-text {
+  color: #fdf6fd;
+}
+
+::ng-deep.mat-select-arrow {
+  color: #fdf6fd;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+  color: #fdf6fd;
+}
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
     color : #fff

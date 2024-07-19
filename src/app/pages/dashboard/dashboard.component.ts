@@ -322,11 +322,11 @@ export class DashboardComponent implements OnInit {
     // 字體設置
     const columns = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']; // A到I的列標記
     columns.forEach( e => {
-      if (e != 'B'){
-        ws.getColumn(e).eachCell({ includeEmpty: true }, (cell)=> {
-          cell.alignment = {  vertical: 'middle', horizontal: 'left' }
-        })
-      }
+   
+      ws.getColumn(e).eachCell({ includeEmpty: true }, (cell)=> {
+        cell.alignment = {  vertical: 'middle', horizontal: 'left' }
+      })
+   
       for(let i= 3; i<=11; i++){
         ws.getCell(`${e}${i}`).border = {
           top: {style: 'thin'},

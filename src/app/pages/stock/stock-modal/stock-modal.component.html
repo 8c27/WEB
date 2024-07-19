@@ -15,20 +15,6 @@
     <div class="modal-body" [formGroup]="formGroup" *ngIf="hideonbush">
         <div class="row col-12">
             <div class="col-lg-2 form-name required">
-                <span>廠商編號</span>
-                <mat-icon style="flex:1">home</mat-icon>
-            </div>
-            <input class="col-lg-6 special-input" formControlName="stockNumber"/>
-        </div>  
-        <div class="row col-12">
-            <div class="col-lg-2 form-name required">
-                <span>廠商名稱</span>
-                <mat-icon style="flex:1">home</mat-icon>
-            </div>
-            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" >
-                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
-            </ng-select>
-            <div class="col-lg-2 form-name required">
                 <span>昇貿規格</span>
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
@@ -40,6 +26,20 @@
                     <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
                 </ng-select>
             </ng-template>
+        </div>  
+        <div class="row col-12">
+            <div class="col-lg-2 form-name required">
+                <span>廠商名稱</span>
+                <mat-icon style="flex:1">home</mat-icon>
+            </div>
+            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" >
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
+            <div class="col-lg-2 form-name required">
+                <span>廠商編號</span>
+                <mat-icon style="flex:1">numbers</mat-icon>
+            </div>
+            <input class="col-lg-5 special-input" formControlName="stockNumber"/>
         </div>
         <div class="row col-12">
             <div class="col-lg-2 form-name">

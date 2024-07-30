@@ -47,10 +47,10 @@ export class StockComponent implements OnInit {
       diableClear: true
     },
     columns: [
-      { name: 'clientName', displayName: '廠商名稱',  width: 200 },
-      { name: 'stockNumber', displayName: '廠商編號', width: 250},
-      { name: 'stockName', displayName: '昇貿規格', width:250 },
-      { name: 'mm', displayName: '料長(mm)', width: 100},
+      { name: 'clientName', displayName: '廠商名稱',  width: 150 },
+      { name: 'stockNumber', displayName: '廠商編號', width: 225},
+      { name: 'stockName', displayName: '昇貿規格', width:225 },
+      { name: 'mm', displayName: '料長(mm)', width: 70},
       { name: 'weight', displayName: '單重(g)'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   

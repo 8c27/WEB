@@ -110,4 +110,8 @@ export class FeedService {
     public deleteDelivery(id){
         return this.http.delete(apiUrl + "/Delivery/"+ id)
     }
+
+    public orderDelivery(id, data){
+        return this.http.put(apiUrl + "/Delivery/"+ id, data )
+    }
 }

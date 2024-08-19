@@ -48,6 +48,8 @@ import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular
 import { DeliveryModalComponent } from './pages/delivery/delivery-modal/delivery-modal.component';
 import { DeliveryComponent } from "./pages/delivery/delivery.component";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { DeliveryDropComponent } from './pages/delivery/delivery-drop/delivery-drop.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
 }
@@ -93,7 +95,8 @@ function getJwtConfig(): JwtConfig {
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    PdfViewerModule
+    PdfViewerModule,
+    DragDropModule
   ],
   declarations: [
     AppComponent,
@@ -117,7 +120,8 @@ function getJwtConfig(): JwtConfig {
     AccountModalConponent,
     MultiSelectComponent,
     DeliveryModalComponent,
-    DeliveryComponent,  
+    DeliveryComponent,
+    DeliveryDropComponent,  
   ],
   exports:[
     MultiSelectComponent

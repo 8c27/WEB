@@ -12,6 +12,7 @@ import * as ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver';
 import { buffer } from "rxjs";
 import { DeliveryModalComponent } from "./delivery-modal/delivery-modal.component";
+import { DeliveryDropComponent } from "./delivery-drop/delivery-drop.component";
 @Component({
   selector: "app-delivery",
   templateUrl: "delivery.component.html",
@@ -161,6 +162,25 @@ export class DeliveryComponent implements OnInit {
       )
     })
  
+  }
+
+  changeOrder(){
+    const modal = this.ngbModal.open(DeliveryDropComponent, {size: 'sm',});
+    modal.componentInstance.title = '編輯順序'
+    modal.componentInstance.formData = this.dataSource
+    modal.result.then(e => {
+      if (e){
+        e.forEach(data => {
+          console.log(data)
+          this.api.orderDelivery(data.id, data).subscribe(e => {
+            console.log(e)
+          })
+        })
+      }
+    }).catch((error) => {
+      console.log('Error in modal result:', error)
+    })
+
   }
 
 }

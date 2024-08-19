@@ -1,0 +1,28 @@
+
+
+<div class="modal-content border-ani">
+    <div class="modal-header " >
+          <h1 class="modal-title">{{title}}</h1>
+      </div>
+      <div class="modal-body">        
+        <div cdkDropList class="order-list" (cdkDropListDropped)="drop($event)" >
+            <div class="order-box" 
+                 *ngFor="let list of address; let i = index" 
+                 cdkDrag
+                 cdkDragLockAxis="y">
+                <div class="col-3 number" [ngClass]="getTopFive(i)" style="display: flex; justify-content: center;">{{list.orderId}}</div>
+                <div class="col-6 name" style="display: flex; justify-content: center;">{{list.name}}</div>
+                <div class="col-3"></div>
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <button style="--clr:#a1eafb" (click)="save()">
+              <span style="color: #a1eafb" >SAVE</span><i></i>
+          </button>
+          <button style="--clr:#ffcccc" (click)="cancel()">
+              <span style="color: #ffcccc">CANCEL</span><i></i>
+          </button>
+      </div>
+  </div>

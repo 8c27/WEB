@@ -85,7 +85,8 @@ export class StockComponent implements OnInit {
     this.signalRSvc.StartConnection();    // 連接singalR 
     this.signalRSvc.ReceiveListener()?.on('StockChange', (e) => {
       e.forEach(s=>{
-        var allfeed = s.feed.reduce((total, feed) => total + feed.quantity, 0);
+        var allfeed = s.feed.filter(e => e.isDeleted !== true)
+                            .reduce((total, feed) => total + feed.quantity, 0);
         var lackPcs = s.finishAmount-allfeed;
         var lackWeight = s.weight * lackPcs
         s.feedQuantity=allfeed
@@ -110,7 +111,8 @@ export class StockComponent implements OnInit {
     console.log(today)
     this.api.getStock().subscribe( (e:IStock[]) => {
       e.forEach(s=>{
-        var allfeed = s.feed.reduce((total, feed) => total + feed.quantity, 0);
+        var allfeed = s.feed.filter(e => e.isDeleted !== true)
+                            .reduce((total, feed) => total + feed.quantity, 0);
         var lackPcs = s.finishAmount-allfeed;
         var lackWeight = s.weight * lackPcs
         s.feedQuantity=allfeed

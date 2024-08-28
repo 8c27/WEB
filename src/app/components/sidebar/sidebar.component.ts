@@ -43,6 +43,12 @@ export const ROUTES: RouteInfo[] = [
     title: "指送地點",
     icon: "icon-settings-gear-63",
     class: ""
+  },
+  {
+    path: '/order-history',
+    title: "歷史訂單",
+    icon: "icon-settings-gear-63",
+    class: ""
   }
 ];
 

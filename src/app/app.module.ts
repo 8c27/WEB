@@ -50,6 +50,7 @@ import { DeliveryComponent } from "./pages/delivery/delivery.component";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DeliveryDropComponent } from './pages/delivery/delivery-drop/delivery-drop.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 export function tokenGetter(): string | null {
   return localStorage.getItem('access_token');
 }
@@ -121,7 +122,8 @@ function getJwtConfig(): JwtConfig {
     MultiSelectComponent,
     DeliveryModalComponent,
     DeliveryComponent,
-    DeliveryDropComponent,  
+    DeliveryDropComponent,
+    OrderHistoryComponent,  
   ],
   exports:[
     MultiSelectComponent

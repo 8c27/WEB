@@ -51,12 +51,10 @@ export class StockComponent implements OnInit {
       { name: 'stockNumber', displayName: '廠商編號', width: 225},
       { name: 'stockName', displayName: '昇貿規格', width:225 },
       { name: 'mm', displayName: '料長(mm)', width: 70},
-      { name: 'weight', displayName: '單重(g)'},
       { name: 'finishAmount', displayName: '庫存數量' },
       { name: 'feedQuantity', displayName: '訂單數量',},   
-      { name: 'lackPcs', displayName: '剩餘支數'},
-      { name: 'lackWeight', displayName: '剩餘重量', templateRef:'data_decimal',width: 120},
-      { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long' ,width: 120 },
+      { name: 'lackPcs', displayName: '預估剩餘支數'},
+      // { name: 'updateTime', displayName: '更新時間', templateRef: 'date_long' ,width: 120 },
     ]
   };
   subs: any;
@@ -88,10 +86,8 @@ export class StockComponent implements OnInit {
         var allfeed = s.feed.filter(e => e.isDeleted !== true)
                             .reduce((total, feed) => total + feed.quantity, 0);
         var lackPcs = s.finishAmount-allfeed;
-        var lackWeight = s.weight * lackPcs
         s.feedQuantity=allfeed
         s.lackPcs=lackPcs
-        s.lackWeight=lackWeight
       })
 
       this.stockList=e
@@ -113,11 +109,9 @@ export class StockComponent implements OnInit {
       e.forEach(s=>{
         var allfeed = s.feed.filter(e => e.isDeleted !== true)
                             .reduce((total, feed) => total + feed.quantity, 0);
-        var lackPcs = s.finishAmount-allfeed;
-        var lackWeight = s.weight * lackPcs
+        var lackPcs = s.finishAmount-allfeed;   
         s.feedQuantity=allfeed
         s.lackPcs=lackPcs
-        s.lackWeight=lackWeight
       })
       this.stockList=e
       this.dataSource= new MatTableDataSource<any>(e)
@@ -152,6 +146,9 @@ export class StockComponent implements OnInit {
     modal.componentInstance.clientList=this.clientList
     modal.componentInstance.placeList = this.placeList
     modal.componentInstance.showDiv = false
+    modal.componentInstance.isPeel = false
+    modal.componentInstance.isRemark = false
+    modal.componentInstance.isHearing = false
     modal.result.then(e => {
       if (e) this.api.addStock(e).subscribe(
         (respon) =>{
@@ -236,6 +233,9 @@ export class StockComponent implements OnInit {
       modal.componentInstance.formData = this.selected
       modal.componentInstance.clientList=this.clientList
       modal.componentInstance.placeList = this.placeList
+      modal.componentInstance.isPeel = true
+      modal.componentInstance.isRemark = true
+      modal.componentInstance.isHearing = true
       modal.result.then( e => {
         if (e) this.api.editStock(e.id , e).subscribe(
           (respon) => {

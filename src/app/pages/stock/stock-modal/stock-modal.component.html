@@ -1,8 +1,10 @@
 
-<div class="modal-content border-ani" *ngIf="!showPdf" [showPdf]="showPdf">
-  <div class="modal-header " >
-        <h1 class="modal-title">{{title}}</h1>
-        <div class="sp-txt" >
+<div class="modal-content border-ani" *ngIf="!showPdf" [showPdf]="showPdf" [formGroup]="formGroup">
+    <div class="modal-header " >
+        <div class="col-3">
+            <h1 class="modal-title">{{title}}</h1>
+        </div>
+        <div class="col-lg-5 sp-txt" >
             <span>Φ</span>
             <span>⊙khoan lo</span>
             <span>□</span>
@@ -11,76 +13,36 @@
             <span>◇</span>
             <span>°</span>
         </div>
+
+        <div class="col-lg-2 form-name required">
+            <span>庫存數量</span>
+            <mat-icon style="flex: 1">123</mat-icon>
+        </div>
+        <input class="col-lg-2 special-input" formControlName="finishAmount"/>
+
     </div>
-    <div class="modal-body" [formGroup]="formGroup" *ngIf="hideonbush">
+    <div class="modal-body"  *ngIf="hideonbush">
+        <!--加工單第一行-->
         <div class="row col-12">
-            <div class="col-lg-2 form-name required">
-                <span>昇貿規格</span>
+            <div class="col-lg-2 form-name">
+                <span>訂單編號</span>
                 <mat-icon style="flex:1">handyman</mat-icon>
             </div>
-            <ng-container *ngIf="hideonbush ; else selectTemplate">
-                <input class="col-lg-5 special-input" formControlName="stockName">
-            </ng-container>
-            <ng-template #selectTemplate>
-                <ng-select class="col-lg-5 custom required" style="padding:0" formControlName="stockName">
-                    <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
-                </ng-select>
-            </ng-template>
-        </div>  
-        <div class="row col-12">
-            <div class="col-lg-2 form-name required">
-                <span>廠商名稱</span>
-                <mat-icon style="flex:1">home</mat-icon>
-            </div>
-            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="clientId" >
-                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
-            </ng-select>
+            <div class="col-lg-3 special-input" placeholder="系統自動產生">系統自動產生</div>
             <div class="col-lg-2 form-name required">
                 <span>廠商編號</span>
                 <mat-icon style="flex:1">numbers</mat-icon>
             </div>
             <input class="col-lg-5 special-input" formControlName="stockNumber"/>
         </div>
+        <!--加工單第二行-->  
         <div class="row col-12">
             <div class="col-lg-2 form-name">
-                <span>料長(mm)</span>
-                <mat-icon style="flex: 1">keyboard_tab</mat-icon>
+                <span>加工類別</span>
+                <mat-icon style="flex: 1">rule</mat-icon>
             </div>
-            <input class="col-lg-3 special-input" formControlName="mm"/>
-            <div class="col-lg-2 form-name">
-                <span>材質</span>
-                <mat-icon style="flex: 1">webhook</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="material">
-            <div class="col-lg-2 form-name" *ngIf="hideonbush">
-                <span>單重 ( g )</span>
-                <mat-icon style="flex: 1">fitness_center</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="weight">
-        </div>
-        <div class="row col-12">
-            <div class="col-lg-2 form-name">
-                <span>剝皮一</span>
-                <mat-icon style="flex: 1">filter_1</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input" formControlName="peel1">
-            <div class="col-lg-2 form-name">
-                <span>頭部尺寸</span>
-                <mat-icon style="flex: 1">build</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="size">
-            <div class="col-lg-2 form-name">
-                <span>成本價</span>
-                <mat-icon style="flex: 1">attach_money</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="cost">
-        </div>
-        <div class="row col-12">
-            <div class="col-lg-2 form-name">
-                <span>剝皮二</span>
-                <mat-icon style="flex: 1">filter_2</mat-icon>
-            </div>
-            <input class="col-lg-3 special-input" formControlName="peel2">
+            <input class="col-lg-3 special-input" formControlName="omi">
+      
             <div class="col-lg-2 form-name">
                 <span>加工別</span>
                 <mat-icon style="flex: 1">hotel_class</mat-icon>
@@ -90,87 +52,166 @@
                 <ng-option value="帶料">帶料</ng-option>
             </ng-select>
             <div class="col-lg-2 form-name">
-                <span>1kg/支</span>
-                <mat-icon style="flex: 1">icecream</mat-icon>
+                <span>料長(mm)</span>
+                <mat-icon style="flex: 1">keyboard_tab</mat-icon>
             </div>
-            <input class="col-lg-1 special-input" formControlName="pcs">
+            <input class="col-lg-1 special-input" formControlName="mm"/>
         </div>
+        <!--加工單第三行-->
         <div class="row col-12">
             <div class="col-lg-2 form-name">
-                <span>鑽孔一</span>
-                <mat-icon style="flex: 1">looks_one</mat-icon>
+                <span>頭部尺寸</span>
+                <mat-icon style="flex: 1">build</mat-icon>
             </div>
-            <input class="col-lg-3 special-input" formControlName="hole1">
+            <input class="col-lg-4 special-input" formControlName="size">
             <div class="col-lg-2 form-name">
-                <span>備註</span> <!--原本叫做特殊別 5/27 改成 備註-->
-                <mat-icon style="flex: 1">local_fire_department</mat-icon>
+                <span>注意事項</span>
+                <mat-icon style="flex: 1">build</mat-icon>
             </div>
-            <input class="col-lg-2 special-input" formControlName="special">
-            <div class="col-lg-2 form-name">
-                <span>調漲</span>
-                <mat-icon style="flex: 1">percent</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="raise">
+            <div class="col-lg-4 special-input">請至訂單系統填寫</div>
         </div>
+        <!--加工單第四行-->
+        <div class="row col-12">
+            <div class="col-lg-2 form-name required">
+                <span>昇貿規格</span>
+                <mat-icon style="flex:1">handyman</mat-icon>
+            </div>
+            <ng-container *ngIf="hideonbush ; else selectTemplate">
+                <input class="col-lg-10 special-input" formControlName="stockName">
+            </ng-container>
+            <ng-template #selectTemplate>
+                <ng-select class="col-lg-10 custom required" style="padding:0" formControlName="stockName">
+                    <ng-option *ngFor="let x of filterStock" [value]="x.stockName">{{x.stockName}}</ng-option>
+                </ng-select>
+            </ng-template>
+        </div>
+        <!--加工單第五行-->
         <div class="row col-12">
             <div class="col-lg-2 form-name">
-                <span>鑽孔二</span>
-                <mat-icon style="flex: 1">looks_two</mat-icon>
+                <span>工作區</span>
+                <mat-icon style="flex: 1">menu</mat-icon>
             </div>
-            <input class="col-lg-3 special-input" formControlName="hole2">
-            <div class="col-lg-2 form-name">
-                <span>打字別</span>
-                <mat-icon style="flex: 1">border_color</mat-icon>
+            <div class="col-lg-10 favorites">
+                <div class="col-lg-3 favorites-btn" (click)="isPeel = !isPeel" [ngClass]="{'onOpen': isPeel}">
+                    展開剝皮
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3 favorites-btn" (click)="isHearing = !isHearing" [ngClass]="{'onOpen': isHearing}">
+                    展開尾加工
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3 favorites-btn" (click)="isRemark = !isRemark" [ngClass]="{'onOpen': isRemark}">
+                    展開備註
+                </div>
             </div>
-            <input class="col-lg-2 special-input" formControlName="typing">
-            <div class="col-lg-2 form-name">
-                <span>尾倒角</span>
-                <mat-icon style="flex: 1">wifi</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="chamfer">
         </div>
-        <div class="row col-12">
+        <div class="row col-12" *ngIf="isPeel">
             <div class="col-lg-2 form-name">
-                <span>指送地點</span>
-                <mat-icon style="flex: 1">alternate_email</mat-icon>
+                <span>剝皮一</span>
+                <mat-icon style="flex: 1">filter_1</mat-icon>
             </div>
-            <ng-select class="col-lg-3 custom" style="padding:0" formControlName="place">
-                <ng-option *ngFor="let x of placeList" [value]="x.name">{{x.name}}</ng-option>
-            </ng-select>
+            <input class="col-lg-2 special-input" formControlName="peel1">
+            <div class="col-lg-2 form-name">
+                <span>剝皮二</span>
+                <mat-icon style="flex: 1">filter_2</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="peel2">
             <div class="col-lg-2 form-name">
                 <span>插-珠槽</span>
                 <mat-icon style="flex: 1">sports</mat-icon>
             </div>
             <input class="col-lg-2 special-input" formControlName="ditch">
-            <div class="col-lg-2 form-name">
-                <span>車錐度</span>
-                <mat-icon style="flex: 1">airware</mat-icon>
-            </div>
-            <input class="col-lg-1 special-input" formControlName="taper">
         </div>
-        <div class="row col-12">
-            <div class="col-lg-2 form-name">
-                <span>加工項目</span>
-                <mat-icon style="flex: 1">rule</mat-icon>
-            </div>
-            <input class="col-lg-6 special-input" formControlName="project">
-            <div class="col-lg-2 form-name required">
-                <span>庫存數量</span>
-                <mat-icon style="flex: 1">123</mat-icon>
-            </div>
-            <input class="col-lg-2 special-input" formControlName="finishAmount"/>
-        </div>
-        <div class="row col-12">
+ 
+        <!--加工單第六行-->
+        <div class="row col-12" *ngIf="isHearing">
             <div class="col-lg-2 form-name">
                 <span>尾加工</span>
                 <mat-icon style="flex: 1">hearing</mat-icon>
             </div>
             <input class="col-lg-6 special-input" formControlName="ear">
             <div class="col-lg-2 form-name">
-                <span>加工類別</span>
+                <span>尾倒角</span>
+                <mat-icon style="flex: 1">wifi</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="chamfer">
+        </div>
+        <!--加工單第七行-->
+        <div class="row col-12" *ngIf="isRemark">
+            <div class="col-lg-2 form-name">
+                <span>車錐度</span>
+                <mat-icon style="flex: 1">airware</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="taper">
+            <div class="col-lg-2 form-name">
+                <span>鑽孔一</span>
+                <mat-icon style="flex: 1">looks_one</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="hole1">
+            <div class="col-lg-2 form-name">
+                <span>鑽孔二</span>
+                <mat-icon style="flex: 1">looks_two</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="hole2">
+        </div>
+        <!--加工單第七行之二-->
+        <div class="row col-12" *ngIf="isRemark">
+            <div class="col-lg-2 form-name">
+                <span>打字別</span>
+                <mat-icon style="flex: 1">border_color</mat-icon>
+            </div>
+            <input class="col-lg-4 special-input" formControlName="typing">
+            <div class="col-lg-2 form-name">
+                <span>特殊別</span>
+                <mat-icon style="flex: 1">local_fire_department</mat-icon>
+            </div>
+            <input class="col-lg-4 special-input" formControlName="special">
+        </div>
+        <!--加工單第八行-->
+        <div class="row col-12">
+            <div class="col-lg-2 form-name">
+                <span>數量</span>
+                <mat-icon style="flex: 1">border_color</mat-icon>
+            </div>
+            <div class="col-lg-2 special-input">訂單系統</div>
+            <div class="col-lg-2 form-name">
+                <span>材質</span>
+                <mat-icon style="flex: 1">webhook</mat-icon>
+            </div>
+            <input class="col-lg-2 special-input" formControlName="material">
+            <div class="col-lg-2 form-name">
+                <span>進料數</span>
+                <mat-icon style="flex: 1">border_color</mat-icon>
+            </div>
+            <div class="col-lg-2 special-input">訂單系統</div>
+        </div>
+        <!--加工單第九行-->
+        <div class="row col-12">
+            <div class="col-lg-2 form-name">
+                <span>加工項目</span>
                 <mat-icon style="flex: 1">rule</mat-icon>
             </div>
-            <input class="col-lg-2 special-input" formControlName="omi">
+            <input class="col-lg-10 special-input" formControlName="project">
+        </div>
+        <!--加工單第十行-->
+        <div class="row col-12">
+            <div class="col-lg-2 form-name required">
+                <span>出貨廠商</span>
+                <mat-icon style="flex:1">home</mat-icon>
+            </div>
+            <ng-select class="col-lg-4 custom" style="padding:0" formControlName="clientId" >
+                <ng-option *ngFor="let x of clientList" [value]="x.id">{{x.name}}</ng-option>
+            </ng-select>
+            <div class="col-lg-2 form-name">
+                <span>指送地點</span>
+                <mat-icon style="flex: 1">alternate_email</mat-icon>
+            </div>
+            <ng-select class="col-lg-4 custom" style="padding:0" formControlName="place">
+                <ng-option *ngFor="let x of placeList" [value]="x.name">{{x.name}}</ng-option>
+            </ng-select>
+        </div>
+        <div class="row col-12">
+
         </div>
         <app-image-dialog (img)="imgchange($event)" [(showPdf)]="showPdf" class="col-lg-12" *ngIf="showDiv"></app-image-dialog>
     </div>

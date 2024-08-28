@@ -439,7 +439,7 @@ export class DashboardComponent implements OnInit {
           this.selected.stock[0].hole2,
           this.selected.stock[0].typing,
           this.selected.stock[0].special,
-          this.selected.description ? `(${this.selected.description})` : null
+       
         ].filter(item => item).join('、') || ''
       },
       { cell: 'B9', value: this.selected.quantity },
@@ -448,6 +448,7 @@ export class DashboardComponent implements OnInit {
       { cell: 'B12', value: this.days},
       { cell: 'E2', value: this.selected.stock[0].stockNumber},
       { cell: 'G3', value: this.selected.stock[0].class},
+      { cell: 'G4', value: this.selected.description ? `(${this.selected.description})` : null},
       { cell: 'G9', value: this.selected.stock[0].material},
       { cell: 'G11', value: this.selected.stock[0].place},
       { cell: 'I3', value: this.selected.stock[0].mm},

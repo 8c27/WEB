@@ -20,6 +20,9 @@ export class StockModalConponent implements OnInit {
   @Input() clientList: any;
   @Input() placeList: any;
   @Input() type: any;
+  @Input() isPeel: any;
+  @Input() isHearing: any;
+  @Input() isRemark: any;
   @Output() submitevent = new EventEmitter<any>();
   showDiv:boolean = true; // 照片功能不顯示
   filterStock: any
@@ -27,7 +30,6 @@ export class StockModalConponent implements OnInit {
   hideonbush: boolean = true;
   showPdf: boolean = false;
   img: any;
-
   // pdf-viewer 設置
   @ViewChild('pdfViewerContainer') pdfViewerContainer: ElementRef;
   rotation = 0; 
@@ -48,7 +50,7 @@ export class StockModalConponent implements OnInit {
       updateTime: [null], // 更新時間
       stockName: [null, Validators.required], // 昇貿規格
       finishAmount: [0], //完成數量  
-      weight: [0, Validators.required],  // 單重g
+      weight: [null],  // 單重g
       isDeleted: [false , Validators.required],
       clientId: [null],
       material: [null],

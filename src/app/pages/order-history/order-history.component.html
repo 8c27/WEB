@@ -1,0 +1,44 @@
+
+<div class=" content bg">
+    <div class=" row">
+      <div class=" col-12">
+        <div class=" card card-chart col-12">
+          <div class="card-head  col-12 d-flex flex-row flex-wrap">
+            <div class="btn-sort col-lg-4 col-md-4 col-sm-12">
+            </div>
+            <div class="search col-lg-8 col-md-8 col-sm-12">
+              <div *ngIf="this.dateFm !== undefined || this.company !== undefined" class="circle" style="--color:#b6ccd8 " (click)="clearSelect()">
+                <mat-icon class="circle-icon">close</mat-icon>
+              </div>
+              <div class="select-search-bar" *ngIf="this.dateFm && this.dateTo !== undefined">
+                <mat-form-field>
+                  <mat-label>廠商</mat-label>
+                  <mat-select [(ngModel)]="company" (ngModelChange)="companySelect()" id="company">
+                    <mat-option *ngFor="let c of clientList" [value]="c.id">{{c.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+             </div>
+              <div class="date-search-bar">
+                <mat-datepicker-toggle matIconSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-form-field>
+                  <mat-label>選擇日期範圍</mat-label>
+                  <mat-date-range-input [rangePicker]="picker" >
+                    <input matStartDate placeholder="開始日期" [(ngModel)]="dateFm" (ngModelChange)="onDateChange()" name="dateFm" style="color: #fdf6fd;">
+                    <input matEndDate placeholder="結束日期" [(ngModel)]="dateTo" (ngModelChange)="onDateChange()" name="dateTo" style="color: #fdf6fd">
+                  </mat-date-range-input>
+                </mat-form-field>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </div>
+            </div>
+          </div>
+          <mat-card>
+            <mat-card-content>
+            <sm-table  [search]="search" [config]="table_config" [maxTableHeight]="maxTableHeight" [minTableHeight]="minTableHeight"
+            [dataSource]="dataSource" (select)="onSelect($event)"  [status]="status"></sm-table>
+          </mat-card-content>
+        </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  

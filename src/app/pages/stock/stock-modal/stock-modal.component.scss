@@ -41,6 +41,25 @@
   background-color:rgba(209, 194, 233, 0.3);
 }
 
+.favorites{
+  display: flex;
+  align-items: center;
+}
+
+.favorites-btn{
+  border-radius: 5px;
+  border: 1px solid #ECB88A;
+  text-align: center;
+  cursor: pointer;
+  &:hover{
+    border-color: #f03;
+  }
+}
+
+.onOpen{
+  border-color: rgb(219, 74, 103);
+}
+
 
 /* CSS ANIMATION*/
 button {
